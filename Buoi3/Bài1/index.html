@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Contact</title>
+
+    <!-- Embed font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;700;800;900&display=swap"
+        rel="stylesheet" />
+
+    <!-- Css -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Contact section starts  -->
+    <section class="contact">
+        <div class="container">
+            <h1 class="contact__heading">CONTACT US</h1>
+            <div class="contact__inner">
+                <div class="contact__info">
+                    <h2 class="contact__info-tittle">Contact Info</h2>
+                    <div class="contact__list">
+                        <!-- Item 1 -->
+                        <div class="contact-item">
+                            <i class="contact-item__icon fa-solid fa-location-dot"></i>
+                            <span class="contact-item__info">
+                                321 Awesome Street <br> New York, NY 17022
+                            </span>
+                        </div>
+                        <!-- Item 2 -->
+                        <div class="contact-item">
+                            <i class="contact-item__icon fa-regular fa-envelope"></i>
+                            <span class="contact-item__info">info@companyname.com</span>
+                        </div>
+                        <!-- Item 3 -->
+                        <div class="contact-item">
+                            <i class="contact-item__icon fa-solid fa-phone"></i>
+                            <span class="contact-item__info">+1 800 123 1234</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact__form">
+                    <h2 class="contact__form-title">Having Any Query! Or Book an appointment</h2>
+                    <!-- Contact form -->
+                    <form action="" method="post">
+                        <div class="contact__form-group">
+                            <input type="text" name="fullname" placeholder="Your Name" class="contact__form-input"
+                                required />
+                        </div>
+                        <div class="contact__form-group">
+                            <input type="email" name="email" placeholder="Your Email" class="contact__form-input"
+                                required />
+                        </div>
+                        <div class="contact__form-group">
+                            <input type="text" name="subject" placeholder="Subject" class="contact__form-input"
+                                required />
+                        </div>
+                        <div class="contact__form-group">
+                            <textarea name="message" placeholder="Message" class="contact__form-textarea"></textarea>
+                        </div>
+                        <button type="submit" class="contact__form-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact section ends -->
+</body>
+
+</html>

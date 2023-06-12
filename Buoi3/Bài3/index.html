@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form access manager</title>
+    <!-- Embed font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;700;800;900&display=swap"
+        rel="stylesheet" />
+
+    <!-- Css -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+    <!-- Form -->
+    <div class="form">
+        <form action="" method="post">
+            <div class="form-group">
+                <label class="form-label" for="username">Username:</label>
+                <input class="form-input" type="text" name="username" id="username" required />
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="password">Password:</label>
+                <input class="form-input" type="password" name="password" id="password" required />
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="city">City of Employment:</label>
+                <input class="form-input" type="text" name="city" id="city" required />
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="server">Web server:</label>
+                <select>
+                    <option value="0" hidden>--Choose a server--</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Please specify your role:</label>
+                <div class="group-inner">
+                    <label class="form-label"><input type="radio" name="role" value="0" />Admin</label>
+                    <label class="form-label"><input type="radio" name="role" value="1" />Engineer</label>
+                    <label class="form-label"><input type="radio" name="role" value="2" />Manager</label>
+                    <label class="form-label"><input type="radio" name="role" value="3" />Guest</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Single Sign-on to the following:</label>
+                <div class="group-inner">
+                    <label class="form-label"><input type="checkbox" name="mail" value="0" />Mail</label>
+                    <label class="form-label"><input type="checkbox" name="payroll" value="1" />Payroll</label>
+                    <label class="form-label"><input type="checkbox" name="service" value="2" />Self-service</label>
+                </div>
+            </div>
+
+            <div class="group-btn">
+                <button class="btn" type="submit">Login</button>
+                <button class="btn" type="reset">Reset</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+</html>
