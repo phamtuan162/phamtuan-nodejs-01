@@ -55,7 +55,8 @@ body {
   object-fit: cover;
   display: block;
 }
-.feedback-item__text {
+.feedback-item__quote {
+  font-style: italic;
   font-size: 1.4rem;
   color: #999;
 }
