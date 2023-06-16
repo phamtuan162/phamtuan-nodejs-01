@@ -91,6 +91,7 @@ button {
 }
 .contact__form-input {
   display: block;
+  outline: none;
 }
 .contact__form-input::placeholder,
 .contact__form-textarea::placeholder {

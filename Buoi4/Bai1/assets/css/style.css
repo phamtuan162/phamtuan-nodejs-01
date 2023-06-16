@@ -1,0 +1,94 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  font-size: 62.5%;
+}
+body {
+  font-size: 1.6rem;
+  font-family: "Poppins", sans-serif;
+}
+input,
+textarea,
+select,
+button {
+  font-family: inherit;
+  font-size: inherit;
+}
+/* Form subscribe */
+.footer {
+  margin-top: 10px;
+}
+.container {
+  width: 1112px;
+  max-width: calc(100% - 20px);
+  margin: 0 auto;
+}
+.form__inner {
+  background: #334455;
+  padding: 30px 40px 22px;
+  border-radius: 14px;
+}
+
+.form__inner:hover .sub-form__input {
+  background: #ddd;
+}
+.form__inner:hover .sub-form__input::placeholder {
+  color: #ffa502;
+}
+.form__inner:hover .sub-form__submit {
+  background: #ffa502;
+  color: #fff;
+}
+.form__heading {
+  font-size: 3.2rem;
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: -1px;
+}
+.form__heading span {
+  color: #ffa502;
+}
+.form__desc {
+  font-size: 1.5rem;
+  color: #fff;
+  font-weight: 400;
+  margin: 15px 0;
+  width: 618px;
+  line-height: 1.75;
+}
+.sub-form {
+  display: flex;
+  gap: 10px;
+}
+.sub-form__input,
+.sub-form__submit {
+  outline: none;
+  border: none;
+  border-radius: 4px;
+}
+.sub-form__input {
+  padding-left: 14px;
+  width: 268px;
+  transition: 0.5s;
+}
+.sub-form__input::placeholder {
+  font-size: 1.7rem;
+  font-weight: 400;
+  color: #878d93;
+  transition: 0.5s;
+}
+.sub-form__submit {
+  background: #f8db35;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 46px;
+  width: 240px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.5s;
+}

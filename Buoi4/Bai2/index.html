@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Reservation</title>
+    <!-- Embed font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bebas+Neue&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Css -->
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+  <body>
+    <!-- Reservation -->
+    <section class="reservation">
+      <div class="container">
+        <p class="reservation__label">RESERVATION</p>
+        <h1 class="reservation__heading">Book your table</h1>
+        <form action="" class="reservation-form">
+          <div class="reservation-form__group">
+            <input
+              type="text"
+              name="name"
+              id="name"
+              required
+              placeholder="NAME"
+              class="reservation-form__input"
+            />
+            <input
+              type="email"
+              name="email"
+              id="email"
+              required
+              placeholder="EMAIL"
+              class="reservation-form__input"
+            />
+          </div>
+          <div class="reservation-form__group">
+            <input
+              type="text"
+              name="date"
+              id="date"
+              required
+              placeholder="DATE"
+              class="reservation-form__input"
+            />
+            <input
+              type="text"
+              name="time"
+              id="time"
+              required
+              placeholder="TIME"
+              class="reservation-form__input"
+            />
+          </div>
+          <div class="reservation-form__group">
+            <input
+              type="text"
+              name="people"
+              id="people"
+              required
+              placeholder="People"
+              class="reservation-form__input"
+            />
+            <button type="submit" class="reservation-form__submit">
+              Find A Table
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </body>
+</html>

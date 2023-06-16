@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Best Seller</title>
+    <!-- Embed font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Css -->
+    <link rel="stylesheet" href="./assets/css/style.css" />
+
+    <!-- font awesome cdn link  -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Best seller -->
+    <section class="best-seller">
+      <div class="container">
+        <h1 class="best-seller__heading">Best Seller</h1>
+        <input type="radio" name="seller" id="skincare" checked hidden />
+        <input type="radio" name="seller" id="haircare" hidden />
+        <input type="radio" name="seller" id="cosmetics" hidden />
+        <input type="radio" name="seller" id="fragrance" hidden />
+        <input type="radio" name="seller" id="makeup" hidden />
+        <nav class="tab">
+          <ul class="tab__list">
+            <li class="tab-item">
+              <label class="tab-item__label" for="skincare">Skincare</label>
+            </li>
+            <li class="tab-item">
+              <label class="tab-item__label" for="haircare">Haircare</label>
+            </li>
+            <li class="tab-item">
+              <label class="tab-item__label" for="cosmetics">Cosmetics</label>
+            </li>
+            <li class="tab-item">
+              <label class="tab-item__label" for="fragrance">Fragrance</label>
+            </li>
+            <li class="tab-item">
+              <label class="tab-item__label" for="makeup">Makeup</label>
+            </li>
+          </ul>
+        </nav>
+        <div class="product__inner">
+          <div class="product__list">
+            <!-- Product item 1 -->
+            <div class="product-item skincare">
+              <div class="product-item__media">
+                <figure class="product-item__images">
+                  <img
+                    src="./assets/img/product-1.jpg"
+                    alt=""
+                    class="product-item__img"
+                  />
+                  <img
+                    src="./assets/img/product-2.jpg"
+                    alt=""
+                    class="product-item__img"
+                  />
+                </figure>
+
+                <!-- Product cart -->
+                <div class="product-cart">
+                  <div class="product-cart__action">
+                    <i class="product-cart__icon fa-regular fa-heart"></i>
+                    <i
+                      class="product-cart__icon fa-solid fa-arrow-right-arrow-left"
+                    ></i>
+                    <i class="product-cart__icon fa-solid fa-eye"></i>
+                  </div>
+                  <button class="product-cart__btn">Add To Cart</button>
+                </div>
+              </div>
+
+              <div class="product-item__info">
+                <div class="product-item__raiting">
+                  <i class="product-item__star active fas fa-star"></i>
+                  <i class="product-item__star active fas fa-star"></i>
+                  <i class="product-item__star active fas fa-star"></i>
+                  <i class="product-item__star fas fa-star"></i>
+                  <i class="product-item__star fas fa-star"></i>
+                </div>
+                <p class="product-item__name">Casual Shirt With Ruffle Hem</p>
+                <p class="product-item__price">$122.00</p>
+              </div>
+            </div>
+            <!-- Product item 2 -->
+            <div class="product-item haircare">
+              <div class="product-item__media">
+                <figure class="product-item__images">
+                  <img
+                    src="./assets/img/product-3.jpg"
+                    alt=""
+                    class="product-item__img"
+                  />
+                  <img
+                    src="./assets/img/product-4.jpg"
+                    alt=""
+                    class="product-item__img"
+                  />
+                </figure>
+                <!-- Product cart -->
+                <div class="product-cart">
+                  <div class="product-cart__action">
+                    <i class="product-cart__icon fa-regular fa-heart"></i>
+                    <i
+                      class="product-cart__icon fa-solid fa-arrow-right-arrow-left"
+                    ></i>
+                    <i class="product-cart__icon fa-solid fa-eye"></i>
+                  </div>
+                  <button class="product-cart__btn">Add To Cart</button>
+                </div>
+              </div>
+              <div class="product-item__info">
+                <div class="product-item__raiting">
+                  <i class="product-item__star active fas fa-star"></i>
+                  <i class="product-item__star active fas fa-star"></i>
+                  <i class="product-item__star active fas fa-star"></i>
+                  <i class="product-item__star active fas fa-star"></i>
+                  <i class="product-item__star fas fa-star"></i>
+                </div>
+                <p class="product-item__name">Casual Shirt With Ruffle Hem</p>
+                <p class="product-item__price">$122.00</p>
+              </div>
+            </div>
+            <!-- Product item 3 -->
+            <div class="product-item cosmetics">
+              <div class="product-item__media">
+                <figure class="product-item__images">
+                  <img
+                    src="./assets/img/product-5.jpg"
+                    alt=""
+                    class="product-item__img"
+                  />
+                  <img
+                    src="./assets/img/product-6.jpg"
+                    alt=""
+                    class="product-item__img"
+                  />
+                </figure>
+                <!-- Product cart -->
+                <div class="product-cart">
+                  <div class="product-cart__action">
+                    <i class="product-cart__icon fa-regular fa-heart"></i>
+                    <i
+                      class="product-cart__icon fa-solid fa-arrow-right-arrow-left"
+                    ></i>
+                    <i class="product-cart__icon fa-solid fa-eye"></i>
+                  </div>
+                  <button class="product-cart__btn">Add To Cart</button>
+                </div>
+              </div>
+              <div class="product-item__info">
+                <div class="product-item__raiting">
+                  <i class="product-item__star active fas fa-star"></i>
+                  <i class="product-item__star active fas fa-star"></i>
+                  <i class="product-item__star active fas fa-star"></i>
+                  <i class="product-item__star active fas fa-star"></i>
+                  <i class="product-item__star fas fa-star"></i>
+                </div>
+                <p class="product-item__name">Casual Shirt With Ruffle Hem</p>
+                <p class="product-item__price">$122.00</p>
+              </div>
+            </div>
+            <!-- Product item 4 -->
+            <div class="product-item fragrance">
+              <div class="product-item__media">
+                <figure class="product-item__images">
+                  <img
+                    src="./assets/img/product-7.jpg"
+                    alt=""
+                    class="product-item__img"
+                  />
+                  <img
+                    src="./assets/img/product-8.jpg"
+                    alt=""
+                    class="product-item__img"
+                  />
+                </figure>
+                <!-- Product cart -->
+                <div class="product-cart">
+                  <div class="product-cart__action">
+                    <i class="product-cart__icon fa-regular fa-heart"></i>
+                    <i
+                      class="product-cart__icon fa-solid fa-arrow-right-arrow-left"
+                    ></i>
+                    <i class="product-cart__icon fa-solid fa-eye"></i>
+                  </div>
+                  <button class="product-cart__btn">Add To Cart</button>
+                </div>
+              </div>
+              <div class="product-item__info">
+                <div class="product-item__raiting">
+                  <i class="product-item__star active fas fa-star"></i>
+                  <i class="product-item__star active fas fa-star"></i>
+                  <i class="product-item__star active fas fa-star"></i>
+                  <i class="product-item__star active fas fa-star"></i>
+                  <i class="product-item__star fas fa-star"></i>
+                </div>
+                <p class="product-item__name">Casual Shirt With Ruffle Hem</p>
+                <p class="product-item__price">$122.00</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
