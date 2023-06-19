@@ -1,0 +1,218 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Lobster&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html {
+  font-size: 62.5%;
+}
+body {
+  font-family: Lato, sans-serif;
+  font-size: 1.6rem;
+}
+input,
+textarea,
+button,
+label {
+  font-family: inherit;
+  font-size: inherit;
+}
+/* Contact */
+.contact {
+  margin-top: 30px;
+}
+.container {
+  width: 720px;
+  max-width: calc(100% - 110px);
+  margin: 0 auto;
+}
+.contact__heading {
+  font-size: 5.2rem;
+  font-family: Lobster, sans-serif;
+}
+.contact__desc {
+  width: 576px;
+  margin-top: 34px;
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #c2c2c2;
+}
+.contact__desc span {
+  color: #ed5b50;
+}
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 36px;
+}
+.form-group {
+  position: relative;
+  display: flex;
+}
+.form-group__icon {
+  display: flex;
+  background: #dddddd;
+  border: 2px solid #dddddd;
+  padding: 20px 0;
+  width: 70px;
+}
+.form-group__icon i {
+  margin: 0 auto;
+  font-size: 2.4rem;
+  color: #fff;
+}
+
+.form-group__input {
+  display: block;
+}
+.form-group:hover .form-group__input ~ .social .icon-star,
+.form-group:hover .form-group__textarea ~ .social .icon-star,
+.form-group:hover .form-group__select ~ .social .icon-star {
+  font-size: 1.1rem;
+  color: #757785;
+}
+.form-group__input:focus ~ .form-group__notify,
+.form-group__input:active ~ .form-group__notify,
+.form-group__textarea:focus ~ .form-group__notify,
+.form-group__textarea:active ~ .form-group__notify,
+.form-group__select:focus ~ .form-group__notify {
+  display: inline-block;
+}
+.form-group:hover .form-group__input ~ .form-group__icon,
+.form-group:hover .form-group__textarea ~ .form-group__icon,
+.form-group:hover .form-group__select ~ .form-group__icon,
+.form-group__input:focus ~ .form-group__icon,
+.form-group__input:active ~ .form-group__icon,
+.form-group__textarea:focus ~ .form-group__icon,
+.form-group__textarea:active ~ .form-group__icon,
+.form-group__select:focus ~ .form-group__icon {
+  border-color: #000;
+  background: #000;
+}
+.form-group:hover .form-group__input,
+.form-group:hover .form-group__textarea,
+.form-group:hover .form-group__select,
+.form-group__input:focus,
+.form-group__input:active,
+.form-group__textarea:focus,
+.form-group__textarea:active,
+.form-group__select:focus {
+  border-color: #000;
+}
+.form-group__input:focus ~ .social .btn-close,
+.form-group__input:active ~ .social .btn-close,
+.form-group__textarea:focus ~ .social .btn-close,
+.form-group__textarea:active ~ .social .btn-close {
+  display: inline-block;
+}
+.form-group__input:focus ~ .social .icon-star,
+.form-group__input:active ~ .social .icon-star,
+.form-group__textarea:focus ~ .social .icon-star,
+.form-group__textarea:active ~ .social .icon-star {
+  display: none;
+}
+.form-group__input,
+.form-group__textarea,
+.form-group__select {
+  position: relative;
+  width: 100%;
+  outline: none;
+  border: 2px solid #dddddd;
+  border-left: none;
+  padding: 22px 0 22px 20px;
+  font-size: 1.8rem;
+  order: 1;
+}
+.form-group__input::placeholder,
+.form-group__textarea::placeholder,
+.form-group__select {
+  font-size: 1.8rem;
+  color: #dddddd;
+  font-weight: 500;
+}
+
+.form-group__textarea {
+  height: 240px;
+  resize: none;
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.form-group__label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: #dddddd;
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+.form-group__label::before,
+.form-group__label::after {
+  content: "";
+  display: inline-block;
+}
+.form-group__label::before {
+  width: 26px;
+  height: 26px;
+  border: 3px solid #dddddd;
+  margin-right: 10px;
+}
+.form-group__input-checkbox:checked + .form-group__label::after {
+  position: absolute;
+  top: 9px;
+  left: 8px;
+  width: 14px;
+  height: 7px;
+  border-left: 3px solid #000;
+  border-bottom: 3px solid #000;
+  rotate: -45deg;
+}
+.form-group__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  min-width: 132px;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 500;
+  background: #ed5b50;
+  cursor: pointer;
+}
+.social {
+  position: absolute;
+  right: 18px;
+  top: 26px;
+  color: #dddddd;
+  font-size: 1rem;
+}
+.social .btn-close {
+  display: none;
+  font-size: 1.6rem;
+  color: #757785;
+}
+.form-group__notify {
+  position: absolute;
+  display: none;
+  top: -76px;
+  left: 32px;
+  padding: 18px 16px 30px;
+  background-color: #000;
+  color: #fff;
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 75%,
+    38% 75%,
+    30% 99%,
+    21% 75%,
+    0% 75%
+  );
+}

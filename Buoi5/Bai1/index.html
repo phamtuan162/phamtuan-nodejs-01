@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bai1</title>
+    <!-- Css -->
+    <link rel="stylesheet" href="./assets/css/style.css" />
+
+    <!-- font awesome cdn link  -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Contact -->
+    <section class="contact">
+      <div class="container">
+        <h1 class="contact__heading">Hey There</h1>
+        <p class="contact__desc">
+          <span>We'd like to hear from you.</span> Send us your message or just
+          say hy with our contact form or directly via phone, we love to chat
+        </p>
+        <form action="" class="contact-form">
+          <div class="form-group">
+            <input
+              type="text"
+              name="fullname"
+              id="fullname"
+              class="form-group__input"
+              placeholder="Your Name"
+            />
+            <div class="form-group__icon">
+              <i class="fa-solid fa-user"></i>
+            </div>
+            <div class="social">
+              <i class="icon-star fa-solid fa-star"></i>
+              <i class="btn-close fa-solid fa-xmark"></i>
+            </div>
+            <div class="form-group__notify">Enter your Name</div>
+          </div>
+          <div class="form-group">
+            <input
+              type="email"
+              name="email"
+              id="email"
+              class="form-group__input"
+              placeholder="your@domain.com"
+            />
+            <div class="form-group__icon">
+              <i class="fa-solid fa-envelope"></i>
+            </div>
+            <div class="social">
+              <i class="icon-star fa-solid fa-star"></i>
+              <i class="btn-close fa-solid fa-xmark"></i>
+            </div>
+            <div class="form-group__notify">Enter your Email</div>
+          </div>
+          <div class="form-group">
+            <input
+              type="tel"
+              name="phonenumber"
+              id="phonenumber"
+              class="form-group__input"
+              placeholder="+44 00 123"
+            />
+            <div class="form-group__icon">
+              <i class="fa-solid fa-mobile-screen-button"></i>
+            </div>
+            <div class="form-group__notify">Enter your PhoneNumber</div>
+          </div>
+          <div class="form-group">
+            <select name="subject" id="subject" class="form-group__select">
+              <option value="0" selected>Subject</option>
+              <option value="1">Java</option>
+              <option value="2">PHP</option>
+              <option value="3">C#</option>
+              <option value="4">HTML CSS</option>
+              <option value="5">Javascript</option>
+            </select>
+            <div class="form-group__icon">
+              <i class="fa-solid fa-book-bookmark icon"></i>
+            </div>
+            <div class="form-group__notify">Choose Subject</div>
+          </div>
+          <div class="form-group">
+            <textarea
+              placeholder="Message"
+              class="form-group__textarea"
+            ></textarea>
+            <div class="form-group__icon textarea-icon">
+              <i class="fa-solid fa-message"></i>
+            </div>
+            <div class="social">
+              <i class="icon-star fa-solid fa-star"></i>
+              <i class="btn-close fa-solid fa-xmark"></i>
+            </div>
+            <div class="form-group__notify">Enter your Message</div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <input
+                type="checkbox"
+                name="send-message"
+                id="send-message"
+                class="form-group__input-checkbox"
+                hidden
+                checked
+              />
+              <label for="send-message" class="form-group__label">
+                Send me a copy of this message
+              </label>
+            </div>
+            <button class="form-group__btn" type="submit">SEND</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </body>
+</html>
