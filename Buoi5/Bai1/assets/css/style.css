@@ -132,7 +132,17 @@ label {
   color: #dddddd;
   font-weight: 500;
 }
-
+.form-group__select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url(../img/icon.png);
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: 16px 30px;
+  padding-right: 16px;
+  background-origin: content-box;
+}
 .form-group__textarea {
   height: 240px;
   resize: none;
