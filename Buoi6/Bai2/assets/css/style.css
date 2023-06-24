@@ -1,0 +1,87 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html {
+  font-size: 62.5%;
+}
+body {
+  font-family: Roboto, sans-serif;
+  font-size: 1.6rem;
+}
+a {
+  text-decoration: none;
+}
+/* Services */
+.services {
+  background: #ebf5fe;
+  padding: 20px 0;
+}
+.container {
+  width: 1109px;
+  max-width: calc(100% - 190px);
+  margin: 0 auto;
+}
+
+.services__list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 24px;
+  row-gap: 24px;
+}
+.services-item {
+  padding: 18px 30px 26px 18px;
+  background: #fff;
+  border-radius: 10px;
+  border: 2px solid #fff;
+}
+.services-item:hover {
+  border-color: red;
+}
+.services-item__inner {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+.services-item__img-wrap {
+  background: #fff;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+.services-item__img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+.services-item__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #f3bd49;
+  color: #fff;
+  font-size: 2.7rem;
+}
+.services-item__tittle {
+  font-size: 2rem;
+  width: 120px;
+}
+.services-item__desc {
+  line-height: 1.5;
+  margin-top: 10px;
+  color: #666666;
+  font-size: 1.4rem;
+}
+.services-item__more {
+  display: inline-block;
+  margin-top: 22px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #4276ed;
+  cursor: pointer;
+}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Login</title>
+    <!-- Css -->
+    <link rel="stylesheet" href="./assets/css/style.css" />
+
+    <!-- font awesome cdn link  -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <main>
+      <!-- Form Login -->
+      <div class="container">
+        <!-- Contact Info -->
+        <section class="contact-info">
+          <div class="contact-info__inner">
+            <figure class="contact-info__img-wrapper">
+              <img
+                src="./assets/img/logo.png"
+                alt="Just Log"
+                class="contact-info__img"
+              />
+            </figure>
+            <h2 class="contact-info__tittle">Just Log</h2>
+          </div>
+          <p class="contact-info__desc">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate
+            ad quia necessitatibus
+          </p>
+          <a href="#" class="contact-info__more">Read More</a>
+          <div class="socials">
+            <a href="#!" class="item">
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="#!" class="item">
+              <i class="fa-brands fa-twitter"></i>
+            </a>
+            <a href="#!" class="item">
+              <i class="fa-brands fa-google-plus-g"></i>
+            </a>
+            <a href="#!" class="item">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+          </div>
+          <div class="login-switch">
+            <i class="fa-solid fa-arrow-right"></i>
+          </div>
+        </section>
+        <!-- Contact Form -->
+        <div class="contact-form">
+          <h2 class="contact-form__tittle">
+            Login to <span>your account</span>
+          </h2>
+          <form method="POST">
+            <div class="contact-form__group">
+              <input
+                type="email"
+                name="email"
+                id="email"
+                placeholder="Email Address"
+                required
+                class="contact-form__input"
+              />
+            </div>
+            <div class="contact-form__group">
+              <input
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Password"
+                required
+                class="contact-form__input"
+              />
+            </div>
+            <div class="contact-form__row">
+              <div class="contact-form__group">
+                <input
+                  type="checkbox"
+                  name="remember"
+                  id="remember"
+                  class="contact-form__input"
+                />
+                <label class="contact-form__label" for="remember"
+                  >Remember me</label
+                >
+              </div>
+              <a href="#" class="forgot-password">Forgot Password</a>
+            </div>
+            <button type="submit" class="contact-form__btn-submit">
+              LOGIN
+            </button>
+            <p>
+              Don't have an account?
+              <a href="#">Register here</a>
+            </p>
+          </form>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
