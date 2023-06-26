@@ -1,0 +1,114 @@
+@import url("https://fonts.googleapis.com/css2?family=Asap:wght@100;200;300;400;500;600;700;800;900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+html {
+  font-size: 62.5%;
+}
+body {
+  font-family: "Asap", sans-serif;
+  font-size: 1.6rem;
+  height: 100vh;
+  background: #000;
+}
+a {
+  text-decoration: none;
+}
+/* Profile */
+.profile {
+  width: 1170px;
+  max-width: calc(100% - 80px);
+  margin: 0 auto;
+  position: relative;
+}
+.profile__backgroup {
+  position: relative;
+}
+.profile__backgroup-img {
+  display: block;
+  object-fit: cover;
+  width: 100%;
+  height: 300px;
+  -webkit-filter: grayscale(0.4);
+  -moz-filter: grayscale(0.4);
+  filter: grayscale(0.4);
+}
+.profile__info {
+  position: absolute;
+  left: 50px;
+  bottom: 0;
+  display: flex;
+  gap: 12px;
+}
+.profile__avatar {
+  width: 200px;
+  border-radius: 3px;
+}
+.profile__avatar img {
+  display: block;
+  object-fit: cover;
+  width: 100%;
+  height: 162px;
+  border-radius: 3px;
+}
+.profile__info-body {
+  color: #fff;
+}
+.profile__name {
+  margin-top: 22px;
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+.profile__info-details {
+  margin-top: 20px;
+  display: flex;
+  gap: 24px;
+}
+.profile__info-year,
+.profile__info-project {
+  font-size: 1.3rem;
+}
+.profile__info-year span,
+.profile__info-project span {
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin-left: 4px;
+}
+.navbar {
+  padding-right: 50px;
+  padding-bottom: 2px;
+  background: #fff;
+}
+.navbar__list {
+  display: flex;
+  justify-content: flex-end;
+  gap: 26px;
+}
+.navbar-item__link {
+  position: relative;
+  display: inline-block;
+  padding: 14px 0 16px;
+  color: #3f3424;
+  font-weight: 500;
+}
+.navbar-item:hover .navbar-item__link {
+  color: #dc5e55;
+}
+.navbar-item:hover .navbar-item__link::after {
+  display: inline-block;
+}
+
+.navbar-item__link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  display: none;
+  right: 0;
+  left: 0;
+  height: 3px;
+  background: #dc5e55;
+  border-radius: 99px;
+}

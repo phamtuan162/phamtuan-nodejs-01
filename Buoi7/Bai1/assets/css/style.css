@@ -1,0 +1,71 @@
+@import url("https://fonts.googleapis.com/css2?family=Asap:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+@font-face {
+  font-family: SFU;
+  src: url("../fonts/SFUTradeGothicBoldCondensedTwenty.TTF");
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+html {
+  font-size: 62.5%;
+}
+body {
+  font-family: "Asap", sans-serif;
+  font-size: 1.6rem;
+}
+/* Banner */
+.banner {
+  position: relative;
+  background-image: url(../img/banner.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 500px;
+  width: 100%;
+}
+.banner__content {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 200px;
+  width: 510px;
+  padding: 28px 20px 40px;
+  background: #ffffffc0;
+}
+.banner__tittle {
+  color: #dc5d55;
+  font-size: 2.7rem;
+  font-weight: 600;
+}
+.banner__desc {
+  margin-top: 14px;
+  font-size: 1.3rem;
+  color: #3f3424;
+  line-height: 1.5;
+}
+.banner__location {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+  color: #3f3424;
+  font-size: 1.3rem;
+}
+.banner__price {
+  position: absolute;
+  right: 30px;
+  bottom: -28px;
+  padding: 15px 20px;
+  font-family: "SFU", sans-serif;
+  background: #dc5d55;
+  color: #fff;
+  font-size: 2.5rem;
+  font-weight: 400;
+  border-radius: 3px;
+  user-select: none;
+  letter-spacing: 1px;
+}
