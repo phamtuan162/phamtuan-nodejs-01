@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopping Cart Mini</title>
+    <!-- webfonts -->
+    <link rel="stylesheet" href="./assets/css/all.min.css" />
+    <!-- Reset  -->
+    <link rel="stylesheet" href="./assets/css/reset.css" />
+    <!-- Css -->
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <label for="cart">
+        <i class="fa-solid fa-cart-shopping"></i>
+        Shopping Cart
+      </label>
+    </header>
+    <input type="checkbox" name="cart" id="cart" hidden checked />
+    <div class="overlay">
+      <label for="cart" class=""></label>
+    </div>
+    <!-- Shopping Cart -->
+    <section class="cart">
+      <div class="cart__header">
+        <h2 class="cart__tittle">Shopping Cart</h2>
+        <label for="cart">
+          <i class="btn-close fa-solid fa-circle-xmark"></i>
+        </label>
+      </div>
+      <div class="cart__body">
+        <div class="cart__list">
+          <!-- Cart item 1 -->
+          <div class="cart-item">
+            <figure class="cart-item__img--wrapper">
+              <img
+                src="./assets/img/cart-img--01.png"
+                alt="Affinity Queen Poster Bed"
+                class="cart-item__img"
+              />
+            </figure>
+            <div class="cart-item__info">
+              <h3 class="cart-item__name">Affinity Queen Poster Bed</h3>
+              <div class="cart-item__action">
+                <div class="cart-item__quanity">
+                  <i class="fa-solid fa-minus"></i>
+                  <span class="cart-item__number">1</span>
+                  <i class="fa-solid fa-plus"></i>
+                </div>
+                <p class="cart-item__price">1x <span>$570</span></p>
+              </div>
+            </div>
+          </div>
+          <!-- Cart item 2 -->
+          <div class="cart-item">
+            <figure class="cart-item__img--wrapper">
+              <img
+                src="./assets/img/cart-img--02.png"
+                alt="Affinity Queen Poster Bed"
+                class="cart-item__img"
+              />
+            </figure>
+            <div class="cart-item__info">
+              <h3 class="cart-item__name">Affinity Queen Poster Bed</h3>
+              <div class="cart-item__action">
+                <div class="cart-item__quanity">
+                  <i class="fa-solid fa-minus"></i>
+                  <span class="cart-item__number">1</span>
+                  <i class="fa-solid fa-plus"></i>
+                </div>
+                <p class="cart-item__price">1x <span>$570</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Subtotal -->
+        <div class="cart-subtotal">
+          <div class="cart-subtotal__inner">
+            <p class="cart-subtotal__title">Subtotal</p>
+            <span class="cart-subtotal__price">$920.00</span>
+          </div>
+          <p class="cart-subtotal__desc">
+            Taxes and shipping calculated at checkout
+          </p>
+        </div>
+
+        <!-- Button action -->
+        <div class="btn-action">
+          <button class="cart__btn cart__btn-view">View Cart</button>
+          <button class="cart__btn cart__btn-add">Add To Cart</button>
+        </div>
+        <div class="cart-deliver">
+          <div class="cart-deliver__icon">
+            <i class="fa-solid fa-truck"></i>
+          </div>
+          <p class="cart-deliver__desc">Spend $ 499.00 to Free Shipping</p>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,227 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+html {
+  font-size: 62.5%;
+}
+body {
+  font-family: "Nunito", sans-serif;
+  font-size: 1.6rem;
+}
+a {
+  text-decoration: none;
+}
+/* Cart shopping */
+.header {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+.header label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 2rem;
+  color: #ec5b2d;
+  margin-right: 40px;
+}
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+  opacity: 0;
+  visibility: hidden;
+}
+.overlay label {
+  display: block;
+  height: 100%;
+}
+.cart {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background: #fff;
+  z-index: 2;
+  width: 400px;
+  transform: translateX(100%);
+  transition: 0.5s;
+}
+.cart__header {
+  padding: 18px 15px 20px 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f4f4f4;
+}
+
+.cart__tittle {
+  position: relative;
+  font-size: 2.2rem;
+  font-weight: 600;
+}
+.cart__tittle::after {
+  position: absolute;
+  top: -8px;
+  right: -17px;
+  content: "4";
+  display: inline-block;
+  text-align: center;
+  width: 16px;
+  height: 16px;
+  background: #4060f3;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  line-height: 16px;
+}
+.btn-close {
+  color: #ec5b2d;
+  font-size: 2.5rem;
+}
+.cart-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 26px 22px 25px 25px;
+  background: #fefefe;
+  border-bottom: 2px solid #f2f2f2;
+}
+.cart-item:nth-of-type(2) {
+  padding-bottom: 10px;
+}
+.cart-item::after {
+  position: absolute;
+  right: 27px;
+  top: 31px;
+  content: "\f00d";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 600;
+  font-size: 2rem;
+  color: #b1b1b1;
+}
+.cart-item__img--wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  background: #fef9ef;
+}
+.cart-item__img {
+  object-fit: cover;
+  display: block;
+  width: 62px;
+  height: 62px;
+}
+.cart-item__name {
+  color: #b1b1b1;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+.cart-item__action {
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+.cart-item__quanity {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 82px;
+  height: 28px;
+  border: 2px solid #b1b1b1;
+  border-radius: 99px;
+  color: #b1b1b1;
+  font-size: 1rem;
+}
+.cart-item__number {
+  font-size: 1.2rem;
+}
+.cart-item__price {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #777777;
+}
+.cart-subtotal {
+  margin-top: 25px;
+  padding: 0 22px 0 26px;
+}
+.cart-subtotal__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cart-subtotal__title {
+  font-size: 2rem;
+  font-weight: 600;
+}
+.cart-subtotal__price {
+  color: #ec5b2d;
+  font-weight: 600;
+  font-size: 2rem;
+}
+.cart-subtotal__desc {
+  margin-top: 16px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #777777;
+}
+.btn-action {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0 22px 0 26px;
+  margin-top: 12px;
+}
+.cart__btn {
+  padding: 18px 0;
+  border-radius: 6px;
+  border: 2px solid #e0e0e0;
+  background: #fff;
+  color: #777777;
+  cursor: pointer;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+.cart__btn-add {
+  background: #4060f3;
+  color: #fff;
+  border: 2px solid #4060f3;
+}
+.cart-deliver {
+  margin-top: 32px;
+  padding: 0 22px 0 26px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cart-deliver__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 2px solid #4060f3;
+  color: #4060f3;
+  background: #fff;
+  font-size: 2rem;
+}
+.cart-deliver__desc {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+input:checked ~ .overlay {
+  opacity: 1;
+  visibility: visible;
+}
+input:checked ~ .cart {
+  transform: translateX(0);
+}
