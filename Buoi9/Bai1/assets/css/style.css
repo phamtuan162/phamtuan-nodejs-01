@@ -47,7 +47,7 @@ a {
 .stage-item__info {
   position: relative;
   text-align: right;
-  width: 250px;
+  width: 280px;
   padding-bottom: 32px;
 }
 .stage-item__info::after {
