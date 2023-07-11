@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grover</title>
+    <!-- webfonts -->
+    <link rel="stylesheet" href="./assets/css/all.min.css" />
+
+    <!-- Reset  -->
+    <link rel="stylesheet" href="./assets/css/reset.css" />
+
+    <!-- Style -->
+    <link rel="stylesheet" href="./assets/css/style.css" />
+
+    <!-- Grid -->
+    <link rel="stylesheet" href="./assets/css/grid.css" />
+
+    <!-- Reponsive -->
+    <link rel="stylesheet" href="./assets/css/reponsive.css" />
+  </head>
+  <body>
+    <input
+      type="checkbox"
+      name=""
+      id="menu-checkbox"
+      class="menu-checkbox"
+      hidden
+    />
+    <!-- Header -->
+    <header class="header">
+      <div class="container">
+        <div class="header__inner">
+          <!-- Logo -->
+          <a href="#" class="logo">
+            <img
+              class="serve-item__img"
+              src="./assets/img/logo.svg"
+              alt="Grover"
+            />
+          </a>
+          <label for="menu-checkbox" class="header__toggler">
+            <i class="header__toggler-icon fa-solid fa-bars"></i>
+          </label>
+
+          <!-- Navbar -->
+          <nav class="navbar">
+            <ul class="navbar__list">
+              <li class="navbar__item">
+                <a href="#!" class="active navbar__link">Home</a>
+              </li>
+              <li class="navbar__item">
+                <a href="#!" class="navbar__link">Menu</a>
+              </li>
+              <li class="navbar__item">
+                <a href="#!" class="navbar__link">Service</a>
+              </li>
+              <li class="navbar__item">
+                <a href="#!" class="navbar__link">Shop</a>
+              </li>
+            </ul>
+            <div class="header__search">
+              <div class="header__search-conatainer">
+                <div class="header__search-icon">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <div class="header__search-input-wrap">
+                  <input
+                    type="text"
+                    class="header__search-input"
+                    placeholder="Search"
+                  />
+                </div>
+                <div class="header__cart">
+                  <div class="header__cart-wrap">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        fill="#3C3737"
+                        fill-rule="evenodd"
+                        d="M1.014 10.084a.464.464 0 01.45-.576h21.072c.302 0 .523.283.45.576L20.059 21.79a.927.927 0 01-.9.703H4.84a.927.927 0 01-.9-.703L1.015 10.084zm11.736 3.541a.75.75 0 00-1.5 0v4.75a.75.75 0 001.5 0v-4.75zm4.319-.561a.75.75 0 01.448.961l-1.624 4.464a.75.75 0 11-1.41-.513l1.625-4.464a.75.75 0 01.96-.448zm-9.177.448a.75.75 0 10-1.41.513l1.625 4.464a.75.75 0 101.41-.513l-1.625-4.464z"
+                        clip-rule="evenodd"
+                      ></path>
+                      <path
+                        stroke="#3C3737"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M18.5 10.5l-4.911-6.422a2 2 0 00-3.178 0L5.5 10.5"
+                      ></path>
+                    </svg>
+                    <span class="header__cart-notice">2</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <main>
+      <!-- Hero -->
+      <section class="hero">
+        <div class="container">
+          <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+              <div class="hero__content">
+                <div class="hero__attention">
+                  <h3 class="hero__attention-tittle">More than Faster</h3>
+                  <img
+                    src="./assets/img/strawberry.svg"
+                    alt="_strawberry_img"
+                    class="hero__attention-img"
+                  />
+                </div>
+                <h1 class="hero__heading">
+                  Groceries delivered in as little as <span> 2 hours</span>
+                </h1>
+                <p class="hero__desc">
+                  Grocen atssures fresh grocery every morning to your family
+                  without getting out in this pandemic.
+                </p>
+                <div class="hero__btn-wrap">
+                  <div class="row">
+                    <div class="col-xl-4 col-lg-5 col-md-3 col-sm-4 col-4">
+                      <div class="hero__btn-now">
+                        <a href="#">Order Now</a>
+                      </div>
+                    </div>
+                    <div class="col-xl-5 col-lg-7 col-md-4 col-sm-5 col-5">
+                      <div class="hero__btn-process">
+                        <div class="hero__play">
+                          <img
+                            src="./assets/img/button-play.svg"
+                            alt=""
+                            class="hero__play-icon"
+                          />
+                        </div>
+                        <span> Order Process</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+              <figure class="hero__media-block">
+                <img
+                  src="./assets/img/header-img.png"
+                  alt="Header Image"
+                  class="hero__img"
+                />
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Serve -->
+      <section class="serve">
+        <div class="container">
+          <p class="serve__question">What we Serve</p>
+          <h2 class="serve__heading">
+            Fruit And Vegetable Delivered To Your Home
+          </h2>
+          <div class="serve__content">
+            <div class="row">
+              <div class="col-xl-10 col-lg-12 col-md-12 col-sm-12 margin-auto">
+                <div class="row serve__list">
+                  <!-- Serve item 1 -->
+                  <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 serve-item">
+                    <div class="serve__bg"></div>
+                    <div class="serve-item__content">
+                      <img
+                        class="serve-item__img"
+                        src="./assets/img/service-ic1.svg"
+                        alt="Service-1"
+                      />
+                      <p class="serve-item__name">Free shipping</p>
+                      <p class="serve-item__desc">
+                        Enjoy Order in a hand using the fresness of groceries
+                      </p>
+                    </div>
+                  </div>
+                  <!-- Serve item 2 -->
+                  <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 serve-item">
+                    <div class="serve__bg"></div>
+                    <div class="serve-item__content">
+                      <img
+                        class="serve-item__img"
+                        src="./assets/img/service-ic2.svg"
+                        alt="Service-2"
+                      />
+                      <p class="serve-item__name">15 days returns</p>
+                      <p class="serve-item__desc">
+                        Order in a handy way using the freshness of the
+                        groceries.
+                      </p>
+                    </div>
+                  </div>
+                  <!-- Serve item 3 -->
+                  <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 serve-item">
+                    <div class="serve__bg"></div>
+                    <div class="serve-item__content">
+                      <img
+                        class="serve-item__img"
+                        src="./assets/img/service-ic3.svg"
+                        alt="Service-3"
+                      />
+                      <p class="serve-item__name">Secure checkout</p>
+                      <p class="serve-item__desc">
+                        If you get rotten items - return immediately to us.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Favorite -->
+      <section class="favorite">
+        <div class="container">
+          <div class="row">
+            <figure
+              class="col-lg-7 col-xl-7 col-sm-12 col-md-12 favorite__img-wrap"
+            >
+              <img src="./assets/img/feat.png" class="favorite__img" />
+            </figure>
+            <div
+              class="col-lg-5 col-xl-5 col-sm-12 col-md-12 favorite__content"
+            >
+              <p class="favorite__question">WHY CHOOSE US</p>
+              <h2 class="favorite__title">
+                Find Favorites and Discover New Ones
+              </h2>
+              <p class="favorite__desc">
+                At vero eos et accusamus et iusto odio dignissimos ducimus
+                blanditiis praesen voluptatum deleniti.
+              </p>
+              <a href="#!" class="favorite__btn">Explore Now</a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Delivery -->
+      <section class="favorite devivery">
+        <div class="container">
+          <div class="row">
+            <figure
+              class="col-lg-6 col-xl-6 col-sm-12 col-md-12 favorite__img-wrap"
+            >
+              <img src="./assets/img/feat2.png" class="favorite__img" />
+            </figure>
+            <div
+              class="col-lg-6 col-xl-6 col-sm-12 col-md-12 favorite__content"
+            >
+              <p class="favorite__question">HOME DELIVERY</p>
+              <h2 class="favorite__title">
+                Sit at Home We Will Take Care Your Order
+              </h2>
+              <p class="favorite__desc">
+                At vero eos et accusamus et iusto odio dignissimos ducimus qui
+                blanditiis praesentium voluptatum deleniti atque corrupti quos
+              </p>
+              <a href="#!" class="favorite__btn">Explore Now</a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- App -->
+      <section class="app">
+        <div class="container">
+          <div class="row">
+            <figure class="col-xl-6 col-lg-6 col-md-12 col-sm-12 app__img-wrap">
+              <img src="./assets/img/mobile.svg" alt="Image" class="app__img" />
+            </figure>
+            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 app__content">
+              <p class="app__question">Download our app</p>
+              <h2 class="app__tittle">
+                Get the Groceries app order more easily.
+              </h2>
+              <p class="app__desc">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut.
+              </p>
+              <div class="app__list">
+                <div class="app-item">
+                  <a href="" class="app-item__link">
+                    <img src="./assets/img/apple.svg" alt="apple" />
+                    App Store
+                  </a>
+                </div>
+                <div class="app-item">
+                  <a href="" class="app-item__link">
+                    <img src="./assets/img/playstore.svg" alt="playstore" />
+                    Play Store
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- Footer -->
+    <div class="footer">
+      <div class="container">
+        <div class="footer__content">
+          <div class="row">
+            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 footer__left">
+              <img
+                src="./assets/img/logo.svg"
+                alt="logo"
+                class="footer__logo"
+              />
+              <p class="footer__desc">
+                Fast delivery, which is active all over the world, serves with
+                many transportation vehicles.
+              </p>
+            </div>
+            <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 footer__right">
+              <div class="row">
+                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                  <h4 class="footer__tittle">Company</h4>
+                  <ul class="footer__list">
+                    <li class="footer-item">
+                      <a href="#!" class="footer-item__link">About Us</a>
+                    </li>
+                    <li class="footer-item">
+                      <a href="#!" class="footer-item__link">Blog</a>
+                    </li>
+                    <li class="footer-item">
+                      <a href="#!" class="footer-item__link">All Products</a>
+                    </li>
+                    <li class="footer-item">
+                      <a href="#!" class="footer-item__link">Locations Map</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                  <h4 class="footer__tittle">Services</h4>
+                  <ul class="footer__list">
+                    <li class="footer-item">
+                      <a href="#!" class="footer-item__link">Order tracking</a>
+                    </li>
+                    <li class="footer-item">
+                      <a href="#!" class="footer-item__link">Wish List</a>
+                    </li>
+                    <li class="footer-item">
+                      <a href="#!" class="footer-item__link">My account</a>
+                    </li>
+                    <li class="footer-item">
+                      <a href="#!" class="footer-item__link"
+                        >Terms & Conditions</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                  <h4 class="footer__tittle">Get in Touch</h4>
+                  <p class="footer__desc">
+                    Subscribe to our weekly Newsletter and receive updates via
+                    email.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer__copyright">
+          <div class="row">
+            <p
+              class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 footer__copyright-left"
+            >
+              All Rights Reserved @ BESNIK 2021
+            </p>
+            <div
+              class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 footer__copyright-right"
+            >
+              <a href="#!" class="footer__copyright-link"
+                >Terms &amp; Conditions</a
+              >
+              <a href="#!" class="footer__copyright-link"
+                >Privacy &amp; Policy</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

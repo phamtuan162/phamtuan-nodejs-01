@@ -1,0 +1,176 @@
+/* PC */
+@media screen and (min-width: 992px) {
+  .row.serve__list {
+    flex-wrap: nowrap;
+    gap: 30px;
+  }
+}
+
+/* Tablet & mobile */
+@media screen and (max-width: 992px) {
+  .header__toggler {
+    display: flex;
+  }
+
+  .header .navbar {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+  }
+  .header .navbar .navbar__list {
+    flex-direction: column;
+  }
+  .header .navbar .header__search {
+    margin-top: 20px;
+  }
+  .hero {
+    margin-top: -250px;
+    transition: 0.3s linear;
+  }
+  .menu-checkbox:checked ~ main .hero {
+    margin-top: 20px;
+  }
+
+  .hero__desc,
+  .favorite__title,
+  .footer__desc {
+    max-width: 100%;
+  }
+  .hero__heading {
+    font-size: 3.8rem;
+  }
+  .hero__btn-now a {
+    font-size: 1.6rem;
+  }
+  .hero__desc {
+    font-size: 1.6rem;
+  }
+  .serve-item {
+    margin-bottom: 40px;
+  }
+  .serve-item__name {
+    font-size: 1.8rem;
+  }
+  .serve-item:hover .serve__bg {
+    bottom: 0;
+  }
+  .serve__bg {
+    width: 210px;
+    height: 100%;
+  }
+  .favorite__btn {
+    width: 180px;
+    padding: 18px 20px;
+    font-size: 1.6rem;
+  }
+  .footer__logo {
+    margin: 20px auto 0;
+  }
+  .footer__left {
+    text-align: center;
+  }
+  .footer__right {
+    margin-top: 50px;
+    text-align: center;
+  }
+  .footer__right > .row {
+    flex-direction: column;
+    gap: 40px;
+  }
+  .footer__desc {
+    font-size: 1.4rem;
+  }
+}
+
+/* Tablet */
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .hero__btn-process {
+    width: 200px;
+  }
+  .hero__btn-process span {
+    font-size: 1.6rem;
+  }
+  .hero__btn-process {
+    width: 200px;
+  }
+  .row.serve__list {
+    flex-wrap: nowrap;
+    gap: 20px;
+  }
+}
+
+/* Mobile */
+@media screen and (max-width: 767px) {
+  .hero__content {
+    text-align: center;
+  }
+  .hero__btn-wrap .row {
+    display: flex;
+    justify-content: center;
+  }
+  .hero__btn-process {
+    width: 100%;
+    height: 100%;
+  }
+  .hero__attention-tittle,
+  .hero__desc {
+    font-size: 1.4rem;
+  }
+  .hero__btn-process span,
+  .hero__btn-now a {
+    font-size: 1.2rem;
+  }
+  .hero__heading {
+    font-size: 3.4rem;
+  }
+  .hero__btn-now {
+    padding: 14px 10px;
+  }
+  .hero__play-icon {
+    width: 50px;
+  }
+  .serve__bg {
+    width: 100%;
+    height: 100%;
+  }
+  .favorite__content {
+    text-align: center;
+  }
+  .favorite__title {
+    font-size: 2.4rem;
+  }
+  .favorite__desc,
+  .app__desc {
+    font-size: 1.4rem;
+  }
+  .favorite__btn {
+    margin: 50px auto 0 auto;
+  }
+  .app__tittle,
+  .app__desc {
+    max-width: 100%;
+  }
+  .app__tittle {
+    font-size: 3.2rem;
+  }
+  .app__content {
+    text-align: center;
+  }
+  .app__list {
+    justify-content: center;
+    gap: 10px;
+  }
+  .app-item {
+    padding: 12px;
+  }
+  .app-item__link {
+    gap: 10px;
+  }
+  .footer__copyright-left {
+    text-align: center;
+  }
+  .footer__copyright-right {
+    justify-content: center;
+  }
+}
