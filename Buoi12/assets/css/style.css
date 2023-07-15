@@ -1,0 +1,412 @@
+html {
+  font-size: 10px;
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 1.6rem;
+}
+
+html,
+body {
+  scroll-behavior: smooth;
+}
+
+a {
+  text-decoration: none;
+}
+
+input,
+select,
+textarea,
+button {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.flex {
+  display: flex;
+}
+
+.landing {
+  position: relative;
+  padding: 80px 0px 100px;
+  width: 100%;
+  height: 100%;
+  background: url(../img/landing-background.jpg) no-repeat;
+  background-size: cover;
+}
+.landing .landing__content {
+  width: 100%;
+}
+.landing .landing__content .landing__info {
+  text-align: center;
+  text-transform: uppercase;
+  color: #fff;
+}
+.landing .landing__content .landing__info .logo .logo__img {
+  display: block;
+  width: 42px;
+  height: 60px;
+  object-fit: contain;
+}
+.landing .landing__content .landing__info .landing__pretitle {
+  margin-top: 36px;
+  font-size: 2.4rem;
+  font-weight: 500;
+}
+.landing .landing__content .landing__info .landing__tittle {
+  font-family: "Titillium Web", sans-serif;
+  font-size: 10.4rem;
+  font-weight: 900;
+  position: relative;
+  top: -10px;
+}
+.landing .landing__content .landing__info .landing__desc {
+  display: none;
+  margin: 30px auto 0;
+  width: 384px;
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #fff;
+  line-height: 2.3rem;
+  text-transform: none;
+}
+.landing .landing__content .landing__info .landing__tab-switch {
+  margin-top: 40px;
+}
+.landing .landing__content .landing__info .landing__tab-switch .landing__tab-switch-btn {
+  display: inline-block;
+  width: 180px;
+  height: 54px;
+  border: 1px solid #fff;
+  color: #fff;
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 5.4rem;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+.landing .landing__content .landing__info .landing__tab-switch .landing__tab-switch-login {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+.landing .landing__content .landing__info .landing__tab-switch .landing__tab-switch-register {
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+.landing .landing__content .landing-form {
+  margin-top: 80px;
+}
+.landing .landing__content .landing-form .landing-form__login,
+.landing .landing__content .landing-form .landing-form__register,
+.landing .landing__content .landing-form .landing-form__decoration {
+  display: none;
+}
+.landing .landing__content .landing-form .landing-form__login-register {
+  position: relative;
+  margin: 0 auto;
+  padding: 64px;
+  width: 484px;
+  border-radius: 12px;
+  background-color: #fff;
+  box-shadow: 0 0 60px 0 rgba(94, 92, 154, 0.12);
+}
+.landing .landing__content .landing-form .landing-form__login-register .landing-form__tittle {
+  font-size: 2.6rem;
+  text-align: center;
+  font-weight: 700;
+  color: #3e3f5e;
+  line-height: 2.6rem;
+}
+.landing .landing__content .landing-form .landing-form__login-register .form {
+  margin-top: 76px;
+}
+.landing .landing__content .landing-form .landing-form__login-register .form .form-group {
+  position: relative;
+  margin-top: 28px;
+}
+.landing .landing__content .landing-form .landing-form__login-register .form .form-group .form__input {
+  display: block;
+  width: 100%;
+  height: 54px;
+  padding: 0 18px;
+  background-color: #fff;
+  border: 1px solid #dedeea;
+  color: #3e3f5e;
+  transition: border-color 0.2s ease-in-out;
+  border-radius: 12px;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+.landing .landing__content .landing-form .landing-form__login-register .form .form-group .form__input:focus {
+  border-color: #615dfa;
+}
+.landing .landing__content .landing-form .landing-form__login-register .form .form-group .form__input:focus + .form__label {
+  transform: translateY(calc(-1 * (27px + 50%)));
+  background-color: #fff;
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+}
+.landing .landing__content .landing-form .landing-form__login-register .form .form-group .form__label {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 20px;
+  color: #adafca;
+  padding: 0 5px;
+  font-size: 1.6rem;
+  font-weight: 600;
+  transition: all 0.3s ease-in-out;
+  pointer-events: none;
+}
+.landing .landing__content .landing-form .landing-form__login-register .form .form-group .form-submit {
+  display: block;
+  width: 100%;
+  height: 54px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 1.4rem;
+  line-height: 5.4rem;
+  font-weight: 700;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.25s ease-in-out;
+}
+.landing .landing__content .landing-form .landing-form__login-register .form .form-group .form-submit.form__login-submit {
+  background-color: #615dfa;
+  box-shadow: 4px 7px 12px 0 rgba(97, 93, 250, 0.2);
+}
+.landing .landing__content .landing-form .landing-form__login-register .form .form-group .form-submit.form__login-submit:hover {
+  background-color: #5753e4;
+}
+.landing .landing__content .landing-form .landing-form__login-register .form .form-group .form-submit.form__register-submit {
+  background-color: #23d2e2;
+  box-shadow: 4px 7px 12px 0 rgba(35, 210, 226, 0.2);
+}
+.landing .landing__content .landing-form .landing-form__login-register .form .form-group .form-submit.form__register-submit:hover {
+  background-color: #1bc5d4;
+}
+.landing .landing__content .landing-form .landing-form__login-register .form .form-group:first-of-type {
+  margin-top: 0;
+}
+.landing .landing__content .landing-form .landing-form__login-register .form .form-row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+.landing .landing__content .landing-form .landing-form__login-register .form input[id=remember]:checked ~ .check__box::before,
+.landing .landing__content .landing-form .landing-form__login-register .form input[id=send]:checked ~ .check__box::before {
+  background-color: #23d2e2;
+  border-color: #23d2e2;
+}
+.landing .landing__content .landing-form .landing-form__login-register .form .check__box {
+  position: relative;
+  padding-left: 34px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 2.2rem;
+  cursor: pointer;
+}
+.landing .landing__content .landing-form .landing-form__login-register .form .check__box::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "\f00d";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  width: 22px;
+  height: 22px;
+  border: 1px solid #dedeea;
+  border-radius: 6px;
+  font-size: 1.8rem;
+  text-align: center;
+  line-height: 22px;
+  background-color: #fff;
+  color: #fff;
+  transition: background-color 0.3s ease-in-out;
+}
+.landing .landing__content .landing-form .landing-form__login-register .form .form__link {
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 2.2rem;
+  color: #00c7d9;
+}
+.landing .landing__content .landing-form .landing-form__login-register .landing-form__login-desc {
+  position: relative;
+  margin-top: 48px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-align: center;
+  color: #3e3f5e;
+}
+.landing .landing__content .landing-form .landing-form__login-register .landing-form__login-desc::after, .landing .landing__content .landing-form .landing-form__login-register .landing-form__login-desc::before {
+  content: "";
+  width: 70px;
+  height: 1px;
+  background-color: #eaeaf5;
+  position: absolute;
+  top: calc(50% - 0.5px);
+}
+.landing .landing__content .landing-form .landing-form__login-register .landing-form__login-desc::after {
+  right: 0;
+}
+.landing .landing__content .landing-form .landing-form__login-register .landing-form__login-desc::before {
+  left: 0;
+}
+.landing .landing__content .landing-form .landing-form__login-register .landing-form__register-desc {
+  margin-top: 30px;
+  font-weight: 500;
+  font-size: 1.4rem;
+  line-height: 2.4rem;
+  color: #3e3f5e;
+}
+.landing .landing__content .landing-form .landing-form__login-register .landing-form__register-desc a {
+  color: #00c7d9;
+  font-weight: 600;
+}
+.landing .landing__content .landing-form .landing-form__login-register .social {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.landing .landing__content .landing-form .landing-form__login-register .social .social__link {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+.landing .landing__content .landing-form .landing-form__login-register .social .social__link:nth-child(1) {
+  background-color: #3763d2;
+}
+.landing .landing__content .landing-form .landing-form__login-register .social .social__link:nth-child(2) {
+  background-color: #1abcff;
+}
+.landing .landing__content .landing-form .landing-form__login-register .social .social__link:nth-child(3) {
+  background-color: #7b5dfa;
+}
+.landing .landing__content .landing-form .landing-form__login-register .social .social__link:nth-child(4) {
+  background-color: #fd434f;
+}
+.landing .landing__content .landing-form .landing-form__login-register .social .social__link:hover {
+  transform: translateY(-4px);
+}
+.landing .landing__content .landing-form .landing-form__login-register .social .social__link .social__icon {
+  font-size: 1.2rem;
+  color: #fff;
+}
+.landing .landing__content input[id=login]:checked ~ .landing__info .landing__tab-switch-login {
+  color: #3e3f5e;
+  background-color: #fff;
+}
+.landing .landing__content input[id=login]:checked ~ .landing-form .landing-form__login {
+  display: block;
+}
+.landing .landing__content input[id=register]:checked ~ .landing__info .landing__tab-switch-register {
+  color: #3e3f5e;
+  background-color: #fff;
+}
+.landing .landing__content input[id=register]:checked ~ .landing-form .landing-form__register {
+  display: block;
+}
+
+@media screen and (max-width: 500px) {
+  .landing .landing__content .landing__info .landing__tittle {
+    font-size: 6rem;
+  }
+  .landing .landing__content .landing-form {
+    margin-top: 60px;
+  }
+  .landing .landing__content .landing-form .landing-form__login-register {
+    width: 100%;
+    padding: 40px 32px;
+  }
+}
+@media screen and (min-width: 1368px) {
+  .landing {
+    padding: 0px;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+  .landing .landing__content .landing__info {
+    position: absolute;
+    top: 16%;
+    left: 10%;
+  }
+  .landing .landing__content .landing__info .landing__desc {
+    display: block;
+  }
+  .landing .landing__content .landing-form {
+    position: absolute;
+    right: -28%;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    margin-top: 0;
+  }
+  .landing .landing__content .landing-form .landing-form__decoration {
+    display: block;
+    position: absolute;
+    top: -68px;
+    left: -80px;
+  }
+  .landing .landing__content .landing-form .landing-form__login,
+  .landing .landing__content .landing-form .landing-form__register {
+    display: block;
+    transition: all 0.6s ease-in-out;
+    opacity: 0;
+    visibility: hidden;
+    transform: translatex(50%);
+  }
+  .landing .landing__content input[id=login]:checked ~ .landing-form .landing-form__login {
+    opacity: 1;
+    visibility: visible;
+    transform: translatex(0%);
+  }
+  .landing .landing__content input[id=register]:checked ~ .landing-form .landing-form__register {
+    opacity: 1;
+    visibility: visible;
+    transform: translatex(-100%);
+  }
+}
+@media screen and (min-width: 1500px) {
+  .landing {
+    padding: 0px;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+  .landing .landing__content .landing__info {
+    left: 18%;
+  }
+  .landing .landing__content .landing__decoration {
+    width: 64%;
+    height: 140%;
+    border-radius: 50%;
+    background: url(../img/dot-texture.png) repeat 0 0 #fff;
+    position: absolute;
+    top: -20%;
+    right: -32%;
+    pointer-events: none;
+  }
+  .landing .landing__content .landing-form {
+    right: -12%;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

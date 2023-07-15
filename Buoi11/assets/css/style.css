@@ -307,7 +307,7 @@ button {
 }
 .serve-item:hover .serve__bg {
   opacity: 1;
-  left: 20px;
+  left: 24px;
   top: -6px;
   bottom: 14px;
   transform: rotate(-6deg);

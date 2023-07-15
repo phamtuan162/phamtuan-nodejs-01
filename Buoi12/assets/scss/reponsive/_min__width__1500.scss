@@ -1,0 +1,26 @@
+@media screen and (min-width: 1500px) {
+  .landing {
+    padding: 0px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    .landing__content {
+      .landing__info {
+        left: 18%;
+      }
+      .landing__decoration {
+        width: 64%;
+        height: 140%;
+        border-radius: 50%;
+        background: url(../img/dot-texture.png) repeat 0 0 $whiteColor;
+        position: absolute;
+        top: -20%;
+        right: -32%;
+        pointer-events: none;
+      }
+      .landing-form {
+        right: -12%;
+      }
+    }
+  }
+}

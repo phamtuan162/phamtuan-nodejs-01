@@ -1,0 +1,18 @@
+@media screen and (max-width: 500px) {
+  .landing {
+    .landing__content {
+      .landing__info {
+        .landing__tittle {
+          font-size: 6rem;
+        }
+      }
+      .landing-form {
+        margin-top: 60px;
+        .landing-form__login-register {
+          width: 100%;
+          padding: 40px 32px;
+        }
+      }
+    }
+  }
+}

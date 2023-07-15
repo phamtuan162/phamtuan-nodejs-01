@@ -1,0 +1,9 @@
+//Import Base
+@import "./parts/variables";
+@import "./parts/base";
+//Import Pages
+@import "./pages/login-register";
+// Import Reponsive
+@import "./reponsive/max__width__500";
+@import "./reponsive/min__width__1368";
+@import "./reponsive/min__width__1500";
