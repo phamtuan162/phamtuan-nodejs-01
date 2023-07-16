@@ -15,7 +15,8 @@
       }
       .landing-form {
         position: absolute;
-        right: -28%;
+        right: 80px;
+        transform: translateX(50%);
         top: 0;
         bottom: 0;
         display: flex;
@@ -34,6 +35,9 @@
           opacity: 0;
           visibility: hidden;
           transform: translatex(50%);
+        }
+        .landing-form__register {
+          transform: translatex(0%);
         }
       }
       input[id="login"]:checked {
