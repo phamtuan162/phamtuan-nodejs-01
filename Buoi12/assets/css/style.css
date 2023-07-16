@@ -52,7 +52,7 @@ button {
   display: block;
   width: 42px;
   height: 60px;
-  object-fit: contain;
+  object-fit: cover;
 }
 .landing .landing__content .landing__info .landing__pretitle {
   margin-top: 36px;
