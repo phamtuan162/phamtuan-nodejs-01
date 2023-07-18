@@ -1,0 +1,50 @@
+.hero {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-flow: dense;
+  grid-auto-rows: 188px;
+  gap: 22px;
+
+  @include screen(tablet) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @include screen(mobile) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    gap: 12px;
+
+    .hero__wide {
+      &:nth-of-type(3) {
+        grid-row-start: 2;
+      }
+      &:last-of-type {
+        grid-row-start: 5;
+      }
+      &:nth-last-child(2) {
+        grid-row-start: 6;
+      }
+    }
+  }
+
+  .hero__wide {
+    grid-column: span 2;
+  }
+  .hero__tall {
+    grid-row: span 2;
+  }
+
+  .hero__wide,
+  .hero__tall {
+    overflow: hidden;
+
+    &:hover .hero__img {
+      transform: scale(1.3);
+    }
+  }
+  .hero__img {
+    @include size(100 * 1%);
+    @include rounded(16px);
+    transition: transform 0.5s;
+  }
+}

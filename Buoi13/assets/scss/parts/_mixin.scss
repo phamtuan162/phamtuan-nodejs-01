@@ -1,0 +1,62 @@
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+@mixin overlayAllScreen($background-color, $z-index) {
+  position: fixed;
+  inset: 0;
+  z-index: $z-index;
+  background: $background-color;
+  opacity: 0;
+  visibility: hidden;
+}
+
+@mixin rounded($tl, $tr: $tl, $br: $tl, $bl: $tl) {
+  border-top-left-radius: $tl;
+  border-top-right-radius: $tr;
+  border-bottom-right-radius: $br;
+  border-bottom-left-radius: $bl;
+}
+
+@mixin flexCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin imgFull {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+@mixin flexContainer($columns, $space-col, $space-row: $space-col) {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: $space-row;
+  margin-left: calc($space-col * -1);
+  > * {
+    width: calc(100% / $columns - $space-col);
+    margin-left: $space-col;
+  }
+}
+
+@mixin screen($break-point) {
+  @if $break-point == mobile {
+    @media (max-width: 575px) {
+      @content;
+    }
+  }
+  @if $break-point == tablet {
+    @media (min-width: 576px) and (max-width: 991px) {
+      @content;
+    }
+  }
+  @if $break-point == pc {
+    @media (min-width: 992px) {
+      @content;
+    }
+  }
+}

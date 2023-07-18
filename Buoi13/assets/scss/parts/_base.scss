@@ -1,0 +1,85 @@
+* {
+  padding: 0;
+  margin: 0;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+}
+html {
+  font-size: 10px;
+}
+body {
+  font-family: $fontFamily;
+  font-size: 1.6rem;
+}
+a {
+  text-decoration: none;
+}
+input,
+select,
+textarea,
+button {
+  font-family: inherit;
+  font-size: inherit;
+}
+.wrapper__inner {
+  width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px 68px;
+  display: grid;
+  grid-template-columns: 1.2fr repeat(4, 1fr);
+  grid-template-rows: auto repeat(4, 1fr);
+  gap: 0px 38px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "sidebar header header header header"
+    "sidebar main main main main"
+    "sidebar main main main main"
+    "sidebar main main main main"
+    "sidebar main main main main";
+
+  @include screen(tablet) {
+    width: 100%;
+    padding: 0px 30px 68px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto auto repeat(4, 1fr);
+    grid-template-areas:
+      " header header header header"
+      " sidebar sidebar sidebar sidebar"
+      " main main main main "
+      " main main main main"
+      " main main main main"
+      " main main main main";
+
+    .menu-checkbox:checked ~ .overlay {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  @include screen(mobile) {
+    width: 100%;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto auto repeat(4, 1fr);
+    grid-template-areas:
+      " header header header header"
+      " sidebar sidebar sidebar sidebar"
+      " main main main main "
+      " main main main main"
+      " main main main main"
+      " main main main main";
+
+    .menu-checkbox:checked ~ .overlay {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+.main {
+  grid-area: main;
+}
+
+.overlay {
+  @include overlayAllScreen(rgba(0, 0, 0, 0.3), 1);
+  transition: 0.5s ease;
+}
