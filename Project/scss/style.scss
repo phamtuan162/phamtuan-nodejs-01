@@ -1,0 +1,12 @@
+// Import parts
+@import "./parts/variables";
+@import "./parts/reset";
+@import "./parts/base";
+@import "./parts/mixin";
+
+// Import layouts
+@import "./layouts/header";
+@import "./layouts/footer";
+
+// Import home
+@import "./home/hero";

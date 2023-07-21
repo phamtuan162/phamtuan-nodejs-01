@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web GreenShop</title>
+
+    <!-- gg fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- font awesome cdn link  -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    />
+
+    <!-- animate cdn link  -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+
+    <!-- Grid -->
+    <link rel="stylesheet" href="./css/grid.css" />
+
+    <!-- Style -->
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <input
+      type="checkbox"
+      name=""
+      id="menu-checkbox"
+      class="menu-checkbox"
+      hidden
+    />
+    <label for="menu-checkbox" class="overlay"></label>
+    <header class="header">
+      <div class="container">
+        <div class="row align-items-center">
+          <div
+            class="col-xxl-2 col-xl-2 col-lg-2 col-md-6 col-sm-6 col-6 header__logo"
+          >
+            <!-- logo -->
+            <a href="#" class="logo">
+              <img src="./images/logo.png" alt="" class="logo__img" />
+            </a>
+          </div>
+          <!-- Navbar -->
+          <div class="col-xxl-9 col-xl-9 col-lg-9 header__navbar">
+            <nav class="menu">
+              <ul>
+                <li>
+                  <a href="#!" class="active">Trang chủ</a>
+                </li>
+                <li>
+                  <a href="#!">Về Greenchop</a>
+                </li>
+                <li>
+                  <a href="#!">Sản phẩm</a>
+                </li>
+                <li>
+                  <a href="#!">Tin tức</a>
+                </li>
+                <li>
+                  <a href="#!">Liên hệ</a>
+                </li>
+              </ul>
+            </nav>
+
+            <!-- Close -->
+            <label for="menu-checkbox" class="close-up-menu">
+              <i class="fa-solid fa-xmark"></i>
+            </label>
+          </div>
+          <div
+            class="col-xxl-1 col-xl-1 col-lg-1 col-md-6 col-sm-6 col-6 header__action"
+          >
+            <!-- Action -->
+            <div class="action">
+              <div class="action-cart">
+                <a href="#" class="action__link">
+                  <img
+                    src="./images/icons/basket-icon.svg"
+                    alt=""
+                    class="action__img"
+                  />
+                </a>
+                <span>3</span>
+              </div>
+              <div class="action-search">
+                <a href="#" class="action__link">
+                  <img
+                    src="./images/icons/loop-icon.svg"
+                    alt=""
+                    class="action__img"
+                  />
+                </a>
+              </div>
+              <!-- Bars -->
+              <label for="menu-checkbox" class="bars">
+                <i class="fa-solid fa-bars"></i>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section class="hero">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-xxl-6 col-xl-6 col-lg-6 hero__info">
+              <h2 class="hero__subtitle">GreenChop: Tiện gấp dễ gắp</h2>
+              <h1 class="hero__title">AN TOÀN HƠN GIỮA MÙA COVID</h1>
+              <p class="hero__desc">
+                GreenChop là sản phẩm đũa thay đầu duy nhất trên thị trường hiện
+                tại. Sản phẩm cho phép người dùng tháo lắp và thay mới đầu đũa
+                100% trong mỗi bữa ăn. Nhờ đó, GreenChop giúp ngăn ngừa khả năng
+                lây lan dịch bệnh và đảm bảo an toàn cho người dùng.
+              </p>
+            </div>
+            <div class="col-xxl-6 col-xl-6 col-lg-6 hero__media">
+              <figure class="hero__img-wrapper">
+                <img
+                  src="./images/hero-img.png"
+                  alt="Chopstick"
+                  class="hero__img"
+                />
+              </figure>
+              <p class="hero__text">GREEN CHOP</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
