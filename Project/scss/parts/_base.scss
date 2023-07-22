@@ -2,3 +2,42 @@
   --container-width: 1440px;
   --column-space: 0;
 }
+.heading-2 {
+  font-size: 3.8rem;
+  font-weight: 800;
+  line-height: 131.523%;
+}
+.heading-3 {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: normal;
+}
+.desc {
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 24.5px; /* 153.125% */
+}
+.btn {
+  font-family: Inter, sans-serif;
+  background-color: $backgroundBtn;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 14px;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 2rem;
+  line-height: normal;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.4s;
+}
+.btn:hover {
+  background-color: #ff6916;
+}
+.btn:disabled {
+  background-color: #b7b7b7;
+}
+.btn:active {
+  background-color: #e05000;
+}

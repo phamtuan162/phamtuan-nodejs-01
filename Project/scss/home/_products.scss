@@ -1,0 +1,92 @@
+.products {
+  text-align: center;
+  margin-top: 120px;
+  padding-bottom: 160px;
+  .products__list {
+    margin-top: 198px;
+    justify-content: center;
+    @include flexContainer(1, 100px, 258px);
+    .products-item {
+      position: relative;
+      @include flexCenter;
+      flex-direction: column;
+      max-width: 323px;
+      &:nth-of-type(2),
+      &:nth-of-type(5) {
+        .products-item__circle {
+          background: #c5ffa8;
+        }
+      }
+      .products-item__circle {
+        position: absolute;
+        width: 323.179px;
+        height: 323.179px;
+        border-radius: 50%;
+        background-color: #ffba94;
+        z-index: -1;
+        top: 0;
+        transform: translateY(-137.57px);
+      }
+      .products-item__img--wrapper {
+        width: 100%;
+        @include flexCenter;
+      }
+      .products-item__tittle {
+        position: relative;
+        margin-top: 20px;
+        padding-bottom: 16px;
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          height: 2px;
+          background: #a3a3a3;
+          width: 49px;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+      }
+      .products-item__quality,
+      .products-item__price {
+        font-size: 2rem;
+        font-weight: 400;
+        line-height: 26px; /* 130% */
+        color: #656565;
+      }
+      .products-item__quality {
+        margin-top: 20px;
+      }
+      .products-item__price {
+        span {
+          font-size: 2.6rem;
+          font-weight: 600;
+          color: $textColor;
+          line-height: 3.2rem;
+        }
+      }
+      .products-item__btn {
+        margin-top: 32px;
+      }
+    }
+  }
+}
+@media screen and (min-width: 576px) {
+}
+@media screen and (min-width: 768px) {
+}
+@media screen and (min-width: 992px) {
+  .products {
+    .products__list {
+      @include flexContainer(2, 100px, 258px);
+    }
+  }
+}
+@media screen and (min-width: 1200px) {
+  .products {
+    .products__list {
+      @include flexContainer(3, 100px, 258px);
+    }
+  }
+}
+@media screen and (min-width: 1400px) {
+}
