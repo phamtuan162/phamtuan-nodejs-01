@@ -1,0 +1,118 @@
+.news {
+  text-align: center;
+  .news__desc {
+    margin: 28px auto 60px;
+  }
+  .news__list {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    column-gap: 28px;
+    row-gap: 56px;
+  }
+  .news-item {
+    display: flex;
+    flex-direction: column;
+    text-align: initial;
+    .news-item__img--wrapper {
+      width: 100%;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+    .news-item__content {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .news-item__img {
+      width: 100%;
+      height: 328px;
+      object-fit: cover;
+      transition: all 0.3s;
+    }
+    &:hover,
+    &.active {
+      .news-item__calendar--icon {
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+      }
+      .news-item__date {
+        text-shadow: 1px 5px 4px rgba(0, 0, 0, 0.3);
+      }
+    }
+    &:hover {
+      .news-item__img {
+        scale: 1.2;
+      }
+    }
+    .news-item__row {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      .news-item__text {
+        font-size: 1.8rem;
+        font-weight: 500;
+      }
+
+      .news-item__calendar {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+      }
+      .news-item__calendar--icon {
+        @include size(24px);
+      }
+      .news-item__date {
+        color: #a3a3a3;
+        @extend .news-item__text;
+        line-height: normal;
+      }
+    }
+    .news-item__tittle {
+      margin-top: 22px;
+      font-size: 2.4rem;
+      font-weight: 600;
+      line-height: 32px; /* 133.333% */
+    }
+    .news-item__desc {
+      flex-grow: 1;
+      align-items: end;
+      display: flex;
+      margin-top: 20px;
+    }
+  }
+
+  .news__cta {
+    margin: 120px auto 0;
+    gap: 4px;
+    border: 1px solid #46b20f;
+    background: #fff;
+    color: $textColor;
+    padding: 14px 26px;
+    &:hover {
+      background: $backgroundBtn;
+      color: #fff;
+    }
+  }
+}
+@media screen and (min-width: 576px) {
+}
+@media screen and (min-width: 768px) {
+  .news {
+    .news__desc {
+      width: calc(calc(789px / 1440px) * 100%);
+    }
+    .news__list {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+@media screen and (min-width: 992px) {
+  .news {
+    .news__list {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+@media screen and (min-width: 1200px) {
+}
+@media screen and (min-width: 1400px) {
+}
