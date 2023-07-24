@@ -1,0 +1,104 @@
+.contact {
+  padding-bottom: 122px;
+  .container {
+    max-width: 1435px;
+  }
+  .contact__inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .contact__content {
+    text-align: center;
+    width: 100%;
+    margin-top: 50px;
+  }
+  .contact-form {
+    margin-top: 32px;
+    .contact-form__row {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      margin-bottom: 28px;
+      &:last-of-type {
+        margin: 32px 0 0 0;
+      }
+    }
+    .contact-form__group {
+      position: relative;
+      flex: 1;
+    }
+
+    .contact-form__input,
+    .contact-form__textarea {
+      width: 100%;
+      padding: 16px 0px 16px 16px;
+      border-radius: 8px;
+      border: 1px solid #a3a3a3;
+      &:focus {
+        & ~ .contact-form__label {
+          top: 0;
+          transform: translateY(-50%);
+          font-size: 1.4rem;
+          background: #fff;
+        }
+      }
+    }
+    .contact-form__textarea {
+      height: 178px;
+      resize: none;
+      & ~ .contact-form__label {
+        top: 16px;
+        transform: none;
+      }
+    }
+    .contact-form__label {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 16px;
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: #a3a3a3;
+      transition: all 0.4s;
+    }
+
+    .contact-form__btn {
+      margin-left: auto;
+      @include size(154px, 56px);
+    }
+  }
+}
+@media screen and (min-width: 576px) {
+  .contact {
+    .contact-form {
+      .contact-form__row {
+        flex-direction: row;
+      }
+    }
+  }
+}
+@media screen and (min-width: 768px) {
+}
+@media screen and (min-width: 992px) {
+  .contact {
+    .contact__inner {
+      flex-wrap: nowrap;
+      align-items: flex-end;
+      gap: 20px;
+    }
+    .contact__img--wrapper {
+      flex-grow: 0;
+      margin-right: auto;
+    }
+    .contact__content {
+      text-align: initial;
+      margin-top: 0;
+      width: calc(710 / 1435 * 100%);
+    }
+  }
+}
+@media screen and (min-width: 1200px) {
+}
+@media screen and (min-width: 1400px) {
+}

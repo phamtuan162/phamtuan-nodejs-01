@@ -73,10 +73,11 @@
       line-height: 32px; /* 133.333% */
     }
     .news-item__desc {
-      flex-grow: 1;
-      align-items: end;
-      display: flex;
+      // flex-grow: 1;
+      // align-items: end;
+      // display: flex;
       margin-top: 20px;
+      @include lineClamp(3);
     }
   }
 

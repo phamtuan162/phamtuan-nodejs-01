@@ -32,6 +32,14 @@ ul {
   list-style: none;
 }
 
+input,
+select,
+textarea,
+button {
+  font-family: inherit;
+  font-size: inherit;
+}
+
 .container {
   --container-width: 1440px;
   --column-space: 0;
@@ -81,21 +89,6 @@ ul {
 
 .btn:active {
   background-color: #e05000;
-}
-
-.line-clamp.line-3 {
-  --line-clamp: 3;
-}
-
-.break-all {
-  word-break: break-all;
-}
-
-.line-clamp {
-  display: -webkit-box !important;
-  -webkit-line-clamp: var(--line-clamp, 1);
-  -webkit-box-orient: vertical;
-  overflow: hidden;
 }
 
 .header {
@@ -802,10 +795,12 @@ ul {
   line-height: 32px; /* 133.333% */
 }
 .news .news-item .news-item__desc {
-  flex-grow: 1;
-  align-items: end;
-  display: flex;
   margin-top: 20px;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-all;
 }
 .news .news__cta {
   margin: 120px auto 0;
@@ -859,6 +854,11 @@ ul {
 .protect .protect__desc {
   margin: 30px auto 0;
   max-width: 894px;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-all;
 }
 .protect .protect__list {
   margin-top: 60px;
@@ -916,6 +916,140 @@ ul {
   }
   .protect .protect-item {
     border: none;
+  }
+}
+.service {
+  margin: 160px 0;
+}
+.service .container {
+  max-width: 1170px;
+}
+.service .service__list {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  column-gap: 63px;
+  row-gap: 120px;
+  justify-items: center;
+}
+.service .service-item {
+  max-width: 346px;
+  display: flex;
+  gap: 19px;
+}
+.service .service-item .service-item__icon {
+  flex-shrink: 0;
+}
+.service .service-item .service-item__img {
+  width: 67px;
+  height: 67px;
+}
+.service .service-item .service-item__desc {
+  margin-top: 8px;
+  font-size: 1.8rem;
+  font-weight: 500;
+  max-width: 260px;
+  line-height: normal;
+}
+
+@media screen and (min-width: 576px) {
+  .service .service__list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (min-width: 992px) {
+  .service .service__list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.contact {
+  padding-bottom: 122px;
+}
+.contact .container {
+  max-width: 1435px;
+}
+.contact .contact__inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.contact .contact__content {
+  text-align: center;
+  width: 100%;
+  margin-top: 50px;
+}
+.contact .contact-form {
+  margin-top: 32px;
+}
+.contact .contact-form .contact-form__row {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  margin-bottom: 28px;
+}
+.contact .contact-form .contact-form__row:last-of-type {
+  margin: 32px 0 0 0;
+}
+.contact .contact-form .contact-form__group {
+  position: relative;
+  flex: 1;
+}
+.contact .contact-form .contact-form__input,
+.contact .contact-form .contact-form__textarea {
+  width: 100%;
+  padding: 16px 0px 16px 16px;
+  border-radius: 8px;
+  border: 1px solid #a3a3a3;
+}
+.contact .contact-form .contact-form__input:focus ~ .contact-form__label,
+.contact .contact-form .contact-form__textarea:focus ~ .contact-form__label {
+  top: 0;
+  transform: translateY(-50%);
+  font-size: 1.4rem;
+  background: #fff;
+}
+.contact .contact-form .contact-form__textarea {
+  height: 178px;
+  resize: none;
+}
+.contact .contact-form .contact-form__textarea ~ .contact-form__label {
+  top: 16px;
+  transform: none;
+}
+.contact .contact-form .contact-form__label {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 16px;
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: #a3a3a3;
+  transition: all 0.4s;
+}
+.contact .contact-form .contact-form__btn {
+  margin-left: auto;
+  width: 154px;
+  height: 56px;
+}
+
+@media screen and (min-width: 576px) {
+  .contact .contact-form .contact-form__row {
+    flex-direction: row;
+  }
+}
+@media screen and (min-width: 992px) {
+  .contact .contact__inner {
+    flex-wrap: nowrap;
+    align-items: flex-end;
+    gap: 20px;
+  }
+  .contact .contact__img--wrapper {
+    flex-grow: 0;
+    margin-right: auto;
+  }
+  .contact .contact__content {
+    text-align: initial;
+    margin-top: 0;
+    width: 49.4773519164%;
   }
 }
 

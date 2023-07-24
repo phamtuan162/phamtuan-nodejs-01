@@ -23,6 +23,7 @@
   .protect__desc {
     margin: 30px auto 0;
     max-width: 894px;
+    @include lineClamp(4);
   }
   .protect__list {
     margin-top: 60px;

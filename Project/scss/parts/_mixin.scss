@@ -42,3 +42,10 @@
     margin-left: $space-col;
   }
 }
+@mixin lineClamp($number) {
+  display: -webkit-box !important;
+  -webkit-line-clamp: $number;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-all;
+}
