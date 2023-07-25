@@ -25,6 +25,11 @@ $breakpoints: (
   @media screen and (min-width: #{$breakpoint}px) {
   }
 }
+.heading-1 {
+  font-size: 5.2rem;
+  font-weight: 700;
+}
+
 .heading-2 {
   font-size: 3.8rem;
   font-weight: 800;

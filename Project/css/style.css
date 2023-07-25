@@ -45,6 +45,11 @@ button {
   --column-space: 0;
 }
 
+.heading-1 {
+  font-size: 5.2rem;
+  font-weight: 700;
+}
+
 .heading-2 {
   font-size: 3.8rem;
   font-weight: 800;
@@ -1179,6 +1184,205 @@ button {
     text-align: initial;
     margin-top: 0;
     width: 49.4773519164%;
+  }
+}
+.main__tittle {
+  padding: 68px 0 69px;
+  background: #f2ffec;
+}
+
+.about {
+  margin: 120px 0;
+  text-align: center;
+}
+.about .container {
+  max-width: 1170px;
+}
+.about .about-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  margin-top: 60px;
+  text-align: left;
+}
+.about .about-item:first-of-type {
+  margin-top: 30px;
+}
+.about .about-item:nth-of-type(odd) .about-item__desc {
+  max-width: 452px;
+}
+.about .about-item:nth-of-type(even) {
+  justify-content: flex-end;
+}
+.about .about-item:nth-of-type(even) .about-item__desc {
+  max-width: 528px;
+}
+
+@media screen and (min-width: 768px) {
+  .about .about-item {
+    flex-direction: row;
+  }
+  .about .about-item:nth-of-type(even) {
+    flex-direction: row-reverse;
+  }
+}
+@media screen and (min-width: 992px) {
+  .about .about-item {
+    gap: 142px;
+  }
+}
+.main-product {
+  position: relative;
+  background-image: url(../images/abouts/backgroud-img.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding: 84px 0 77px;
+  text-align: center;
+}
+.main-product::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.6000000238;
+  background: #000;
+}
+.main-product .container {
+  max-width: 1295px;
+}
+.main-product .main-product__content {
+  position: relative;
+  padding-bottom: 44px;
+}
+.main-product .main-product__tittle,
+.main-product .main-product__desc {
+  position: relative;
+  color: #fff;
+  margin: 0 auto;
+  max-width: 75.3667953668%;
+}
+.main-product .main-product__tittle {
+  max-width: 46.332046332%;
+}
+.main-product .main-product__desc {
+  margin-top: 60px;
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 26px;
+  min-height: 156px;
+}
+.main-product .open-quotes,
+.main-product .close-quotes {
+  position: absolute;
+  width: 80px;
+}
+.main-product .open-quotes {
+  left: 0;
+  top: 17.7993527508%;
+}
+.main-product .close-quotes {
+  right: 0;
+  bottom: 0;
+}
+
+@media screen and (min-width: 768px) {
+  .main-product .open-quotes,
+  .main-product .close-quotes {
+    width: 100px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .main-product .open-quotes,
+  .main-product .close-quotes {
+    width: 134px;
+  }
+}
+.mission {
+  padding: 120px 0 280px;
+}
+.mission .container {
+  max-width: 1440px;
+}
+.mission .mission__inner {
+  max-width: 1305px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.mission .mission__img--wrapper {
+  order: 2;
+  position: relative;
+}
+.mission .mission__img--wrapper::before, .mission .mission__img--wrapper::after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  border-radius: 50%;
+  z-index: -1;
+}
+.mission .mission__img--wrapper::before {
+  width: 480px;
+  height: 480px;
+  background: #dcffca;
+  top: 91px;
+  left: -223px;
+}
+.mission .mission__img--wrapper::after {
+  width: 264px;
+  height: 264px;
+  background: #ffd5bd;
+  bottom: -160px;
+  left: 66px;
+}
+.mission .mission__img {
+  margin-left: auto;
+  width: 480px;
+  height: 438px;
+  object-fit: cover;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  box-shadow: -11px 31px 56px 0px rgba(0, 0, 0, 0.15);
+}
+.mission .mission__content {
+  margin-bottom: 40px;
+  max-width: 492px;
+  order: 1;
+}
+.mission .mission__desc {
+  margin-top: 32px;
+}
+
+@media screen and (min-width: 992px) {
+  .mission .mission__inner {
+    gap: 30px;
+    flex-direction: row;
+  }
+  .mission .mission__img {
+    width: 420px;
+    height: 378px;
+  }
+  .mission .mission__img--wrapper {
+    order: 1;
+    margin-left: auto;
+  }
+  .mission .mission__content {
+    margin-bottom: 0;
+    order: 2;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .mission .mission__inner {
+    gap: 110px;
+  }
+  .mission .mission__img {
+    width: 480px;
+    height: 438px;
   }
 }
 
