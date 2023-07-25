@@ -1,6 +1,6 @@
 .service {
   .container {
-    max-width: 1170px;
+    max-width: 346px;
   }
   margin: 160px 0;
   .service__list {
@@ -31,8 +31,12 @@
 }
 @media screen and (min-width: 576px) {
   .service {
+    .container {
+      max-width: 1170px;
+    }
     .service__list {
       grid-template-columns: repeat(2, 1fr);
+      justify-items: flex-start;
     }
   }
 }

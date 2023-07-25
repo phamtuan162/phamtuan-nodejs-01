@@ -92,6 +92,11 @@ button {
 }
 
 .header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
   padding: 18px 0;
   background-color: #fff;
   box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.15);
@@ -277,10 +282,129 @@ button {
   opacity: 1;
 }
 
-.menu-checkbox:checked ~ .header .header__navbar {
+.menu-checkbox:checked ~ .header__navbar {
   transform: translateX(0%);
 }
 
+.footer {
+  padding-top: 80px;
+  background: #f2ffec;
+}
+.footer .container {
+  max-width: 1183px;
+}
+.footer .footer__list {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  row-gap: 40px;
+  padding-bottom: 86px;
+  border-bottom: 2px solid #a3a3a3;
+}
+.footer .footer-item {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  align-items: center;
+  text-align: center;
+}
+.footer .footer-item:nth-of-type(3) .footer-item__item + .footer-item__item .footer-item__link {
+  line-height: 24px;
+}
+.footer .footer-item:last-child .footer-item__item .footer-item__link {
+  max-width: 228px;
+}
+.footer .footer-item .footer-item__logo img {
+  width: 160px;
+}
+.footer .footer-item .footer-item__desc {
+  margin-top: 18px;
+  max-width: 230px;
+}
+.footer .footer-item .footer-item__tittle {
+  font-size: 2rem;
+  color: #46b20f;
+  font-weight: 600;
+  line-height: 26px; /* 130% */
+}
+.footer .footer-item .footer-item__list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+.footer .footer-item .footer-item__link {
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 24.5px; /* 153.125% */
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.footer .footer-item .footer-item__link span {
+  font-weight: 600;
+  line-height: 24.5px; /* 150% */
+}
+.footer .footer-bottom {
+  padding: 29px 0 32px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  row-gap: 30px;
+  column-gap: 30px;
+}
+.footer .footer-bottom__img,
+.footer .social__list {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer .footer-bottom__img {
+  transform: translateX(-10px);
+}
+.footer .social__list {
+  gap: 8px;
+}
+.footer .social-item {
+  width: 48px;
+  height: 48px;
+  background: #dcffca;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (min-width: 576px) {
+  .footer .footer-item {
+    flex-basis: calc((100% - 40px) / 2);
+  }
+  .footer .footer-bottom__img,
+  .footer .social__list {
+    flex-grow: 0;
+  }
+  .footer .footer-bottom__img {
+    transform: none;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .footer .footer-item {
+    flex-basis: auto;
+    text-align: initial;
+    align-items: flex-start;
+  }
+  .footer .footer-item .footer-item__desc {
+    margin: 28px 0 0 0;
+  }
+  .footer .footer-item .footer-item__logo img {
+    margin: 0 auto;
+  }
+  .footer .footer-item .footer-item__list {
+    align-items: flex-start;
+  }
+}
 .hero .container {
   padding: 0;
 }
@@ -830,7 +954,8 @@ button {
 }
 .protect {
   position: relative;
-  padding: 120px 0 140px;
+  margin-top: 80px;
+  padding: 40px 0 140px;
   text-align: center;
 }
 .protect .container {
@@ -839,10 +964,7 @@ button {
 .protect::after {
   content: "";
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 433px;
+  inset: 0;
   border-radius: 10px;
   background: #fff0e7;
   z-index: -1;
@@ -871,7 +993,6 @@ button {
   background: #fff;
   border-radius: 10px;
   text-align: initial;
-  border: 1px solid #a3a3a3;
   counter-increment: item;
 }
 .protect .protect-item:hover .protect-item__img {
@@ -911,18 +1032,22 @@ button {
   }
 }
 @media screen and (min-width: 992px) {
+  .protect::after {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: auto;
+    height: 433px;
+  }
   .protect .protect__list {
     grid-template-columns: repeat(3, 1fr);
-  }
-  .protect .protect-item {
-    border: none;
   }
 }
 .service {
   margin: 160px 0;
 }
 .service .container {
-  max-width: 1170px;
+  max-width: 346px;
 }
 .service .service__list {
   display: grid;
@@ -952,8 +1077,12 @@ button {
 }
 
 @media screen and (min-width: 576px) {
+  .service .container {
+    max-width: 1170px;
+  }
   .service .service__list {
     grid-template-columns: repeat(2, 1fr);
+    justify-items: flex-start;
   }
 }
 @media screen and (min-width: 992px) {
