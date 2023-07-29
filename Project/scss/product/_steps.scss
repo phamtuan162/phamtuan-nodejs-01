@@ -1,0 +1,124 @@
+.steps {
+  margin: 60px 0 70px;
+  text-align: center;
+  .container {
+    max-width: 1392px;
+  }
+  .steps__tittle {
+    max-width: 457px;
+    margin: 0 auto;
+  }
+  .steps__desc {
+    margin: 20px auto 0;
+    max-width: 456px;
+  }
+  .steps__list {
+    margin-top: 60px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 23px;
+    counter-reset: step;
+  }
+  .steps-item {
+    height: 162px;
+    counter-increment: step;
+    display: flex;
+    gap: 12px;
+    position: relative;
+    padding-top: 14px;
+    transition: 0.3s all ease-in;
+    &:hover {
+      transform: translate(-30px, 30px);
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      border-radius: 50%;
+      z-index: -1;
+      display: inline-block;
+      @include size(148px);
+      background-color: #fff0e7;
+    }
+    &:nth-of-type(1) {
+      .steps-item__desc {
+        width: 185px;
+      }
+      &::before {
+        right: 123px;
+      }
+    }
+    &:nth-of-type(2) {
+      .steps-item__desc {
+        width: 160px;
+      }
+      &::before {
+        right: 100px;
+      }
+    }
+    &:nth-of-type(3) {
+      .steps-item__desc {
+        width: 160px;
+      }
+      &::before {
+        right: 97px;
+      }
+    }
+    &:nth-of-type(4) {
+      .steps-item__desc {
+        width: 162px;
+      }
+      &::before {
+        right: 100px;
+      }
+    }
+    .steps-item__number {
+      &::before {
+        content: "0" counter(step) "";
+        font-size: 10rem;
+        font-weight: 800;
+        display: inline-block;
+        color: #fff;
+        mix-blend-mode: multiply;
+        text-shadow: 2px 0 #000, -2px 0 #000, 0 2px #000, 0 -2px #000,
+          1px 1px #000, -1px -1px #000, 1px -1px #000, -1px 1px #000;
+      }
+    }
+    .steps-item__desc {
+      text-align: initial;
+      margin-top: 14px;
+    }
+  }
+}
+
+@media screen and (min-width: 576px) {
+  .steps {
+    .steps__list {
+      gap: 46px;
+    }
+  }
+}
+@media screen and (min-width: 768px) {
+}
+@media screen and (min-width: 992px) {
+  .steps {
+    .steps-item {
+      .steps-item__desc {
+        margin-top: 24px;
+      }
+    }
+  }
+}
+@media screen and (min-width: 1200px) {
+  .steps {
+    margin: 120px 0 140px;
+  }
+}
+@media screen and (min-width: 1400px) {
+  .steps {
+    .steps__list {
+      justify-content: flex-end;
+    }
+  }
+}

@@ -25,6 +25,8 @@
     background-color: #dcffca;
     .hero__img-wrapper {
       position: absolute;
+      bottom: 0;
+      right: 60px;
     }
     .hero__text {
       position: absolute;
@@ -46,6 +48,8 @@
     .hero__media {
       height: 500px;
       .hero__img-wrapper {
+        right: auto;
+        bottom: auto;
         .hero__img {
           max-width: 500px;
         }
