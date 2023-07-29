@@ -1,5 +1,5 @@
 .footer {
-  padding-top: 80px;
+  padding-top: 40px;
   background: $backgroundFooter;
   .container {
     max-width: 1183px;
@@ -9,26 +9,17 @@
     justify-content: space-between;
     flex-wrap: wrap;
     row-gap: 40px;
-    padding-bottom: 86px;
+    padding-bottom: 43px;
     border-bottom: 2px solid #a3a3a3;
   }
   .footer-item {
     display: flex;
     flex-direction: column;
     flex-basis: 100%;
-    align-items: center;
-    text-align: center;
     &:nth-of-type(3) {
       .footer-item__item + .footer-item__item {
         .footer-item__link {
           line-height: 24px;
-        }
-      }
-    }
-    &:last-child {
-      .footer-item__item {
-        .footer-item__link {
-          max-width: 228px;
         }
       }
     }
@@ -39,7 +30,6 @@
     }
     .footer-item__desc {
       margin-top: 18px;
-      max-width: 230px;
     }
     .footer-item__tittle {
       font-size: 2rem;
@@ -50,7 +40,6 @@
     .footer-item__list {
       display: flex;
       flex-direction: column;
-      align-items: center;
       gap: 8px;
       margin-top: 16px;
     }
@@ -96,9 +85,6 @@
 
 @media screen and (min-width: 576px) {
   .footer {
-    .footer-item {
-      flex-basis: calc((100% - 40px) / 2);
-    }
     .footer-bottom__img,
     .social__list {
       flex-grow: 0;
@@ -109,13 +95,41 @@
   }
 }
 @media screen and (min-width: 768px) {
+  .footer {
+    .footer-item {
+      &:nth-of-type(n + 2) {
+        flex-basis: auto;
+      }
+      &:last-child {
+        .footer-item__item {
+          .footer-item__link {
+            max-width: 228px;
+          }
+        }
+      }
+    }
+    padding-top: 80px;
+    .footer__list {
+      padding-bottom: 86px;
+    }
+  }
 }
 @media screen and (min-width: 992px) {
+  .footer {
+    .footer-item {
+      flex-basis: auto;
+      &:nth-of-type(n + 2) {
+        flex-basis: auto;
+      }
+      .footer-item__desc {
+        max-width: 230px;
+      }
+    }
+  }
 }
 @media screen and (min-width: 1200px) {
   .footer {
     .footer-item {
-      flex-basis: auto;
       text-align: initial;
       align-items: flex-start;
       .footer-item__desc {

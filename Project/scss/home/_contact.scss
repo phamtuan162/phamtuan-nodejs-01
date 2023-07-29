@@ -1,5 +1,5 @@
 .contact {
-  padding-bottom: 122px;
+  padding-bottom: 61px;
   .container {
     max-width: 1435px;
   }
@@ -79,6 +79,9 @@
   }
 }
 @media screen and (min-width: 768px) {
+  .contact {
+    padding-bottom: 122px;
+  }
 }
 @media screen and (min-width: 992px) {
   .contact {

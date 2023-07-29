@@ -6,7 +6,10 @@
   border: 0;
 }
 html {
-  font-size: 10px;
+  font-size: 8px;
+  @media screen and (min-width: 1200px) {
+    font-size: 10px;
+  }
 }
 
 body {

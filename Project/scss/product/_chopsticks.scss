@@ -1,0 +1,106 @@
+.chopsticks {
+  margin: 0 0 120px;
+  .container {
+    max-width: 1440px;
+  }
+  .chopsticks__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 40px;
+  }
+  .chopsticks__content {
+    max-width: 761px;
+    padding-left: 40px;
+  }
+  .chopsticks__img--wrapper {
+    display: flex;
+    align-items: center;
+    .chopsticks__img {
+      &:nth-of-type(1) {
+        width: 604px;
+        display: block;
+      }
+      &:nth-of-type(2) {
+        width: 378px;
+        display: none;
+      }
+    }
+  }
+  .chopsticks__tittle {
+    margin-top: 52px;
+    position: relative;
+    &::before {
+      position: absolute;
+      content: "";
+      background-image: url(../images/bg-page-product-chopsticks-tittle.png);
+      background-size: cover;
+      display: block;
+      @include size(195px, 203px);
+      top: -38px;
+      left: -89px;
+      z-index: -1;
+    }
+  }
+  .chopsticks__desc {
+    max-width: 440px;
+    margin-top: 19px;
+  }
+}
+@media screen and (min-width: 576px) {
+}
+@media screen and (min-width: 768px) {
+}
+@media screen and (min-width: 992px) {
+  .chopsticks {
+    .chopsticks__inner {
+      align-items: center;
+      justify-content: end;
+      flex-direction: row;
+    }
+    .chopsticks__img--wrapper {
+      .chopsticks__img {
+        &:nth-of-type(1) {
+          display: none;
+        }
+        &:nth-of-type(2) {
+          display: block;
+        }
+      }
+    }
+    .chopsticks__tittle {
+      margin-top: 106px;
+    }
+  }
+}
+@media screen and (min-width: 1200px) {
+  .chopsticks {
+    .chopsticks__inner {
+      justify-content: center;
+      gap: 20px;
+    }
+  }
+}
+@media screen and (min-width: 1400px) {
+  .chopsticks {
+    .chopsticks__inner {
+      gap: 43px;
+    }
+    .chopsticks__content {
+      padding-left: 102px;
+      margin-left: auto;
+    }
+    .chopsticks__img--wrapper {
+      .chopsticks__img {
+        &:nth-of-type(1) {
+          display: block;
+          height: 477px;
+        }
+        &:nth-of-type(2) {
+          display: none;
+          height: 169px;
+        }
+      }
+    }
+  }
+}

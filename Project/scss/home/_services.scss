@@ -2,21 +2,19 @@
   .container {
     max-width: 346px;
   }
-  margin: 160px 0;
+  margin: 40px 0;
   .service__list {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-    column-gap: 63px;
-    row-gap: 120px;
+    column-gap: 30px;
+    row-gap: 60px;
     justify-items: center;
   }
   .service-item {
     max-width: 346px;
+    margin-right: auto;
     display: flex;
     gap: 19px;
-    .service-item__icon {
-      flex-shrink: 0;
-    }
     .service-item__img {
       @include size(67px);
     }
@@ -41,6 +39,13 @@
   }
 }
 @media screen and (min-width: 768px) {
+  .service {
+    margin: 160px 0;
+    .service__list {
+      column-gap: 63px;
+      row-gap: 120px;
+    }
+  }
 }
 @media screen and (min-width: 992px) {
   .service {
