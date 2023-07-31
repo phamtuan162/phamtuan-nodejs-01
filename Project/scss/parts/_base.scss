@@ -1,30 +1,15 @@
+@include display;
+@each $name, $breakpoint in $breakpoints {
+  @media screen and (min-width: #{$breakpoint}px) {
+    @include display($name);
+  }
+}
+
 .container {
   --container-width: 1440px;
   --column-space: 0;
 }
-$breakpoints: (
-  sm: 576,
-  md: 768,
-  lg: 992,
-  xl: 1200,
-  xxl: 1400,
-);
-@mixin display() {
-  $prefix: "d-";
-  @if ($name != "") {
-    $prefix: $prefix + $name + "-";
-  }
-  .#{$prefix}none {
-    display: none;
-  }
-  .#{$prefix}block {
-    display: block;
-  }
-}
-@each $name, $breakpoint in $breakpoints {
-  @media screen and (min-width: #{$breakpoint}px) {
-  }
-}
+
 .heading-1 {
   font-size: 5.2rem;
   font-weight: 700;
@@ -60,13 +45,24 @@ $breakpoints: (
   font-weight: 700;
   cursor: pointer;
   transition: all 0.4s;
+  &:hover {
+    background-color: #ff6916;
+  }
+  &:disabled {
+    background-color: #b7b7b7;
+  }
+  &:active {
+    background-color: #e05000;
+  }
 }
-.btn:hover {
-  background-color: #ff6916;
-}
-.btn:disabled {
-  background-color: #b7b7b7;
-}
-.btn:active {
-  background-color: #e05000;
+.btn.more {
+  gap: 4px;
+  border: 1px solid #46b20f;
+  background: #fff;
+  color: $textColor;
+  padding: 14px 26px;
+  &:hover {
+    background: $backgroundBtn;
+    color: #fff;
+  }
 }

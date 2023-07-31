@@ -48,3 +48,26 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+@mixin display($name: "") {
+  $selectorNone: ".d-none";
+  $selectorBlock: ".d-block";
+
+  @if ($name != "") {
+    $selectorNone: ".d-" + $name + "-none"; //.d-md-none
+    $selectorBlock: ".d-" + $name + "-block";
+  }
+
+  #{$selectorNone} {
+    display: none;
+  }
+
+  #{$selectorBlock} {
+    display: block;
+  }
+}
+
+@mixin center($width, $spacer: 0) {
+  max-width: $width;
+  margin: $spacer auto;
+}

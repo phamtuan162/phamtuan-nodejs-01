@@ -1,12 +1,13 @@
-// Import parts
-@import "./parts/variables";
-@import "./parts/reset";
-@import "./parts/base";
-@import "./parts/mixin";
+//Import parts
+@import "parts/variables";
+@import "parts/reset";
+@import "parts/mixin";
+@import "parts/base";
 
 // Import layouts
 @import "./layouts/header";
 @import "./layouts/footer";
+@import "./layouts/tittle-main";
 
 // Import home
 @import "./home/hero";
@@ -18,7 +19,7 @@
 @import "./home/contact";
 
 // Import about
-@import "./about/tittle-main";
+
 @import "./about/about";
 @import "./about/main-product";
 @import "./about/mission";
@@ -28,3 +29,7 @@
 @import "./product/steps";
 @import "./product/benefit-instead";
 @import "./product/rule";
+
+// Import new
+@import "./new/news-hot";
+@import "./new/news";

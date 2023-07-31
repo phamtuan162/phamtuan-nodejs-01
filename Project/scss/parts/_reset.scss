@@ -7,21 +7,26 @@
 }
 html {
   font-size: 8px;
+  scroll-behavior: smooth;
   @media screen and (min-width: 992px) {
     font-size: 10px;
   }
 }
 
 body {
-  font-size: 1.6rem;
   font-family: $fontFamily;
   color: $textColor;
+  font-size: $fontSize;
   line-height: 1.2;
+  overflow-x: hidden;
 }
 
 a {
   text-decoration: none;
   color: $linkColor;
+  &:hover {
+    color: $primaryColor;
+  }
 }
 
 img {
@@ -30,7 +35,8 @@ img {
   height: auto;
 }
 
-ul {
+ul,
+li {
   list-style: none;
 }
 input,
@@ -39,4 +45,12 @@ textarea,
 button {
   font-family: inherit;
   font-size: inherit;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $headingColor;
 }

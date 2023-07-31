@@ -1,7 +1,6 @@
 .products {
   text-align: center;
   margin-top: 40px;
-  padding-bottom: 40px;
   overflow: hidden;
   .products__list {
     margin-top: 168px;
@@ -93,7 +92,6 @@
 @media screen and (min-width: 768px) {
   .products {
     margin-top: 120px;
-    padding-bottom: 160px;
     .products__list {
       margin-top: 198px;
       .products-item {
