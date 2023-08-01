@@ -107,11 +107,9 @@ Bài 6: Vẽ bàn cờ vua..
 const chessboard = document.getElementById("chessboard");
 let check = true;
 for (let i = 1; i <= 64; i++) {
-  chessboard.appendChild(
-    document
-      .createElement("div")
-      .classList.add("cell", check ? "white" : "black")
-  );
+  chessboard
+    .appendChild(document.createElement("div"))
+    .classList.add("cell", check ? "white" : "black");
   check = !check;
 
   if (i % 8 === 0) {
