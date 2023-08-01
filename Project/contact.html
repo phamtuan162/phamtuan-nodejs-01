@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web GreenShop</title>
+
+    <!-- gg fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- font awesome cdn link  -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    />
+
+    <!-- animate cdn link  -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+
+    <!-- Grid -->
+    <link rel="stylesheet" href="./css/grid.css" />
+
+    <!-- Style -->
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <!-- Header -->
+
+    <header class="header">
+      <div class="container">
+        <div class="row align-items-center">
+          <input
+            type="checkbox"
+            name=""
+            id="menu-checkbox"
+            class="menu-checkbox"
+            hidden
+          />
+          <label for="menu-checkbox" class="overlay"></label>
+          <div
+            class="col-xxl-2 col-xl-2 col-lg-2 col-md-6 col-sm-6 col-6 header__logo"
+          >
+            <!-- logo -->
+            <a href="#" class="logo">
+              <img src="./images/logo.png" alt="" class="logo__img" />
+            </a>
+          </div>
+          <!-- Navbar -->
+          <div class="col-xxl-9 col-xl-9 col-lg-9 header__navbar">
+            <nav class="menu">
+              <ul>
+                <li>
+                  <a href="./contact.html">Trang chủ</a>
+                </li>
+                <li>
+                  <a href="./about.html">Về Greenchop</a>
+                </li>
+                <li>
+                  <a href="./product.html">Sản phẩm</a>
+                </li>
+                <li>
+                  <a href="./new.html">Tin tức</a>
+                </li>
+                <li>
+                  <a href="#!" class="active">Liên hệ</a>
+                </li>
+              </ul>
+            </nav>
+
+            <!-- Close -->
+            <label for="menu-checkbox" class="close-up-menu">
+              <i class="fa-solid fa-xmark"></i>
+            </label>
+          </div>
+          <div
+            class="col-xxl-1 col-xl-1 col-lg-1 col-md-6 col-sm-6 col-6 header__action"
+          >
+            <!-- Action -->
+            <div class="action">
+              <div class="action-cart">
+                <a href="#" class="action__link">
+                  <img
+                    src="./images/icons/basket-icon.svg"
+                    alt=""
+                    class="action__img"
+                  />
+                </a>
+                <span>3</span>
+              </div>
+              <div class="action-search">
+                <a href="#" class="action__link">
+                  <img
+                    src="./images/icons/loop-icon.svg"
+                    alt=""
+                    class="action__img"
+                  />
+                </a>
+              </div>
+              <!-- Bars -->
+              <label for="menu-checkbox" class="bars">
+                <i class="fa-solid fa-bars"></i>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- map -->
+      <div class="map" style="min-height: 55rem">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.1131159425618!2d105.80084557356749!3d21.028159487802483!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab424a50fff9%3A0xbe3a7f3670c0a45f!2zVHLGsOG7nW5nIMSQ4bqhaSBI4buNYyBHaWFvIFRow7RuZyBW4bqtbiBU4bqjaQ!5e0!3m2!1svi!2s!4v1690820376014!5m2!1svi!2s"
+          style="width: 100%; height: 100%; border: 0"
+          allowfullscreen=""
+        ></iframe>
+      </div>
+      <!-- Contact -->
+      <section class="contact">
+        <div class="container">
+          <div class="contact__inner">
+            <figure class="contact__img--wrapper">
+              <img
+                src="./images/contact/contact-img.png"
+                alt=""
+                class="contact__img"
+              />
+            </figure>
+            <div class="contact__content">
+              <h2 class="heading-3 contact__tittle">
+                Bạn có bất kì thắc mắc nào.
+                <br />
+                Hãy để lại tin nhắn cho chúng tôi nhé!
+              </h2>
+              <form action="POST" class="contact-form">
+                <div class="contact-form__row">
+                  <div class="contact-form__group">
+                    <input
+                      type="text"
+                      name="fullname"
+                      id="fullname"
+                      class="contact-form__input"
+                    />
+                    <label for="fullname" class="contact-form__label"
+                      >Tên của bạn</label
+                    >
+                  </div>
+                </div>
+
+                <div class="contact-form__row">
+                  <div class="contact-form__group">
+                    <input
+                      type="email"
+                      name="email"
+                      id="email"
+                      class="contact-form__input"
+                    />
+                    <label for="email" class="contact-form__label">Email</label>
+                  </div>
+                  <div class="contact-form__group">
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+                      class="contact-form__input"
+                    />
+                    <label for="phone" class="contact-form__label"
+                      >Số điện thoại</label
+                    >
+                  </div>
+                </div>
+                <div class="contact-form__row">
+                  <div class="contact-form__group">
+                    <textarea
+                      name="message"
+                      id="message"
+                      class="contact-form__textarea"
+                    ></textarea>
+                    <label for="message" class="contact-form__label"
+                      >Nội dung...</label
+                    >
+                  </div>
+                </div>
+
+                <div class="contact-form__row">
+                  <button type="submit" class="btn contact-form__btn">
+                    Gửi
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Service -->
+      <div class="service">
+        <div class="container">
+          <div class="service__list">
+            <!-- Service item 1 -->
+            <article class="service-item">
+              <div class="service-item__icon">
+                <img
+                  src="./images/icons/quality-service-icon.svg"
+                  alt=""
+                  class="service-item__img"
+                />
+              </div>
+              <div class="service-item__content">
+                <h2 class="heading-3 service-item__tittle">
+                  Chất liệu an toàn
+                </h2>
+                <p class="desc service-item__desc">
+                  Phần đầu đũa được làm bằng bằng gỗ tre, đảm bảo cho sức khỏe
+                  người dùng
+                </p>
+              </div>
+            </article>
+            <!-- Service item 2 -->
+            <article class="service-item">
+              <div class="service-item__icon">
+                <img
+                  src="./images/icons/protect-icon.svg"
+                  alt=""
+                  class="service-item__img"
+                />
+              </div>
+              <div class="service-item__content">
+                <h2 class="heading-3 service-item__tittle">
+                  Vệ sinh và khử khuẩn
+                </h2>
+                <p class="desc service-item__desc">
+                  Đầu đũa mới 100% mỗi bữa ăn, không chung đụng đầu đũa với bất
+                  kì ai khác.
+                </p>
+              </div>
+            </article>
+            <!-- Service item 3 -->
+            <article class="service-item">
+              <div class="service-item__icon">
+                <img
+                  src="./images/icons/like-icon.svg"
+                  alt=""
+                  class="service-item__img"
+                />
+              </div>
+              <div class="service-item__content">
+                <h2 class="heading-3 service-item__tittle">Tiện lợi</h2>
+                <p class="desc service-item__desc">
+                  Thao tác tháo lắp nhanh gọn và đơn giản
+                </p>
+              </div>
+            </article>
+            <!-- Service item 3 -->
+            <article class="service-item">
+              <div class="service-item__icon">
+                <img
+                  src="./images/icons/save-icon.svg"
+                  alt=""
+                  class="service-item__img"
+                />
+              </div>
+              <div class="service-item__content">
+                <h2 class="heading-3 service-item__tittle">Tiết kiệm</h2>
+                <p class="desc service-item__desc">
+                  Giá thành đầu đũa cạnh tranh và hợp lý.
+                </p>
+              </div>
+            </article>
+            <!-- Service item 5 -->
+            <article class="service-item">
+              <div class="service-item__icon">
+                <img
+                  src="./images/icons/monopoly-icon.svg"
+                  alt=""
+                  class="service-item__img"
+                />
+              </div>
+              <div class="service-item__content">
+                <h2 class="heading-3 service-item__tittle">Độc quyền</h2>
+                <p class="desc service-item__desc">
+                  GreenChop là sản phẩm đũa thay đầu duy nhất trên thị trường
+                  Việt Nam hiện tại
+                </p>
+              </div>
+            </article>
+            <!-- Service item 6 -->
+            <article class="service-item">
+              <div class="service-item__icon">
+                <img
+                  src="./images/icons/delivery-icon.svg"
+                  alt=""
+                  class="service-item__img"
+                />
+              </div>
+              <div class="service-item__content">
+                <h2 class="heading-3 service-item__tittle">Giao hàng nhanh</h2>
+                <p class="desc service-item__desc">Giao hàng trong 24h</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__list">
+          <!-- Footer item 1 -->
+          <div class="footer-item">
+            <figure class="footer-item__logo">
+              <img src="./images/logo.png" alt="" />
+            </figure>
+            <p class="desc footer-item__desc">
+              GreenChop là bạn đồng hành của người tiêu dùng
+            </p>
+          </div>
+          <!-- Footer item 2 -->
+          <div class="footer-item">
+            <h3 class="footer-item__tittle">Trang chủ</h3>
+            <ul class="footer-item__list">
+              <li class="footer-item__item">
+                <a href="./about.html" class="footer-item__link"
+                  >Về greenchop</a
+                >
+              </li>
+              <li class="footer-item__item">
+                <a href="#" class="footer-item__link">Sản phẩm</a>
+              </li>
+              <li class="footer-item__item">
+                <a href="#" class="footer-item__link">Tin tức</a>
+              </li>
+            </ul>
+          </div>
+          <!-- Footer item 3 -->
+          <div class="footer-item">
+            <h3 class="footer-item__tittle">Hỗ trợ</h3>
+            <ul class="footer-item__list">
+              <li class="footer-item__item">
+                <a href="#" class="footer-item__link"
+                  >Đặt hàng trực tuyến (8h-22h)</a
+                >
+              </li>
+              <li class="footer-item__item">
+                <a href="#" class="footer-item__link">
+                  <img src="./images/icons/alarm-icon.svg" alt="" />
+                  <span>Thứ 2 - Thứ 6</span>
+                </a>
+              </li>
+              <li class="footer-item__item">
+                <a href="#" class="footer-item__link">
+                  <img src="./images/icons/phone-icon.svg" alt="" />
+                  <span>091 1717 222</span></a
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- Footer item 4 -->
+          <div class="footer-item">
+            <h3 class="footer-item__tittle">Hỗ trợ</h3>
+            <ul class="footer-item__list">
+              <li class="footer-item__item">
+                <a href="#" class="footer-item__link">
+                  <img src="./images/icons/mail-icon.svg" alt="" />
+                  greenchopvn@gmail.com
+                </a>
+              </li>
+              <li class="footer-item__item">
+                <a href="#" class="footer-item__link">
+                  <img src="./images/icons/globe-icon.svg" alt="" />
+                  Greenchop.vn
+                </a>
+              </li>
+              <li class="footer-item__item">
+                <a href="#" class="footer-item__link">
+                  <img src="./images/icons/map-icon.svg" alt="" />
+                  428 Điện Biên Phủ, P11, Quận 10, TPHCM</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <figure class="footer-bottom__img">
+            <img src="./images/footer-img.png" alt="" />
+          </figure>
+          <div class="social__list">
+            <a href="#!" class="social-item">
+              <img
+                src="./images/icons/youtube-icon.svg"
+                alt=""
+                class="social-item__img"
+              />
+            </a>
+            <a href="#!" class="social-item">
+              <img
+                src="./images/icons/facebook-icon.svg"
+                alt=""
+                class="social-item__img"
+              />
+            </a>
+            <a href="#!" class="social-item">
+              <img
+                src="./images/icons/instagram-icon.svg"
+                alt=""
+                class="social-item__img"
+              />
+            </a>
+            <a href="#!" class="social-item">
+              <img
+                src="./images/icons/twitter-icon.svg"
+                alt=""
+                class="social-item__img"
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
