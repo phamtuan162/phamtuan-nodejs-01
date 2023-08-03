@@ -1,0 +1,20 @@
+.map {
+  height: 330px;
+  margin-bottom: 40px;
+}
+@media screen and (min-width: 576px) {
+}
+@media screen and (min-width: 768px) {
+}
+@media screen and (min-width: 992px) {
+  .map {
+    margin-bottom: 160px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .map {
+    height: 550px;
+  }
+}
+@media screen and (min-width: 1400px) {
+}
