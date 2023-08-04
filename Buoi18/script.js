@@ -1,7 +1,6 @@
 var text = document.getElementById("desc");
 var content = text.textContent;
 var arr = content.replace(/\s+/g, " ").trim().split(" ");
-console.log(arr);
 var currentIndex = 0;
 var previousIndex = 0;
 var textColor = "red";
