@@ -8,6 +8,7 @@
 @import "./layouts/header";
 @import "./layouts/footer";
 @import "./layouts/tittle-main";
+@import "./layouts/breadcrumb";
 
 // Import home
 @import "./home/hero";
@@ -30,9 +31,10 @@
 @import "./product/benefit-instead";
 @import "./product/rule";
 
-// Import new
-@import "./new/news-hot";
-@import "./new/news";
+// Import news
+@import "./news/news-hot";
+@import "./news/news";
+@import "./news/news-posts/news-posts.scss";
 
 // Import contact
 @import "./contact/map";
