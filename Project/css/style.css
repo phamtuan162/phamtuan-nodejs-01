@@ -2032,11 +2032,14 @@ h6 {
   }
 }
 .news-posts {
-  margin-bottom: 160px;
+  margin-bottom: 40px;
 }
 .news-posts .news-posts__inner {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
+  align-items: center;
+  gap: 32px;
 }
 .news-posts .posts__tittle {
   font-weight: 800;
@@ -2049,6 +2052,7 @@ h6 {
 }
 .news-posts .posts__img {
   object-fit: cover;
+  width: 909px;
 }
 .news-posts .posts__row {
   margin-top: 22px;
@@ -2084,15 +2088,13 @@ h6 {
   margin-top: 34px;
   max-width: 884px;
 }
-.news-posts .posts-popular {
-  padding: 40px 41px 82px 40px;
-  max-width: 467px;
-  background-color: #fffaf8;
-}
 .news-posts .posts-popular__tittle {
   font-size: 2.8rem;
   font-weight: 600;
   line-height: 32px; /* 114.286% */
+  padding: 12px 0;
+  border-top: 1px solid #25282b;
+  border-bottom: 1px solid #e6e8e9;
 }
 .news-posts .posts-popular__list {
   display: flex;
@@ -2101,6 +2103,7 @@ h6 {
   margin-top: 32px;
 }
 .news-posts .posts-popular__item {
+  display: flex;
   border-radius: 8px;
   background: #fff;
 }
@@ -2109,9 +2112,11 @@ h6 {
 }
 .news-posts .posts-popular__item .posts-popular__item-img {
   object-fit: cover;
+  width: 198px;
+  height: 118px;
 }
 .news-posts .posts-popular__item .posts-popular__item-content {
-  padding: 24px 33px 22px 13px;
+  padding: 0px 0px 22px 13px;
 }
 .news-posts .posts-popular__item .posts-popular__item-tittle {
   font-size: 2rem;
@@ -2120,12 +2125,35 @@ h6 {
 }
 
 @media screen and (min-width: 1200px) {
-  .news-posts .posts__content .posts__img {
-    width: 909px;
-    height: 478px;
+  .news-posts {
+    margin-bottom: 160px;
   }
-  .posts-popular__item .posts-popular__item-img {
+  .news-posts .news-posts__inner {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 64px;
+  }
+  .news-posts .posts-popular {
+    padding: 40px 41px 82px 40px;
+    width: 32.4305555556%;
+    background-color: #fffaf8;
+  }
+  .news-posts .posts-popular__tittle {
+    padding: 0;
+    border: none;
+  }
+  .news-posts .posts-popular__item {
+    flex-direction: column;
+  }
+  .news-posts .posts-popular__item .posts-popular__item-content {
+    padding: 24px 33px 22px 13px;
+  }
+  .news-posts .posts-popular__item .posts-popular__item-img {
     width: 386px;
+  }
+}
+@media screen and (min-width: 1400px) {
+  .news-posts .posts-popular__item .posts-popular__item-img {
     height: 236px;
   }
 }
