@@ -59,11 +59,11 @@
   }
 
   #{$selectorNone} {
-    display: none;
+    display: none !important;
   }
 
   #{$selectorBlock} {
-    display: block;
+    display: block !important;
   }
 }
 

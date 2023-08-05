@@ -24,6 +24,7 @@
       width: 100%;
       object-fit: cover;
       transition: all 0.3s;
+      height: 328px;
     }
     .news-item__content {
       flex-grow: 1;
@@ -77,9 +78,6 @@
       @include lineClamp(2);
     }
     .news-item__desc {
-      // flex-grow: 1;
-      // align-items: end;
-      // display: flex;
       margin-top: 20px;
       @include lineClamp(3);
     }
@@ -94,9 +92,6 @@
 @media screen and (min-width: 768px) {
   .news {
     margin-top: 160px;
-    .news-item__img {
-      height: 328px;
-    }
     .news__desc {
       width: calc(calc(789px / 1440px) * 100%);
     }
