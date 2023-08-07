@@ -78,6 +78,9 @@
     }
   }
 }
+.page-product__detail.products {
+  margin-bottom: 60px;
+}
 @media screen and (min-width: 576px) {
   .products {
     .products__list {
@@ -129,6 +132,9 @@
       grid-template-columns: repeat(3, 1fr);
       row-gap: 258px;
     }
+  }
+  .page-product__detail.products {
+    margin-bottom: 223px;
   }
 }
 @media screen and (min-width: 1400px) {

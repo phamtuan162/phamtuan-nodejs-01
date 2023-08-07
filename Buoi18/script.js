@@ -3,11 +3,12 @@ var content = text.textContent;
 var arr = content.replace(/\s+/g, " ").trim().split(" ");
 var currentIndex = 0;
 var previousIndex = 0;
-var textColor = "red";
 setInterval(function () {
-  arr[previousIndex] = arr[previousIndex].replace(textColor, "");
+  arr[previousIndex] = arr[previousIndex]
+    .replace(`<span>`, ``)
+    .replace(`</span>`, ``);
 
-  arr[currentIndex] = `<span class="${textColor}">${arr[currentIndex]}</span> `;
+  arr[currentIndex] = `<span>${arr[currentIndex]}</span> `;
 
   text.innerHTML = arr.join(" ");
 
