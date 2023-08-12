@@ -81,24 +81,6 @@
     margin-top: 31px;
     gap: 20px;
   }
-  .quantity-selector {
-    border-radius: 4px;
-    border: 1px solid #a7a7a7;
-    @include flexCenter;
-    padding: 12px 20px;
-    gap: 20px;
-    .minus,
-    .plus {
-      @include size(18px);
-    }
-    .quantity__value {
-      color: #000;
-      font-size: 1.8rem;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 158%;
-    }
-  }
   .product-single__producer {
     margin-top: 32px;
   }
