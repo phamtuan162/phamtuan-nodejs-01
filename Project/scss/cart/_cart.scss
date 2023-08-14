@@ -42,11 +42,9 @@
             padding-top: 16px;
           }
         }
-        &:last-of-type {
-          //   display: flex;
-        }
         td {
-          padding: 8px 0;
+          padding: 8px 6px 8px 0;
+          word-break: break-word;
         }
       }
     }
@@ -64,14 +62,14 @@
       max-width: 170px;
     }
     .cart__table--icon {
-      margin-left: auto;
+      float: right;
     }
     .cart__table--quality {
       display: block;
     }
   }
   .quantity-selector {
-    width: 127px;
+    max-width: 127px;
   }
 }
 @media screen and (min-width: 576px) {
