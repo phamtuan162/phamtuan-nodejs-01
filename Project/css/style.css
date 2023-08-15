@@ -7,7 +7,7 @@
 }
 
 html {
-  font-size: 8px;
+  font-size: 6px;
   scroll-behavior: smooth;
 }
 @media screen and (min-width: 992px) {
@@ -154,6 +154,7 @@ h6 {
 }
 .btn:hover {
   background-color: #ff6916;
+  color: #fff;
 }
 .btn:disabled {
   background-color: #b7b7b7;
@@ -161,7 +162,6 @@ h6 {
 .btn:active {
   background-color: #e05000;
 }
-
 .btn.more {
   gap: 4px;
   border: 1px solid #46b20f;
@@ -171,14 +171,21 @@ h6 {
 }
 .btn.more:hover {
   background: #46b20f;
-  color: #fff;
 }
-
+.btn.more:active {
+  background: #2e8900;
+}
 .btn.buy {
   width: 154px;
   display: flex;
-  align-items: center;
-  justify-content: center;
+}
+.btn.order {
+  display: flex;
+  max-width: 531px;
+  background-color: #000;
+}
+.btn.order:hover {
+  background-color: #e05000;
 }
 
 .quantity-selector {
@@ -188,8 +195,8 @@ h6 {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 20px;
-  gap: 20px;
+  padding: 12px 0px;
+  justify-content: space-evenly;
 }
 .quantity-selector .minus,
 .quantity-selector .plus {
@@ -2515,7 +2522,7 @@ h6 {
   }
 }
 .cart {
-  margin: 120px 0 200px 0;
+  margin: 30px 0 50px 0;
 }
 .cart .container {
   max-width: 1170px;
@@ -2579,10 +2586,53 @@ h6 {
 .cart .cart__table .cart__table--quality {
   display: block;
 }
+.cart .cart__table .cart__table--btn {
+  margin: 56px 0 0 auto;
+}
 .cart .quantity-selector {
   max-width: 127px;
 }
+.cart .cart__total {
+  margin-top: 82px;
+  max-width: 595px;
+  border-radius: 4px;
+  background-color: #fff3ec;
+  padding: 44px 29px 75px 35px;
+}
+.cart .cart__total .cart__total--subtittle {
+  font-size: 2.8rem;
+  font-weight: 700;
+}
+.cart .cart__total .cart__total--product {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-top: 41px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #b7b7b7;
+}
+.cart .cart__total .cart__total--product span {
+  float: right;
+}
+.cart .cart__total .cart__total--price {
+  margin-top: 20px;
+  font-size: 2rem;
+  font-weight: 600;
+}
+.cart .cart__total .cart__total--price span {
+  float: right;
+  color: #e05000;
+  font-size: 2.8rem;
+  font-weight: 700;
+}
+.cart .cart__total .cart__total--btn {
+  margin-top: 51px;
+}
 
+@media screen and (min-width: 768px) {
+  .cart {
+    margin: 120px 0 200px 0;
+  }
+}
 @media screen and (min-width: 1200px) {
   .cart .cart__table .cart__table--img {
     width: 165px;
