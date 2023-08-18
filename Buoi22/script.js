@@ -127,9 +127,6 @@ function convertToNestedArray(arr) {
       }
     }
   });
-  result.forEach((item) => {
-    delete item.parent;
-  });
   return result;
 }
 console.log(convertToNestedArray(data));
