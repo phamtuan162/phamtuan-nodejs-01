@@ -208,3 +208,17 @@ inputPasswordRegister.addEventListener("input", function () {
     inputPasswordRegister.parentElement.classList.add("error");
   }
 });
+submitRegister.addEventListener("click", function () {
+  if (
+    !inputEmailRegister.value &&
+    !inputPasswordRegister.value &&
+    !inputFullNameRegister.value
+  ) {
+    errEmailRegister.innerText = "Vui lòng nhập thông tin";
+    errPasswordRegister.innerText = "Vui lòng nhập thông tin";
+    inputEmailRegister.parentElement.classList.add("error");
+    inputPasswordRegister.parentElement.classList.add("error");
+    errFullNameRegister.innerText = "Vui lòng nhập thông tin";
+    inputFullNameRegister.parentElement.classList.add("error");
+  }
+});

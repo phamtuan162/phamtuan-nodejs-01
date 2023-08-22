@@ -93,3 +93,12 @@ inputPasswordLogin.addEventListener("blur", function () {
     inputPasswordLogin.parentElement.classList.remove("error");
   }
 });
+
+submitLogin.addEventListener("click", function () {
+  if (!inputEmailLogin.value && !inputPasswordLogin.value) {
+    errEmail.innerText = "Vui lòng nhập thông tin";
+    errPassword.innerText = "Vui lòng nhập thông tin";
+    inputEmailLogin.parentElement.classList.add("error");
+    inputPasswordLogin.parentElement.classList.add("error");
+  }
+});
