@@ -206,8 +206,7 @@ button {
 .show-hide--password {
   position: absolute;
   right: 14px;
-  top: 50%;
-  transform: translateY(-50%);
+  top: calc(50% - 16px);
   color: #7c7c7c;
   cursor: pointer;
 }
