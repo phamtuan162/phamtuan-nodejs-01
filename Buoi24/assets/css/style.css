@@ -1,0 +1,97 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+html {
+  font-size: 10px;
+}
+body {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.6rem;
+  background: #8758ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+a {
+  text-decoration: none;
+}
+
+input,
+button {
+  font-size: inherit;
+  font-family: inherit;
+}
+
+.app {
+  text-align: center;
+}
+.todo-wrapper {
+  background: #1a1a40;
+  border-radius: 5px;
+  margin-top: 80px;
+  padding: 32px;
+}
+.todo-wrapper h1 {
+  color: #fff;
+  font-size: 2.8rem;
+  font-weight: 700;
+  line-height: 42px;
+  padding-bottom: 8px;
+}
+.todo-form .todo-group {
+  display: flex;
+  padding-top: 16px;
+  padding-bottom: 32px;
+}
+.todo-form .todo-input {
+  background: none;
+  border: 1px solid #8758ff;
+  color: #fff;
+  padding: 8px 16px;
+  width: 300px;
+}
+.todo-form .todo-input::placeholder {
+  font-size: 1.3rem;
+  font-weight: 400;
+}
+.todo-btn {
+  background: #8758ff;
+  color: #fff;
+  cursor: pointer;
+  padding: 8.8px;
+  border: none;
+  font-size: 1.4rem;
+}
+.todo-item {
+  background: #8758ff;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 5px;
+  margin-bottom: 16px;
+  padding: 12px 16px;
+}
+.todo-item p {
+  font-weight: 400;
+  line-height: 24px;
+}
+.todo-item .todo-action {
+  display: flex;
+  gap: 12px;
+}
+.btn {
+  background: inherit;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+.todo-action .btn svg {
+  width: 16px;
+  height: 16px;
+}
