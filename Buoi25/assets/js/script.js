@@ -73,6 +73,7 @@ if (carouselItems.length) {
   carouselInner.addEventListener("mouseup", function (e) {
     e.preventDefault();
     isDrag = false;
+    carouselInner.style.transition = null;
     carouselInner.style.translate = `${position}px`;
     setActiveDot(currentIndex);
     isTransition = false;
@@ -83,9 +84,12 @@ if (carouselItems.length) {
     if (isDrag) {
       carouselInner.style.cursor = "move";
       var dragOffset = e.clientX - dragStartX;
+      carouselInner.style.transition = "none";
       if (Math.abs(dragOffset) < dragThreshold) {
+        carouselInner.style.transition = "none";
         carouselInner.style.translate = `${position + dragOffset}px`;
       } else {
+        carouselInner.style.transition = null;
         if (!isTransition) {
           if (dragOffset < 0 && Math.abs(position) < totalWidth - itemWidth) {
             position -= itemWidth;
