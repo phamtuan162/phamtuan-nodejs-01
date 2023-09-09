@@ -19,7 +19,10 @@ var playIcon = `<i class="fa-solid fa-play"></i>`;
 var pauseIcon = `<i class="fa-solid fa-pause"></i>`;
 var timerPreview = document.querySelector(".timer-preview");
 var playlist = document.querySelector(".playlist");
+
+console.log(playItems);
 var cdThumbAnimate;
+
 const songs = [
   {
     name: "Bên Em",
@@ -74,8 +77,15 @@ const htmls = songs.map((song, index) => {
     </div>`;
 });
 playlist.innerHTML = htmls.join("");
-var playItems = playlist.querySelectorAll(".song");
 
+var getTime = function (seconds) {
+  var min = Math.floor(seconds / 60);
+  var seconds = Math.floor(seconds - min * 60);
+  return `${min < 10 ? "0" + min : min}:${
+    seconds < 10 ? "0" + seconds : seconds
+  }`;
+};
+var playItems = playlist.querySelectorAll(".song");
 playItems.forEach(function (playItem, index) {
   playItem.addEventListener("click", function (e) {
     if (currentIndex !== index) {
@@ -160,12 +170,16 @@ document.addEventListener("mousemove", function (e) {
     moveDot = e.clientX - initialClientX;
     rate = (moveDot * 100) / progressBarWidth + initialRate;
     timerPreview.style.display = "none";
-    if (rate >= 0 && rate <= 100) {
-      progress.style.width = `${rate}%`;
-
-      timeLapseSong = (rate / 100) * audio.duration;
-      currentTimeEl.innerHTML = getTime(timeLapseSong);
+    if (rate < 0) {
+      rate = 0;
     }
+    if (rate > 100) {
+      rate = 100;
+    }
+
+    progress.style.width = `${rate}%`;
+    timeLapseSong = (rate / 100) * audio.duration;
+    currentTimeEl.innerHTML = getTime(timeLapseSong);
   }
 });
 document.addEventListener("mouseup", function (e) {
@@ -177,26 +191,26 @@ document.addEventListener("mouseup", function (e) {
   initialRate = rate;
 });
 
-var getTime = function (seconds) {
-  var min = Math.floor(seconds / 60);
-  var seconds = Math.floor(seconds - min * 60);
-
-  return `${min < 10 ? "0" + min : min}:${
-    seconds < 10 ? "0" + seconds : seconds
-  }`;
-};
 audio.addEventListener("loadeddata", function (e) {
   durationTimeEl.innerHTML = getTime(audio.duration);
 });
 
 audio.addEventListener("timeupdate", function (e) {
-  currentTimeEl.innerHTML = getTime(this.currentTime);
-
   if (!isDrag) {
-    var rate = (this.currentTime * 100) / this.duration;
-
+    currentTimeEl.innerHTML = getTime(this.currentTime);
+    rate = (this.currentTime * 100) / this.duration;
     progress.style.width = `${rate}%`;
+    timeLapseSong = this.currentTime;
   }
+});
+
+audio.addEventListener("ended", function (e) {
+  progress.style.width = 0;
+  this.currentTime = 0;
+  timeLapseSong = 0;
+  rate = 0;
+  playBtn.innerHTML = playIcon;
+  cdThumbAnimate.pause();
 });
 
 playBtn.addEventListener("click", function () {
@@ -216,11 +230,4 @@ playBtn.addEventListener("click", function () {
     cdThumbAnimate.pause();
     this.innerHTML = playIcon;
   }
-});
-audio.addEventListener("ended", function (e) {
-  progress.style.width = 0;
-  this.currentTime = 0;
-  playBtn.innerHTML = playIcon;
-  rate = 0;
-  cdThumbAnimate.pause();
 });

@@ -63,6 +63,8 @@ body {
   top: calc(-100% - 5px);
   left: 0;
   translate: -50%;
+  border-radius: 999px;
+  padding: 0px 3px;
 }
 
 /* HEADER */
@@ -127,6 +129,7 @@ header h2 {
   cursor: pointer;
 }
 .bar-music {
+  padding: 0 40px;
   display: flex;
   align-items: center;
   gap: 10px;
