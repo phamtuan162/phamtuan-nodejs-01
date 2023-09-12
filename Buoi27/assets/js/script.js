@@ -46,7 +46,7 @@ function deleteProductFromCart(productId) {
 function updateProductCart() {
   cart.forEach((product) => {
     const productId = product.id;
-    const quantityInput = document.querySelector(
+    const quantityInput = productCart.querySelector(
       `.quantity[data-id="${productId}"]`
     );
     if (quantityInput) {

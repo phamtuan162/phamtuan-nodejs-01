@@ -5,11 +5,11 @@ var progressBarWidth = progressBar.clientWidth;
 var cdThumb = document.querySelector(".cd-thumb");
 var currentIndex = 0;
 var isDrag = false;
-var timeLapseSong = 0;
+var timeLapseSong;
 var initialClientX = 0;
 var moveDot;
 var initialRate = 0;
-var rate = 0;
+var rate;
 var previewTime = 0;
 var audio = document.querySelector(".audio");
 var currentTimeEl = progressBar.previousElementSibling;
@@ -126,46 +126,46 @@ playItems.forEach(function (playItem, index) {
 //     songNode.classList.add("active");
 //   }
 // });
-progressBar.addEventListener("mouseenter", function (e) {
-  timerPreview.style.display = "block";
-});
 
-progressBar.addEventListener("mouseleave", function (e) {
+progressBar.addEventListener("mouseout", function (e) {
   timerPreview.style.display = "none";
+  timerPreview.textContent = 0;
+  timerPreview.style.left = 0;
 });
 progressBar.addEventListener("mousemove", function (e) {
+  timerPreview.style.display = "block";
   rate = (e.offsetX / progressBarWidth) * 100;
   previewTime = (rate / 100) * audio.duration;
   timerPreview.style.left = `${rate}%`;
   timerPreview.textContent = getTime(previewTime);
 });
-progressDot.addEventListener("mouseenter", function () {
-  timerPreview.style.display = "none";
-});
-progressDot.addEventListener("mouseleave", function () {
-  timerPreview.style.display = "block";
-});
 
 progressBar.addEventListener("mousedown", function (e) {
-  e.preventDefault();
-  rate = (e.offsetX / progressBarWidth) * 100;
-  progress.style.width = `${rate}%
+  if (e.which === 1) {
+    rate = (e.offsetX / progressBarWidth) * 100;
+    progress.style.width = `${rate}%
   `;
 
-  initialRate = rate;
-  isDrag = true;
-  initialClientX = e.clientX;
-  timeLapseSong = (rate / 100) * audio.duration;
-  audio.currentTime = timeLapseSong;
+    initialRate = rate;
+    isDrag = true;
+    initialClientX = e.clientX;
+    timeLapseSong = (rate / 100) * audio.duration;
+  }
 });
 
 progressDot.addEventListener("mousedown", function (e) {
   e.stopPropagation();
-  isDrag = true;
-  initialClientX = e.clientX;
+  if (e.which === 1) {
+    isDrag = true;
+    initialClientX = e.clientX;
+  }
 });
+
+progressDot.addEventListener("mousemove", function (e) {
+  e.stopPropagation();
+});
+
 document.addEventListener("mousemove", function (e) {
-  e.preventDefault();
   if (isDrag) {
     moveDot = e.clientX - initialClientX;
     rate = (moveDot * 100) / progressBarWidth + initialRate;
@@ -183,12 +183,11 @@ document.addEventListener("mousemove", function (e) {
   }
 });
 document.addEventListener("mouseup", function (e) {
-  e.preventDefault();
   if (isDrag) {
+    isDrag = false;
+    initialRate = rate;
     audio.currentTime = timeLapseSong;
   }
-  isDrag = false;
-  initialRate = rate;
 });
 
 audio.addEventListener("loadeddata", function (e) {
@@ -196,11 +195,11 @@ audio.addEventListener("loadeddata", function (e) {
 });
 
 audio.addEventListener("timeupdate", function (e) {
+  rate = (this.currentTime * 100) / this.duration;
   if (!isDrag) {
     currentTimeEl.innerHTML = getTime(this.currentTime);
-    rate = (this.currentTime * 100) / this.duration;
     progress.style.width = `${rate}%`;
-    timeLapseSong = this.currentTime;
+    // timeLapseSong = this.currentTime;
   }
 });
 
