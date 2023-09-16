@@ -1,0 +1,30 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+html {
+  font-size: 10px;
+}
+body {
+  font-size: 1.6rem;
+}
+.list {
+  background: #4286f4;
+  width: 500px;
+  padding: 1rem;
+  margin: 20px auto;
+}
+.list-item {
+  background: #8bb3f4;
+  border: 1px solid #fff;
+  margin: 1px 0;
+  padding: 0.5rem;
+}
+.list-item.active {
+  background: #ff6f00;
+}
+.list-item.dragging {
+  opacity: 0.4;
+}

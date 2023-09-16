@@ -5,9 +5,9 @@ var progressBarWidth = progressBar.clientWidth;
 var cdThumb = document.querySelector(".cd-thumb");
 var currentIndex = 0;
 var isDrag = false;
-var timeLapseSong;
 var initialClientX = 0;
 var moveDot;
+var timeLapseSong;
 var initialRate = 0;
 var rate;
 var previewTime = 0;
@@ -83,6 +83,7 @@ const htmls = songs.map((song, index) => {
 });
 playlist.innerHTML = htmls.join("");
 
+// Hiển thị lời bài hát
 function playLyric() {
   var currentTime = Math.floor(audio.currentTime * 1000);
 
@@ -149,19 +150,6 @@ playItems.forEach(function (playItem, index) {
     }
   });
 });
-
-// playlist.addEventListener("click", function (e) {
-//   const songNode = e.target.closest(".song:not(.active)");
-//   if (songNode) {
-//     currentIndex = Number(songNode.dataset.index);
-//     document.querySelector(
-//       "header h2"
-//     ).textContent = `${songs[currentIndex].name}`;
-//     cdThumb.style.backgroundImage = `url(${songs[currentIndex].image})`;
-//     audio.src = songs[currentIndex].path;
-//     songNode.classList.add("active");
-//   }
-// });
 
 progressBar.addEventListener("mouseout", function (e) {
   timerPreview.style.display = "none";
@@ -235,7 +223,7 @@ audio.addEventListener("timeupdate", function (e) {
   if (!isDrag) {
     currentTimeEl.innerHTML = getTime(this.currentTime);
     progress.style.width = `${rate}%`;
-
+    timeLapseSong = this.currentTime;
     playLyric();
   }
 });
@@ -244,7 +232,6 @@ audio.addEventListener("ended", function (e) {
   progress.style.width = 0;
   this.currentTime = 0;
   timeLapseSong = 0;
-  rate = 0;
   playBtn.innerHTML = playIcon;
   cdThumbAnimate.pause();
   songLyric.textContent = "";
@@ -269,6 +256,7 @@ playBtn.addEventListener("click", function () {
     this.innerHTML = playIcon;
   }
 });
+
 function renderLyric() {
   var currentSong = songs[currentIndex];
   if (currentSong) {

@@ -79,7 +79,11 @@ button {
 .landing .landing__content .landing__info .landing__tab-switch {
   margin-top: 40px;
 }
-.landing .landing__content .landing__info .landing__tab-switch .landing__tab-switch-btn {
+.landing
+  .landing__content
+  .landing__info
+  .landing__tab-switch
+  .landing__tab-switch-btn {
   display: inline-block;
   width: 180px;
   height: 54px;
@@ -92,11 +96,19 @@ button {
   cursor: pointer;
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
-.landing .landing__content .landing__info .landing__tab-switch .landing__tab-switch-login {
+.landing
+  .landing__content
+  .landing__info
+  .landing__tab-switch
+  .landing__tab-switch-login {
   border-top-left-radius: 12px;
   border-bottom-left-radius: 12px;
 }
-.landing .landing__content .landing__info .landing__tab-switch .landing__tab-switch-register {
+.landing
+  .landing__content
+  .landing__info
+  .landing__tab-switch
+  .landing__tab-switch-register {
   border-top-right-radius: 12px;
   border-bottom-right-radius: 12px;
 }
@@ -117,7 +129,11 @@ button {
   background-color: #fff;
   box-shadow: 0 0 60px 0 rgba(94, 92, 154, 0.12);
 }
-.landing .landing__content .landing-form .landing-form__login-register .landing-form__tittle {
+.landing
+  .landing__content
+  .landing-form
+  .landing-form__login-register
+  .landing-form__tittle {
   font-size: 2.6rem;
   text-align: center;
   font-weight: 700;
@@ -127,11 +143,22 @@ button {
 .landing .landing__content .landing-form .landing-form__login-register .form {
   margin-top: 76px;
 }
-.landing .landing__content .landing-form .landing-form__login-register .form .form-group {
+.landing
+  .landing__content
+  .landing-form
+  .landing-form__login-register
+  .form
+  .form-group {
   position: relative;
   margin-top: 28px;
 }
-.landing .landing__content .landing-form .landing-form__login-register .form .form-group .form__input {
+.landing
+  .landing__content
+  .landing-form
+  .landing-form__login-register
+  .form
+  .form-group
+  .form__input {
   display: block;
   width: 100%;
   height: 54px;
@@ -144,16 +171,35 @@ button {
   font-size: 1.6rem;
   font-weight: 700;
 }
-.landing .landing__content .landing-form .landing-form__login-register .form .form-group .form__input:focus {
+.landing
+  .landing__content
+  .landing-form
+  .landing-form__login-register
+  .form
+  .form-group
+  .form__input:focus {
   border-color: #615dfa;
 }
-.landing .landing__content .landing-form .landing-form__login-register .form .form-group .form__input:focus + .form__label {
+.landing
+  .landing__content
+  .landing-form
+  .landing-form__login-register
+  .form
+  .form-group
+  .form__input:focus
+  + .form__label {
   transform: translateY(calc(-1 * (27px + 50%)));
   background-color: #fff;
   font-size: 1.2rem;
   line-height: 1.2rem;
 }
-.landing .landing__content .landing-form .landing-form__login-register .form .form-group .form__label {
+.landing
+  .landing__content
+  .landing-form
+  .landing-form__login-register
+  .form
+  .form-group
+  .form__label {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -165,7 +211,13 @@ button {
   transition: all 0.3s ease-in-out;
   pointer-events: none;
 }
-.landing .landing__content .landing-form .landing-form__login-register .form .form-group .form-submit {
+.landing
+  .landing__content
+  .landing-form
+  .landing-form__login-register
+  .form
+  .form-group
+  .form-submit {
   display: block;
   width: 100%;
   height: 54px;
@@ -179,35 +231,86 @@ button {
   cursor: pointer;
   transition: background-color 0.25s ease-in-out;
 }
-.landing .landing__content .landing-form .landing-form__login-register .form .form-group .form-submit.form__login-submit {
+.landing
+  .landing__content
+  .landing-form
+  .landing-form__login-register
+  .form
+  .form-group
+  .form-submit.form__login-submit {
   background-color: #615dfa;
   box-shadow: 4px 7px 12px 0 rgba(97, 93, 250, 0.2);
 }
-.landing .landing__content .landing-form .landing-form__login-register .form .form-group .form-submit.form__login-submit:hover {
+.landing
+  .landing__content
+  .landing-form
+  .landing-form__login-register
+  .form
+  .form-group
+  .form-submit.form__login-submit:hover {
   background-color: #5753e4;
 }
-.landing .landing__content .landing-form .landing-form__login-register .form .form-group .form-submit.form__register-submit {
+.landing
+  .landing__content
+  .landing-form
+  .landing-form__login-register
+  .form
+  .form-group
+  .form-submit.form__register-submit {
   background-color: #23d2e2;
   box-shadow: 4px 7px 12px 0 rgba(35, 210, 226, 0.2);
 }
-.landing .landing__content .landing-form .landing-form__login-register .form .form-group .form-submit.form__register-submit:hover {
+.landing
+  .landing__content
+  .landing-form
+  .landing-form__login-register
+  .form
+  .form-group
+  .form-submit.form__register-submit:hover {
   background-color: #1bc5d4;
 }
-.landing .landing__content .landing-form .landing-form__login-register .form .form-group:first-of-type {
+.landing
+  .landing__content
+  .landing-form
+  .landing-form__login-register
+  .form
+  .form-group:first-of-type {
   margin-top: 0;
 }
-.landing .landing__content .landing-form .landing-form__login-register .form .form-row {
+.landing
+  .landing__content
+  .landing-form
+  .landing-form__login-register
+  .form
+  .form-row {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   margin-top: 28px;
 }
-.landing .landing__content .landing-form .landing-form__login-register .form input[id=remember]:checked ~ .check__box::before,
-.landing .landing__content .landing-form .landing-form__login-register .form input[id=send]:checked ~ .check__box::before {
+.landing
+  .landing__content
+  .landing-form
+  .landing-form__login-register
+  .form
+  input[id="remember"]:checked
+  ~ .check__box::before,
+.landing
+  .landing__content
+  .landing-form
+  .landing-form__login-register
+  .form
+  input[id="send"]:checked
+  ~ .check__box::before {
   background-color: #23d2e2;
   border-color: #23d2e2;
 }
-.landing .landing__content .landing-form .landing-form__login-register .form .check__box {
+.landing
+  .landing__content
+  .landing-form
+  .landing-form__login-register
+  .form
+  .check__box {
   position: relative;
   padding-left: 34px;
   font-size: 1.4rem;
@@ -215,7 +318,12 @@ button {
   line-height: 2.2rem;
   cursor: pointer;
 }
-.landing .landing__content .landing-form .landing-form__login-register .form .check__box::before {
+.landing
+  .landing__content
+  .landing-form
+  .landing-form__login-register
+  .form
+  .check__box::before {
   position: absolute;
   top: 0;
   left: 0;
@@ -233,13 +341,22 @@ button {
   color: #fff;
   transition: background-color 0.3s ease-in-out;
 }
-.landing .landing__content .landing-form .landing-form__login-register .form .form__link {
+.landing
+  .landing__content
+  .landing-form
+  .landing-form__login-register
+  .form
+  .form__link {
   font-size: 1.4rem;
   font-weight: 700;
   line-height: 2.2rem;
   color: #00c7d9;
 }
-.landing .landing__content .landing-form .landing-form__login-register .landing-form__login-desc {
+.landing
+  .landing__content
+  .landing-form
+  .landing-form__login-register
+  .landing-form__login-desc {
   position: relative;
   margin-top: 48px;
   font-size: 1.4rem;
@@ -247,7 +364,16 @@ button {
   text-align: center;
   color: #3e3f5e;
 }
-.landing .landing__content .landing-form .landing-form__login-register .landing-form__login-desc::after, .landing .landing__content .landing-form .landing-form__login-register .landing-form__login-desc::before {
+.landing
+  .landing__content
+  .landing-form
+  .landing-form__login-register
+  .landing-form__login-desc::after,
+.landing
+  .landing__content
+  .landing-form
+  .landing-form__login-register
+  .landing-form__login-desc::before {
   content: "";
   width: 70px;
   height: 1px;
@@ -255,20 +381,37 @@ button {
   position: absolute;
   top: calc(50% - 0.5px);
 }
-.landing .landing__content .landing-form .landing-form__login-register .landing-form__login-desc::after {
+.landing
+  .landing__content
+  .landing-form
+  .landing-form__login-register
+  .landing-form__login-desc::after {
   right: 0;
 }
-.landing .landing__content .landing-form .landing-form__login-register .landing-form__login-desc::before {
+.landing
+  .landing__content
+  .landing-form
+  .landing-form__login-register
+  .landing-form__login-desc::before {
   left: 0;
 }
-.landing .landing__content .landing-form .landing-form__login-register .landing-form__register-desc {
+.landing
+  .landing__content
+  .landing-form
+  .landing-form__login-register
+  .landing-form__register-desc {
   margin-top: 30px;
   font-weight: 500;
   font-size: 1.4rem;
   line-height: 2.4rem;
   color: #3e3f5e;
 }
-.landing .landing__content .landing-form .landing-form__login-register .landing-form__register-desc a {
+.landing
+  .landing__content
+  .landing-form
+  .landing-form__login-register
+  .landing-form__register-desc
+  a {
   color: #00c7d9;
   font-weight: 600;
 }
@@ -279,7 +422,12 @@ button {
   flex-wrap: wrap;
   gap: 12px;
 }
-.landing .landing__content .landing-form .landing-form__login-register .social .social__link {
+.landing
+  .landing__content
+  .landing-form
+  .landing-form__login-register
+  .social
+  .social__link {
   width: 40px;
   height: 40px;
   display: flex;
@@ -289,37 +437,84 @@ button {
   cursor: pointer;
   transition: transform 0.3s ease-in-out;
 }
-.landing .landing__content .landing-form .landing-form__login-register .social .social__link:nth-child(1) {
+.landing
+  .landing__content
+  .landing-form
+  .landing-form__login-register
+  .social
+  .social__link:nth-child(1) {
   background-color: #3763d2;
 }
-.landing .landing__content .landing-form .landing-form__login-register .social .social__link:nth-child(2) {
+.landing
+  .landing__content
+  .landing-form
+  .landing-form__login-register
+  .social
+  .social__link:nth-child(2) {
   background-color: #1abcff;
 }
-.landing .landing__content .landing-form .landing-form__login-register .social .social__link:nth-child(3) {
+.landing
+  .landing__content
+  .landing-form
+  .landing-form__login-register
+  .social
+  .social__link:nth-child(3) {
   background-color: #7b5dfa;
 }
-.landing .landing__content .landing-form .landing-form__login-register .social .social__link:nth-child(4) {
+.landing
+  .landing__content
+  .landing-form
+  .landing-form__login-register
+  .social
+  .social__link:nth-child(4) {
   background-color: #fd434f;
 }
-.landing .landing__content .landing-form .landing-form__login-register .social .social__link:hover {
+.landing
+  .landing__content
+  .landing-form
+  .landing-form__login-register
+  .social
+  .social__link:hover {
   transform: translateY(-4px);
 }
-.landing .landing__content .landing-form .landing-form__login-register .social .social__link .social__icon {
+.landing
+  .landing__content
+  .landing-form
+  .landing-form__login-register
+  .social
+  .social__link
+  .social__icon {
   font-size: 1.2rem;
   color: #fff;
 }
-.landing .landing__content input[id=login]:checked ~ .landing__info .landing__tab-switch-login {
+.landing
+  .landing__content
+  input[id="login"]:checked
+  ~ .landing__info
+  .landing__tab-switch-login {
   color: #3e3f5e;
   background-color: #fff;
 }
-.landing .landing__content input[id=login]:checked ~ .landing-form .landing-form__login {
+.landing
+  .landing__content
+  input[id="login"]:checked
+  ~ .landing-form
+  .landing-form__login {
   display: block;
 }
-.landing .landing__content input[id=register]:checked ~ .landing__info .landing__tab-switch-register {
+.landing
+  .landing__content
+  input[id="register"]:checked
+  ~ .landing__info
+  .landing__tab-switch-register {
   color: #3e3f5e;
   background-color: #fff;
 }
-.landing .landing__content input[id=register]:checked ~ .landing-form .landing-form__register {
+.landing
+  .landing__content
+  input[id="register"]:checked
+  ~ .landing-form
+  .landing-form__register {
   display: block;
 }
 
@@ -377,12 +572,20 @@ button {
   .landing .landing__content .landing-form .landing-form__register {
     transform: translatex(0%);
   }
-  .landing .landing__content input[id=login]:checked ~ .landing-form .landing-form__login {
+  .landing
+    .landing__content
+    input[id="login"]:checked
+    ~ .landing-form
+    .landing-form__login {
     opacity: 1;
     visibility: visible;
     transform: translatex(0%);
   }
-  .landing .landing__content input[id=register]:checked ~ .landing-form .landing-form__register {
+  .landing
+    .landing__content
+    input[id="register"]:checked
+    ~ .landing-form
+    .landing-form__register {
     opacity: 1;
     visibility: visible;
     transform: translatex(-100%);
