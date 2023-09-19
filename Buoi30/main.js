@@ -73,16 +73,12 @@ dropdownItems.forEach(function (dropdownItem) {
     handlefile(this);
   });
 });
-
+const wordCount = count.querySelector("span:first-child");
+const charCount = count.querySelector("span:last-child");
 content.addEventListener("input", function () {
-  const wordCount = count.querySelector("span:first-child");
-  const charCount = count.querySelector("span:last-child");
-  var text = content.textContent.trim("");
-  const words = text.split(/\s+/);
+  const text = content.textContent;
+  const words = text.match(/\S+/g) || [];
 
-  const numWords = words.length;
-  const numChars = text.length;
-
-  wordCount.textContent = `Số từ : ${numWords}`;
-  charCount.textContent = `Số ký tự : ${numChars}`;
+  wordCount.textContent = `Số từ : ${words.length}`;
+  charCount.textContent = `Số ký tự : ${text.length}`;
 });
