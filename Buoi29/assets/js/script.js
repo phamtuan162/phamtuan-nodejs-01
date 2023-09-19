@@ -1,4 +1,5 @@
 var listItem = document.querySelector(".list");
+var isDraggingOver = false;
 const data = [
   {
     stt: 3,
@@ -48,22 +49,25 @@ var updateItemNumber = () => {
 
 var initSortableList = (e) => {
   e.preventDefault();
-  const itemDragging = listItem.querySelector(".dragging");
-  const itemNotDraggings = listItem.querySelectorAll(
-    ".list-item:not(.dragging)"
-  );
-  let itemDraggingNext = Array.from(itemNotDraggings).find(
-    (itemNotDragging) => {
-      return (
-        e.clientY <=
-        itemNotDragging.offsetTop + itemNotDragging.offsetHeight / 2
-      );
-    }
-  );
-  listItem.insertBefore(itemDragging, itemDraggingNext);
+  if (!isDraggingOver) {
+    isDraggingOver = true;
+    const itemDragging = listItem.querySelector(".dragging");
+    const itemNotDraggings = listItem.querySelectorAll(
+      ".list-item:not(.dragging)"
+    );
+    let itemDraggingNext = Array.from(itemNotDraggings).find(
+      (itemNotDragging) => {
+        return (
+          e.clientY <=
+          itemNotDragging.offsetTop + itemNotDragging.offsetHeight / 2
+        );
+      }
+    );
+    listItem.insertBefore(itemDragging, itemDraggingNext);
+  }
 };
 
-function renderData() {
+var renderData = () => {
   var indexTopic = 0;
   data.sort((a, b) => a.stt - b.stt);
   data.forEach((moduleData) => {
@@ -81,7 +85,7 @@ function renderData() {
       });
     }
   });
-}
+};
 
 renderData();
 
@@ -99,3 +103,7 @@ items.forEach((item) => {
 });
 
 listItem.addEventListener("dragover", initSortableList);
+
+listItem.addEventListener("dragleave", () => {
+  isDraggingOver = false;
+});
