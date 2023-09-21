@@ -8,6 +8,10 @@ var dropdownItems = dropdownMenu.querySelectorAll(".dropdown-item");
 var fileName = controls.querySelector("#filename-input");
 var count = document.querySelector(".count");
 
+document.addEventListener("DOMContentLoaded", function () {
+  content.focus();
+});
+
 function resetEditor() {
   fileName.value = "untitled";
   content.textContent = "";
