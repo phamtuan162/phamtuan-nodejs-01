@@ -1,52 +1,39 @@
-var timer = document.querySelector(".timer");
-var counter = timer.querySelector(".counter");
-var btnLink = timer.querySelector(".btn");
+const timer = document.querySelector(".timer");
+const counter = timer.querySelector(".counter");
+const btnLink = timer.querySelector(".btn");
 let isTabActive = true;
-let count = 10;
+let count = 30;
+let interval = 1000;
 let isDisabled = true;
-let lastTimestamp = null;
-const interval = 1000;
+var lastTime;
+
 counter.innerText = count;
 
-document.addEventListener("visibilitychange", function () {
-  if (document.visibilityState === "visible") {
-    isTabActive = true;
-    requestAnimationFrame(decreasesCounter);
-  } else {
-    isTabActive = false;
-  }
+document.addEventListener("visibilitychange", () => {
+  isTabActive = document.visibilityState === "visible";
+  if (isTabActive) requestAnimationFrame(decreasesCounter);
 });
 
-function decreasesCounter(timestamp) {
-  if (isTabActive) {
-    if (!timestamp) {
-      timestamp = performance.now();
-    }
+function decreasesCounter(time = performance.now()) {
+  if (!isTabActive || count <= 0) return;
 
-    if (!lastTimestamp) {
-      lastTimestamp = timestamp;
-    }
-
-    if (timestamp - lastTimestamp >= interval) {
-      count--;
-      counter.innerText = count;
-      lastTimestamp = timestamp;
-    }
-
-    if (count === 0) {
-      btnLink.removeAttribute("disabled");
-      isDisabled = false;
-    }
+  if (time - (lastTime || 0) >= interval) {
+    count--;
+    counter.innerText = count;
+    lastTime = time;
   }
 
-  if (count > 0) {
-    requestAnimationFrame(decreasesCounter);
+  if (count === 0) {
+    btnLink.removeAttribute("disabled");
+    isDisabled = false;
   }
+
+  requestAnimationFrame(decreasesCounter);
 }
 
 decreasesCounter();
 
-btnLink.addEventListener("click", function (e) {
+btnLink.addEventListener("click", (e) => {
   if (!isDisabled) {
     e.preventDefault();
     window.location.href = "https://fullstack.edu.vn";
