@@ -30,23 +30,20 @@ class F8 {
         }
 
         updateTemplateVariables(template) {
-          if (!template) return;
           const shadow = this.shadowRoot;
           const results = template.match(/{{.+?}}/g);
           if (!results) return;
           results.forEach((result) => {
             const variableResult = result.match(/{{(.+?)}}/)[1].trim();
             const elements = shadow.querySelectorAll("*");
-            if (elements) {
-              elements.forEach((element) => {
-                if (element.textContent.includes(`{{${variableResult}}}`)) {
-                  element.textContent = element.textContent.replace(
-                    `{{${variableResult}}}`,
-                    this.data[variableResult]
-                  );
-                }
-              });
-            }
+            elements.forEach((element) => {
+              if (element.textContent.includes(`{{${variableResult}}}`)) {
+                element.textContent = element.textContent.replace(
+                  `{{${variableResult}}}`,
+                  this.data[variableResult]
+                );
+              }
+            });
           });
         }
 
@@ -70,8 +67,7 @@ class F8 {
             btnEventAttribute === "count++" ||
             btnEventAttribute === "count--"
           ) {
-            eval(`this.data.` + btnEventAttribute);
-            const countValue = this.data.count;
+            const countValue = eval(`this.data.${btnEventAttribute}`);
             if (countValue >= 0) {
               this.updateCount(countValue);
             }
