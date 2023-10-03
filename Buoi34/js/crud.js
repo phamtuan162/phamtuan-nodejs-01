@@ -1,4 +1,4 @@
-const apiUrl = "https://rz4yjk-8080.csb.app/todos";
+const apiUrl = `https://rz4yjk-8080.csb.app/todos`;
 
 export const getAllTodo = async () => {
   const response = await fetch(apiUrl);
@@ -7,7 +7,7 @@ export const getAllTodo = async () => {
 };
 
 export const getTodo = async (id) => {
-  const response = await fetch(`${apiUrl}/${id}`, {
+  const response = await fetch(apiUrl + "/" + id, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
