@@ -192,8 +192,7 @@ modalForm.addEventListener("submit", async (e) => {
       }
       modal.classList.remove("is-show");
       input.value = "";
+      renderListTodo();
     }
   }
-
-  renderListTodo();
 });
