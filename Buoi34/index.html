@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bài tập buổi 34</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <main id="root">
+      <div class="todos">
+        <div class="modal">
+          <div class="overlay"></div>
+          <form class="form__add">
+            <div class="form__group">
+              <input
+                type="text"
+                name=""
+                id=""
+                class="form__input"
+                placeholder="Add Todos"
+                value
+              />
+            </div>
+            <div class="form__group">
+              <button type="submit" class="btn-form btn__save">Save</button>
+              <button type="button" class="btn-form btn__cancel">Cancel</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="container">
+          <h1 class="todos__heading">
+            <span class="todos__text">Smatyx</span>&nbsp;<span>Todos App</span>
+          </h1>
+          <div class="action">
+            <div class="action__search">
+              <input
+                type="text"
+                name=""
+                id=""
+                class="input__search"
+                placeholder="Search Todos"
+                value
+              />
+              <button type="button" class="btn__search">
+                <svg
+                  class="w-4 h-4"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 512 512"
+                >
+                  <path
+                    d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+            <button type="button" class="btn__add">Add Todos</button>
+          </div>
+          <div class="list-todo"></div>
+
+          <button type="button" class="btn__completed">
+            <span>Completed Todos 1</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="-rotate-90 h-4 w-4 transition-all"
+              viewBox="0 0 512 512"
+            >
+              <path
+                d="M256 464a208 208 0 1 1 0-416 208 208 0 1 1 0 416zM256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM376.9 294.6c4.5-4.2 7.1-10.1 7.1-16.3c0-12.3-10-22.3-22.3-22.3H304V160c0-17.7-14.3-32-32-32l-32 0c-17.7 0-32 14.3-32 32v96H150.3C138 256 128 266 128 278.3c0 6.2 2.6 12.1 7.1 16.3l107.1 99.9c3.8 3.5 8.7 5.5 13.8 5.5s10.1-2 13.8-5.5l107.1-99.9z"
+              ></path>
+            </svg>
+          </button>
+
+          <div class="list-todo__completed"></div>
+        </div>
+      </div>
+    </main>
+    <script type="module" src="./js/main.js"></script>
+  </body>
+</html>

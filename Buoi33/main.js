@@ -1,7 +1,18 @@
 const searchBox = document.querySelector(".search-box");
 const btn = searchBox.querySelector(".btn");
 const action = searchBox.querySelector(".action");
-var isSuccess = true;
+var isSuccess = false;
+const actionsAndKeywords = [
+  { action: "google drive", keywords: ["google drive"] },
+  { action: "google maps", keywords: ["google maps", "bản đồ"] },
+  { action: "google", keywords: ["google"] },
+  { action: "youtube", keywords: ["youtube"] },
+  { action: "facebook", keywords: ["facebook"] },
+  { action: "maps", keywords: ["chỉ đường", "đường tới", "tới"] },
+  { action: "music", keywords: ["bài hát", "mở bài hát", "nghe bài hát"] },
+  { action: "video", keywords: ["video", "mở video", "xem video"] },
+];
+
 const SpeechRecognition =
   window.speechRecognition || window.webkitSpeechRecognition || false;
 
@@ -12,74 +23,50 @@ if (SpeechRecognition) {
 
   recognition.continuous = false;
 
-  handleSpeech = (transcript) => {
-    const text = transcript.toLowerCase().replaceAll(".", "");
-    let textNew;
-    switch (text) {
-      case "google":
-        window.open("https://google.com");
-        break;
-      case "youtube":
-        window.open("https://youtube.com");
-        break;
+  const handleSpeech = (transcript) => {
+    const text = transcript.toLowerCase().replaceAll(".", "").trim();
+    for (const item of actionsAndKeywords) {
+      for (const keyword of item.keywords) {
+        if (text.includes(keyword)) {
+          isSuccess = true;
+          const textNew = text.split(keyword).pop().trim();
 
-      case "facebook":
-        window.open("https://facebook.com");
-        break;
-
-      case "google maps":
-      case "maps":
-        window.open("https://maps.google.com");
-        break;
-
-      case "google drive":
-        window.open("https://drive.google.com");
-        break;
-      default:
-        if (
-          text.includes("chỉ đường") ||
-          text.includes("đường tới") ||
-          text.includes("tới")
-        ) {
-          textNew = text
-            .replace("chỉ đường", "")
-            .replace("tới", "")
-            .replace("đường tới", "")
-            .replace("chỉ đường tới", "")
-            .trim();
-          window.open(`https://www.google.com/maps/search/${textNew}`);
-        } else if (
-          text.includes("bài hát") ||
-          text.includes("mở bài hát") ||
-          text.includes("nghe bài hát")
-        ) {
-          textNew = text
-            .replace("bài hát", "")
-            .replace("mở bài hát", "")
-            .replace("nghe bài hát", "")
-            .trim();
-          window.open(`https://zingmp3.vn/tim-kiem/tat-ca?q=${textNew}`);
-        } else if (
-          text.includes("video") ||
-          text.includes("mở video") ||
-          text.includes("xem video")
-        ) {
-          textNew = text
-            .replace("video", "")
-            .replace("mở video", "")
-            .replace("xem video", "")
-            .trim();
-          window.open(
-            `https://www.youtube.com/results?search_query=${textNew}`
+          const checkKeyword = item.keywords.some((keyword) =>
+            textNew.includes(keyword)
           );
-        } else {
-          isSuccess = false;
-          return "Không thực hiện được yêu cầu";
+          console.log(checkKeyword);
+          if (!checkKeyword) {
+            switch (item.action) {
+              case "google":
+              case "youtube":
+              case "facebook":
+                window.open(`https://${item.action}.com`);
+                break;
+              case "google drive":
+                window.open("https://drive.google.com");
+                break;
+              case "google maps":
+                window.open(`https://maps.google.com`);
+                break;
+              case "maps":
+                window.open(`https://www.google.com/maps/search/${textNew}`);
+                break;
+              case "music":
+                window.open(`https://zingmp3.vn/tim-kiem/tat-ca?q=${textNew}`);
+                break;
+              case "video":
+                window.open(
+                  `https://www.youtube.com/results?search_query=${textNew}`
+                );
+                break;
+            }
+            break;
+          }
         }
-        break;
+      }
+      if (isSuccess) break;
     }
   };
-
   btn.addEventListener("click", (e) => {
     e.preventDefault();
     recognition.start();
@@ -99,7 +86,7 @@ if (SpeechRecognition) {
       if (isSuccess) {
         result.textContent = "Thực hiện thành công";
       } else {
-        result.textContent = handleSpeech(transcript);
+        result.textContent = "Không thực hiện được yêu cầu";
       }
     }, 1000);
   });
