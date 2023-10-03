@@ -110,7 +110,7 @@ const renderListTodo = async () => {
 
   const btnDeletes = todos.querySelectorAll(".btn__delete");
   btnDeletes.forEach((btnDelete) => {
-    btnDelete.addEventListener("click", () => {
+    btnDelete.addEventListener("click", async () => {
       const todoId = btnDelete.parentElement.parentElement.dataset.id;
       deleteTodoHandle(todoId);
     });
@@ -128,19 +128,17 @@ const renderListTodo = async () => {
     });
   });
 };
-
+renderListTodo();
 const deleteTodoHandle = async (todoId) => {
-  if (window.confirm("Bạn có chắc chắn muốn xóa không?")) {
-    deleteTodo(todoId);
-    renderListTodo();
-  }
+  deleteTodo(todoId);
+  renderListTodo();
 };
 const confirmTodoHandle = async (todoId) => {
   const { id, course, completed } = await getTodo(todoId);
   if (window.confirm("Bạn có chắc chắn muốn thay đổi không?")) {
     if (completed === true) {
       updateTodo(id, course, false);
-    } else if (completed === false) {
+    } else {
       updateTodo(id, course, true);
     }
     renderListTodo();
@@ -166,7 +164,6 @@ btnCompleted.addEventListener("click", () => {
     btnCompleted.classList.remove("active");
   }
 });
-renderListTodo();
 
 modalForm.addEventListener("submit", async (e) => {
   e.preventDefault();
