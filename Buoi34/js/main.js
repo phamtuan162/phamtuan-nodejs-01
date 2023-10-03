@@ -13,6 +13,7 @@ const btnSearch = todos.querySelector(".btn__search");
 const inputSearch = todos.querySelector(".input__search");
 const modal = todos.querySelector(".modal");
 const btnCompleted = todos.querySelector(".btn__completed");
+const span = btnCompleted.querySelector("span");
 const todoLists = todos.querySelector(".list-todo");
 const todoListCompleted = todos.querySelector(".list-todo__completed");
 const modalForm = modal.querySelector(".form__add");
@@ -29,24 +30,30 @@ const deleteTodoHandle = async (todoId) => {
   }
 };
 const confirmTodoHandle = async (todoId) => {
-  const { id, course, completed } = await getTodo(todoId);
-  if (window.confirm("Bạn có chắc chắn muốn thay đổi không?")) {
-    if (completed === true) {
-      updateTodo(id, course, false);
-    } else {
-      updateTodo(id, course, true);
+  try {
+    const { id, course, completed } = await getTodo(todoId);
+    if (window.confirm("Bạn có chắc chắn muốn thay đổi không?")) {
+      if (completed === true) {
+        updateTodo(id, course, false);
+      } else {
+        updateTodo(id, course, true);
+      }
+      renderListTodo();
     }
-    renderListTodo();
+  } catch (e) {
+    console.log(e);
   }
 };
 
 const searchTodoHandle = async (value) => {
-  isSearch = true;
-  const data = await getAllTodo();
-  const todoSearchs = data.filter((item) => item.course.includes(value));
-
-  todoSearchs.forEach((todoSearch) => {
-    const html = `  <div class="item" data-id ="${todoSearch.id}">
+  try {
+    const data = await getAllTodo();
+    isSearch = true;
+    const todoSearchs = data.filter((item) => item.course.includes(value));
+    todoLists.innerHTML = "";
+    todoListCompleted.innerHTML = "";
+    todoSearchs.forEach((todoSearch) => {
+      const html = `  <div class="item" data-id ="${todoSearch.id}">
               <span>${todoSearch.course}</span>
               <div class="group-action">
                 <button type="button" class="btn-action btn__delete">
@@ -78,31 +85,31 @@ const searchTodoHandle = async (value) => {
                 </button>
               </div>
             </div>`;
-    if (todoSearch.completed === false) {
-      todoLists.innerHTML = html;
-    } else {
-      todoListCompleted.innerHTML = html;
+      if (todoSearch.completed === false) {
+        todoLists.innerHTML += html;
+      } else {
+        todoListCompleted.innerHTML += html;
+      }
+    });
+    const elementComplteds = todos.querySelectorAll(".is-completed").length;
+    span.textContent = span.textContent.replace(/\d+/g, elementComplteds);
+    if (value === "") {
+      renderListTodo();
     }
-  });
-  const span = btnCompleted.querySelector("span");
-  span.textContent = span.textContent.replace(
-    /\d+/g,
-    todos.querySelectorAll(".is-completed").length
-  );
-
-  if (value === "") {
-    renderListTodo();
+  } catch (e) {
+    console.log(e);
   }
 };
 
 const renderListTodo = async () => {
-  const data = await getAllTodo();
-  const todosUnCompleted = data.filter((todo) => {
-    return todo.completed === false;
-  });
-  todoLists.innerHTML = todosUnCompleted
-    .map((todo) => {
-      return `  <div class="item" data-id ="${todo.id}">
+  try {
+    const data = await getAllTodo();
+    const todosUnCompleted = data.filter((todo) => {
+      return todo.completed === false;
+    });
+    todoLists.innerHTML = todosUnCompleted
+      .map((todo) => {
+        return `  <div class="item" data-id ="${todo.id}">
               <span>${todo.course}</span>
               <div class="group-action">
                 <button type="button" class="btn-action btn__delete">
@@ -132,15 +139,15 @@ const renderListTodo = async () => {
                 </button>
               </div>
             </div>`;
-    })
-    .join("");
-  const todosCompleted = data.filter((todo) => {
-    return todo.completed === true;
-  });
+      })
+      .join("");
+    const todosCompleted = data.filter((todo) => {
+      return todo.completed === true;
+    });
 
-  todoListCompleted.innerHTML = todosCompleted
-    .map((todo) => {
-      return `  <div class="item" data-id ="${todo.id}">
+    todoListCompleted.innerHTML = todosCompleted
+      .map((todo) => {
+        return `  <div class="item" data-id ="${todo.id}">
               <span>${todo.course}</span>
               <div class="group-action">
                 <button type="button" class="btn-action btn__delete">
@@ -170,38 +177,45 @@ const renderListTodo = async () => {
                 </button>
               </div>
             </div>`;
-    })
-    .join("");
-  const span = btnCompleted.querySelector("span");
-  span.textContent = span.textContent.replace(/\d+/g, todosCompleted.length);
+      })
+      .join("");
 
-  const btnConforms = todos.querySelectorAll(".btn__conform");
-  btnConforms.forEach((btnConform) => {
-    btnConform.addEventListener("click", async () => {
-      const todoId = btnConform.parentElement.parentElement.dataset.id;
-      confirmTodoHandle(todoId);
-    });
-  });
+    span.textContent = span.textContent.replace(/\d+/g, todosCompleted.length);
 
-  const btnDeletes = todos.querySelectorAll(".btn__delete");
-  btnDeletes.forEach((btnDelete) => {
-    btnDelete.addEventListener("click", async () => {
-      const todoId = btnDelete.parentElement.parentElement.dataset.id;
-      deleteTodoHandle(todoId);
+    const btnConforms = todos.querySelectorAll(".btn__conform");
+    btnConforms.forEach((btnConform) => {
+      btnConform.addEventListener("click", async () => {
+        const todoId = btnConform.parentElement.parentElement.dataset.id;
+        confirmTodoHandle(todoId);
+      });
     });
-  });
 
-  const btnEdits = todos.querySelectorAll(".btn__edit");
-  btnEdits.forEach((btnEdit) => {
-    btnEdit.addEventListener("click", async () => {
-      const todoId = btnEdit.parentElement.parentElement.dataset.id;
-      const todoData = await getTodo(todoId);
-      input.value = todoData.course;
-      idEdit = todoId;
-      modal.classList.add("is-show");
-      isNew = true;
+    const btnDeletes = todos.querySelectorAll(".btn__delete");
+    btnDeletes.forEach((btnDelete) => {
+      btnDelete.addEventListener("click", async () => {
+        const todoId = btnDelete.parentElement.parentElement.dataset.id;
+        deleteTodoHandle(todoId);
+      });
     });
-  });
+
+    const btnEdits = todos.querySelectorAll(".btn__edit");
+    btnEdits.forEach((btnEdit) => {
+      btnEdit.addEventListener("click", async () => {
+        try {
+          const todoId = btnEdit.parentElement.parentElement.dataset.id;
+          const todoData = await getTodo(todoId);
+          input.value = todoData.course;
+          idEdit = todoId;
+          modal.classList.add("is-show");
+          isNew = true;
+        } catch (e) {
+          console.log(e);
+        }
+      });
+    });
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 renderListTodo();
@@ -210,12 +224,23 @@ btnAdd.addEventListener("click", () => {
   modal.classList.add("is-show");
 });
 
-btnSearch.addEventListener("click", async () => {
-  const value = inputSearch.value.trim();
-  searchTodoHandle(value);
+document.body.addEventListener("click", () => {
+  isSearch = false;
+  btnSearch.classList.remove("is-search");
 });
-
-inputSearch.addEventListener("input", async () => {
+btnSearch.addEventListener("click", (e) => {
+  e.stopPropagation();
+  if (!isSearch) {
+    isSearch = true;
+    btnSearch.classList.add("is-search");
+    const value = inputSearch.value.trim();
+    searchTodoHandle(value);
+  } else {
+    isSearch = false;
+    btnSearch.classList.remove("is-search");
+  }
+});
+inputSearch.addEventListener("input", () => {
   const value = inputSearch.value.trim();
 
   searchTodoHandle(value);
@@ -242,11 +267,16 @@ modalForm.addEventListener("submit", async (e) => {
   const value = input.value.trim();
 
   if (window.confirm("Bạn có chắc chắn muốn lưu không?")) {
-    const data = await getAllTodo();
+    try {
+      const data = await getAllTodo();
+    } catch (e) {
+      console.log(e);
+    }
     if (value === "") {
       alert("Vui lòng nhập một giá trị.");
       return;
     }
+
     const check = data.find(({ course }) => course === value);
     if (check) {
       alert("Course đã có sẵn, nhập lại!");
@@ -255,9 +285,13 @@ modalForm.addEventListener("submit", async (e) => {
         postTodo({ course: value, completed: false });
         isNew = true;
       } else {
-        const { completed } = await getTodo(idEdit);
-        updateTodo(idEdit, value, completed);
-        isNew = false;
+        try {
+          const { completed } = await getTodo(idEdit);
+          updateTodo(idEdit, value, completed);
+          isNew = false;
+        } catch (e) {
+          console.log(e);
+        }
       }
       modal.classList.remove("is-show");
       input.value = "";
