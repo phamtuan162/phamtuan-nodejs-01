@@ -10,7 +10,6 @@ const todos = document.querySelector(".todos");
 const btnAdd = todos.querySelector(".btn__add");
 const btnCancel = todos.querySelector(".btn__cancel");
 const btnSearch = todos.querySelector(".btn__search");
-console.log(btnSearch);
 const modal = todos.querySelector(".modal");
 const btnCompleted = todos.querySelector(".btn__completed");
 const todoLists = todos.querySelector(".list-todo");
