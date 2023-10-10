@@ -31,6 +31,7 @@ export const renderQuesttion = async (quiz) => {
     quizizzQuestionEl.classList.add("quizizzGame__question");
     const quizizzGameTopEl = document.createElement("div");
     quizizzGameTopEl.classList.add("quizizzGame__top");
+    console.log(streak);
     quizizzGameTopEl.innerHTML = ` <div class="quizizzGame__top--timer">
               <div class="quizizzGame__top--timer-total">
                 <div class="quizizzGame__top--timer-progress"></div>

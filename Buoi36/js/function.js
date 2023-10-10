@@ -49,7 +49,7 @@ export function handleChoose(e, correct_answers, incorrect_answers, score) {
       }
       streakPoint += limitPointOne;
       if (streak <= 3) streak++;
-      if ((streak = 3)) streakMax++;
+      if (streak === 3) streakMax++;
       setTimeout(() => {
         getQuestions();
       }, 1000);
