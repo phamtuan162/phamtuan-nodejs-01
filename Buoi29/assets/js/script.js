@@ -48,6 +48,7 @@ var updateItemNumber = () => {
 };
 
 var initSortableList = (e) => {
+  console.log(e);
   e.preventDefault();
   if (!isDraggingOver) {
     isDraggingOver = true;
