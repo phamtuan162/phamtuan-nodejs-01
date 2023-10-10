@@ -12,10 +12,8 @@ export const getRandomQuestion = (data) => {
   if (data.length === 0) {
     return null;
   }
-
   const randomIndex = Math.floor(Math.random() * data.length);
   const randomQuestion = data[randomIndex];
-
   return randomQuestion;
 };
 export function shuffleArray(array) {
@@ -48,8 +46,9 @@ export function handleChoose(e, correct_answers, incorrect_answers, score) {
         totalScore += score;
       }
       streakPoint += limitPointOne;
-      if (streak <= 3) streak++;
-      if (streak === 3) streakMax++;
+      if (streak === 2) streakMax++;
+      if (streak < 3) streak++;
+
       setTimeout(() => {
         getQuestions();
       }, 1000);
@@ -73,6 +72,7 @@ export function handleChoose(e, correct_answers, incorrect_answers, score) {
     }, 1000);
   }
 }
+
 export const handleReset = () => {
   quizizzGame.innerHTML = "";
   totalScore = 0;

@@ -31,7 +31,6 @@ export const renderQuesttion = async (quiz) => {
     quizizzQuestionEl.classList.add("quizizzGame__question");
     const quizizzGameTopEl = document.createElement("div");
     quizizzGameTopEl.classList.add("quizizzGame__top");
-    console.log(streak);
     quizizzGameTopEl.innerHTML = ` <div class="quizizzGame__top--timer">
               <div class="quizizzGame__top--timer-total">
                 <div class="quizizzGame__top--timer-progress"></div>
@@ -51,8 +50,7 @@ export const renderQuesttion = async (quiz) => {
                     streak === 0 ? 0 : (100 / 3) * streak
                   }%; padding: 0px ${streak > 0 ? 5 : 0}px">${
       streak > 0 ? "Streak" : ""
-    }</div>
-                 
+    }</div>  
                 </div> 
                 <span>${streakPoint > 0 ? "+" + streakPoint : ""}</span>
               </div>
