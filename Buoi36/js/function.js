@@ -45,9 +45,11 @@ export function handleChoose(e, correct_answers, incorrect_answers, score) {
       } else {
         totalScore += score;
       }
-      streakPoint += limitPointOne;
       if (streak === 2) streakMax++;
-      if (streak < 3) streak++;
+      if (streak < 3) {
+        streakPoint += limitPointOne;
+        streak++;
+      }
 
       setTimeout(() => {
         getQuestions();
