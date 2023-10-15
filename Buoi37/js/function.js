@@ -80,7 +80,13 @@ export const postBlog = async (content, title) => {
 };
 
 export const getProfile = async (token) => {
-  const { data: tokens } = await client.get("/users/profile", token);
+  const { data: tokens, response } = await client.get("/users/profile", token);
   blogEl.innerText = "";
-  renderPostBlog(tokens.data);
+  const { message } = response;
+  if (response.ok) {
+    renderPostBlog(tokens.data);
+    alert(`${message}`);
+  } else {
+    alert(`${message}`);
+  }
 };

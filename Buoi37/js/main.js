@@ -6,5 +6,7 @@ renderHeader();
 if (localStorage.getItem("access_token")) {
   const access_token = localStorage.getItem("access_token");
   getProfile(access_token);
+  getBlogs();
+} else {
+  getBlogs();
 }
-getBlogs();
