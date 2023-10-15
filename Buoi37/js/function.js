@@ -18,13 +18,13 @@ export const handleLogin = async (data) => {
   const { message } = tokens;
 
   if (response.ok) {
+    blogEl.innerText = "";
     const { accessToken, refreshToken } = tokens.data;
     localStorage.setItem("access_token", accessToken);
     localStorage.setItem("refresh_token", refreshToken);
     alert(`${message}`);
     renderHeader();
-    blogEl.innerText = "";
-    getProfile(accessToken);
+    getProfile();
     getBlogs();
   } else {
     alert(`${message}`);
@@ -61,7 +61,6 @@ export const handleLogout = async (e) => {
   }
 };
 export const postBlog = async (content, title) => {
-  console.log(content, title);
   const token = localStorage.getItem("access_token");
   const { data: tokens, response } = await client.post(
     "/blogs",
@@ -79,13 +78,13 @@ export const postBlog = async (content, title) => {
   }
 };
 
-export const getProfile = async (token) => {
+export const getProfile = async () => {
+  const token = localStorage.getItem("access_token");
   const { data: tokens, response } = await client.get("/users/profile", token);
-  blogEl.innerText = "";
-  const { message } = response;
+  const { message } = tokens;
   if (response.ok) {
+    blogEl.innerText = "";
     renderPostBlog(tokens.data);
-    alert(`${message}`);
   } else {
     alert(`${message}`);
   }

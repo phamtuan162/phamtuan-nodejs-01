@@ -55,7 +55,6 @@ export const renderPostBlog = async (data) => {
         contentEl.value = "";
       }
     });
-
     userActionEl.append(formPostEl);
     blogEl.append(userActionEl);
   }

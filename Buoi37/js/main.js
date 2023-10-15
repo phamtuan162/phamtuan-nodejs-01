@@ -4,8 +4,7 @@ import { renderPostBlog } from "./renderPostBlog.js";
 
 renderHeader();
 if (localStorage.getItem("access_token")) {
-  const access_token = localStorage.getItem("access_token");
-  getProfile(access_token);
+  getProfile();
   getBlogs();
 } else {
   getBlogs();

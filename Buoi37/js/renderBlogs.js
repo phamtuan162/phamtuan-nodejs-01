@@ -6,7 +6,7 @@ export const renderBlogs = async (blogs) => {
   blogEl.append(h2);
   const blogList = document.createElement("div");
   blogList.classList.add("blog-list");
-  if (blogs.length > 0) {
+  if (blogs.length) {
     blogs.forEach(({ content, title, userId: user, createdAt }) => {
       const date = new Date(createdAt);
       const { name, userID } = user;
