@@ -58,7 +58,6 @@ export const renderRegister = async () => {
   blogEl.innerHTML = registerHtml;
   const aEl = document.querySelector(".form-inner .link ");
   aEl.addEventListener("click", (e) => {
-    blogEl.innerText = "";
     renderHeader();
     getBlogs();
   });

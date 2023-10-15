@@ -1,11 +1,13 @@
 const blogEl = document.querySelector(".blogs .container");
 
 export const renderBlogs = async (blogs) => {
+  blogEl.innerText = "";
   const h2 = document.createElement("h2");
   h2.innerText = "Danh sách bài viết";
   blogEl.append(h2);
   const blogList = document.createElement("div");
   blogList.classList.add("blog-list");
+  blogEl.append(blogList);
   if (blogs.length) {
     blogs.forEach(({ content, title, userId: user, createdAt }) => {
       const date = new Date(createdAt);
@@ -67,6 +69,5 @@ export const renderBlogs = async (blogs) => {
       descEl.innerText = `${content}`;
       blogItem.append(descEl);
     });
-    blogEl.append(blogList);
   }
 };

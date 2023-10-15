@@ -1,24 +1,24 @@
 import { postBlog } from "./function.js";
-const blogEl = document.querySelector(".blogs .container");
+const userActionEl = document.querySelector(".user-action .container");
 
 export const renderPostBlog = async (data) => {
+  userActionEl.innerText = "";
+
   if (data) {
     const { name } = data;
-    const userActionEl = document.createElement("div");
-    userActionEl.classList.add("user-action");
-    const linkEl = document.createElement("a");
-    linkEl.classList.add("link");
-    userActionEl.append(linkEl);
+    const authorEl = document.createElement("div");
+    authorEl.classList.add("author");
+    userActionEl.append(authorEl);
 
     const avatarEl = document.createElement("span");
     avatarEl.classList.add("avatar");
     avatarEl.setAttribute("data-name", `${name.charAt(0).toUpperCase()}`);
-    linkEl.append(avatarEl);
+    authorEl.append(avatarEl);
 
     const nameEl = document.createElement("span");
     nameEl.classList.add("name");
     nameEl.innerText = `${name}`;
-    linkEl.append(nameEl);
+    authorEl.append(nameEl);
 
     const formPostEl = document.createElement("form");
     formPostEl.innerHTML = ` <div class="form-control">
@@ -56,6 +56,5 @@ export const renderPostBlog = async (data) => {
       }
     });
     userActionEl.append(formPostEl);
-    blogEl.append(userActionEl);
   }
 };

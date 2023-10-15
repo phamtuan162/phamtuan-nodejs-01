@@ -50,7 +50,6 @@ export const renderLogin = async () => {
   blogEl.innerHTML = loginHtml;
   const aEl = document.querySelector(".form-inner .link ");
   aEl.addEventListener("click", (e) => {
-    blogEl.innerText = "";
     renderHeader();
     getBlogs();
   });
