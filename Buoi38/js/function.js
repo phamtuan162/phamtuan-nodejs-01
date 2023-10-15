@@ -16,8 +16,9 @@ export const getBlogs = async () => {
 export const handleLogin = async (data) => {
   const { data: tokens, response } = await client.post("/auth/login", data);
   const { message } = tokens;
-  const { accessToken, refreshToken } = tokens.data;
+
   if (response.ok) {
+    const { accessToken, refreshToken } = tokens.data;
     localStorage.setItem("access_token", accessToken);
     localStorage.setItem("refresh_token", refreshToken);
     alert(`${message}`);
