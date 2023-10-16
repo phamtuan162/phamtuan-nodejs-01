@@ -22,7 +22,7 @@ export const getBlogs = async () => {
 export const handleLogin = async (data) => {
   const { data: tokens, response } = await client.post("/auth/login", data);
   const { message } = tokens;
-
+  console.log(response);
   if (response.ok) {
     const { accessToken, refreshToken } = tokens.data;
     localStorage.setItem("access_token", accessToken);
@@ -61,6 +61,9 @@ export const handleLogout = async (e) => {
     renderPostBlog();
     getBlogs();
     alert(`${message}`);
+  } else if (response.status === 401) {
+    refreshToken();
+    handleLogout(e);
   } else {
     alert(`${message}`);
   }
@@ -74,9 +77,12 @@ export const postBlog = async (content, title) => {
   );
   const { message } = tokens;
   if (response.ok) {
-    getProfile(token);
+    getProfile();
     getBlogs();
     alert(`${message}`);
+  } else if (response.status === 401) {
+    refreshToken();
+    postBlog(content, title);
   } else {
     alert(`${message}`);
   }
@@ -88,7 +94,27 @@ export const getProfile = async () => {
   const { message } = tokens;
   if (response.ok) {
     renderPostBlog(tokens.data);
+  } else if (response.status === 401) {
+    refreshToken();
+    getProfile();
   } else {
     alert(`${message}`);
   }
+};
+
+export const refreshToken = async () => {
+  const refreshToken = localStorage.getItem("refresh_token");
+  if (refreshToken) {
+    const { data, response } = await client.post("/auth/refresh-token", {
+      refreshToken: refreshToken,
+    });
+    if (response.ok) {
+      const { accessToken, refreshToken } = data.data.token;
+      console.log(accessToken, refreshToken);
+      localStorage.setItem("access_token", accessToken);
+      localStorage.setItem("refresh_token", refreshToken);
+      // return true;
+    }
+  }
+  // return false;
 };
