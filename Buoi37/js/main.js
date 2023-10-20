@@ -1,11 +1,18 @@
 import { renderHeader } from "./renderHeader.js";
-import { getBlogs, getProfile } from "./function.js";
-import { renderPostBlog } from "./renderPostBlog.js";
+import { getBlogs, getProfile, page, limit, refreshToken } from "./function.js";
 
-renderHeader();
-if (localStorage.getItem("access_token")) {
-  getProfile();
-  getBlogs();
-} else {
-  getBlogs();
-}
+refreshToken().then(() => {
+  renderHeader();
+  if (localStorage.getItem("access_token")) {
+    getProfile();
+    getBlogs({
+      _limit: limit,
+      _page: page,
+    });
+  } else {
+    getBlogs({
+      limit: limit,
+      page: page,
+    });
+  }
+});

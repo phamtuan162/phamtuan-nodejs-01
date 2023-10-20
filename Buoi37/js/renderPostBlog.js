@@ -1,4 +1,4 @@
-import { postBlog } from "./function.js";
+import { postBlog, formatDate, handlePicker } from "./function.js";
 const userActionEl = document.querySelector(".user-action .container");
 
 export const renderPostBlog = async (data) => {
@@ -39,20 +39,30 @@ export const renderPostBlog = async (data) => {
                     placeholder="content here..."
                   ></textarea>
                 </div>
+                <div class="form-control">
+                  <label class="form-label">Set time post blog</label>
+                 <input type="text" id="datetimepicker"  autocomplete="off" class ="form-input" placeholder = "date here..." >
                 <button class="btn btn-post" type="submit">Write new!</button>`;
 
+    handlePicker("#datetimepicker");
     formPostEl.addEventListener("submit", (e) => {
       e.preventDefault();
+      const dateEl = document.querySelector("#datetimepicker");
       const titleEl = document.querySelector(".form-input");
       const contentEl = document.querySelector(".form-textarea");
       const title = titleEl.value;
       const content = contentEl.value;
-      if (title === "" || content === "") {
-        alert("Nhập đầy đủ thông tin");
+      const date = dateEl.value;
+      if (title === "" || content === "" || date === "") {
+        confirm("Nhập đầy đủ thông tin");
+      } else if (new Date(date) < new Date()) {
+        confirm("Ngày đăng phải sau hiện tại");
       } else {
         postBlog(title, content);
+        alert("Bài viết của bạn sẽ đăng vào lúc : " + formatDate(date));
         titleEl.value = "";
         contentEl.value = "";
+        dateEl.value = "";
       }
     });
     userActionEl.append(formPostEl);

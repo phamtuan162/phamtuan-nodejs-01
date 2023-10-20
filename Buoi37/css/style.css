@@ -79,6 +79,10 @@ a {
   position: absolute;
   top: 20px;
   left: -100px;
+  font-size: 1.2rem;
+  border-top: 1px solid #6eeb83;
+  padding-top: 5px;
+  gap: 5px;
 }
 .blogs .date .hours {
   border-top: 1px solid #6eeb83;

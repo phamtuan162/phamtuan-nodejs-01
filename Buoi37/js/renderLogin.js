@@ -72,9 +72,10 @@ export const renderLogin = async () => {
       if (email === "" || password === "") {
         confirm("Nhập đầy đủ thông tin?");
       } else {
-        handleLogin({ email, password });
-        emailEl.value = "";
-        passwordEl.value = "";
+        handleLogin({ email, password }).then(() => {
+          emailEl.value = "";
+          passwordEl.value = "";
+        });
       }
     });
   }

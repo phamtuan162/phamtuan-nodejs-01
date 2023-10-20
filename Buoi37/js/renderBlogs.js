@@ -1,3 +1,4 @@
+import { getTime } from "./function.js";
 const blogEl = document.querySelector(".blogs .container");
 
 export const renderBlogs = async (blogs) => {
@@ -8,9 +9,16 @@ export const renderBlogs = async (blogs) => {
   const blogList = document.createElement("div");
   blogList.classList.add("blog-list");
   blogEl.append(blogList);
+  blogs.sort(
+    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+  );
+  console.log(blogs);
   if (blogs.length) {
     blogs.forEach(({ content, title, userId: user, createdAt }) => {
-      const date = new Date(createdAt);
+      const dateBlog = new Date(createdAt);
+      const dateNow = new Date();
+      const timePost = getTime((dateNow.getTime() - dateBlog.getTime()) / 1000);
+
       const { name, userID } = user;
 
       const blogItem = document.createElement("section");
@@ -19,20 +27,17 @@ export const renderBlogs = async (blogs) => {
 
       const dateEl = document.createElement("span");
       dateEl.classList.add("date");
-      dateEl.innerHTML = `${date.getDate()}<br />${date.toLocaleString(
-        "en-US",
-        { weekday: "short" }
-      )}`;
+      dateEl.innerHTML = `${timePost}`;
       blogItem.append(dateEl);
 
       const hoursEl = document.createElement("span");
       hoursEl.classList.add("hours");
-      hoursEl.innerText = `${date.getHours()}h`;
+      hoursEl.innerText = `${dateBlog.getHours()} giờ`;
       dateEl.append(hoursEl);
 
       const minsEl = document.createElement("span");
       minsEl.classList.add("mins");
-      minsEl.innerText = `${date.getMinutes()}m`;
+      minsEl.innerText = `${dateBlog.getMinutes()} phút `;
       dateEl.append(minsEl);
 
       const authorEl = document.createElement("div");

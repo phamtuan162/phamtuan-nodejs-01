@@ -1,4 +1,4 @@
-import { handleRegister, getBlogs } from "./function.js";
+import { handleRegister, getBlogs, validateForm } from "./function.js";
 import { renderLogin } from "./renderLogin.js";
 import { renderHeader } from "./renderHeader.js";
 const blogEl = document.querySelector(".blogs .container");
@@ -82,10 +82,13 @@ export const renderRegister = async () => {
       if (email === "" || password === "" || name === "") {
         confirm("Nhập đầy đủ thông tin?");
       } else {
-        handleRegister({ email, password, name });
-        emailEl.value = "";
-        passwordEl.value = "";
-        nameEl.value = "";
+        if (confirm(validateForm(email, password))) {
+          handleRegister({ email, password, name }).then(() => {
+            emailEl.value = "";
+            passwordEl.value = "";
+            nameEl.value = "";
+          });
+        }
       }
     });
   }
