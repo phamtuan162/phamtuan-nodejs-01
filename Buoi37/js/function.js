@@ -68,8 +68,9 @@ export const handleLogout = async (e) => {
       });
       toast({ message, type });
     } else {
-      await refreshToken();
-      await handleLogout(e);
+      if (await refreshToken()) {
+        handleLogout(e);
+      }
     }
   }
 };
@@ -89,9 +90,11 @@ export const postBlog = async (title, content) => {
         page: page,
       });
       toast({ message, type });
+      return true;
     } else {
-      await refreshToken();
-      await postBlog(content, title);
+      if (await refreshToken()) {
+        postBlog(title, content);
+      }
     }
   }
 };
@@ -104,8 +107,9 @@ export const getProfile = async () => {
     if (response.ok) {
       renderPostBlog(data.data);
     } else {
-      await refreshToken();
-      await getProfile();
+      if (await refreshToken()) {
+        getProfile();
+      }
     }
   }
 };
@@ -120,6 +124,7 @@ export const refreshToken = async () => {
     if (response.ok) {
       localStorage.setItem("access_token", data.data.token.accessToken);
       localStorage.setItem("refresh_token", data.data.token.refreshToken);
+      return true;
     } else {
       localStorage.clear();
       const message =
@@ -181,7 +186,7 @@ export function validateForm(email, password) {
   } else if (!/[0-9]/.test(password)) {
     return "Mật khẩu phải chứa ít nhất một chữ số";
   } else {
-    return "";
+    return "Thành công";
   }
 }
 export function handleLink(content) {

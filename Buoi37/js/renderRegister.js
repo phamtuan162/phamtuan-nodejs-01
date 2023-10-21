@@ -87,7 +87,7 @@ export const renderRegister = async () => {
         toast({ message, type });
       } else {
         message = validateForm(email, password);
-        if (message === "") {
+        if (message === "Thành công") {
           await handleRegister({ email, password, name });
           emailEl.value = "";
           passwordEl.value = "";

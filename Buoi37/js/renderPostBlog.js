@@ -63,13 +63,15 @@ export const renderPostBlog = async (data) => {
         message = "Ngày đăng phải sau hiện tại";
         toast({ message, type });
       } else {
-        await postBlog(title, content);
-        message = "Bài viết của bạn sẽ đăng vào lúc : " + formatDate(date);
-        type = "info";
-        toast({ message, type });
-        titleEl.value = "";
-        contentEl.value = "";
-        dateEl.value = "";
+        if (await postBlog(title, content)) {
+          const message =
+            "Bài viết của bạn sẽ đăng vào lúc : " + formatDate(date);
+          const type = "info";
+          toast({ message, type });
+          titleEl.value = "";
+          contentEl.value = "";
+          dateEl.value = "";
+        }
       }
     });
     userActionEl.append(formPostEl);
