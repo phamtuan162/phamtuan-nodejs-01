@@ -1,6 +1,7 @@
 import { handleRegister, getBlogs, validateForm } from "./function.js";
 import { renderLogin } from "./renderLogin.js";
 import { renderHeader } from "./renderHeader.js";
+import { toast } from "./toastMessage.js";
 const blogEl = document.querySelector(".blogs .container");
 
 export const renderRegister = async () => {
@@ -57,9 +58,9 @@ export const renderRegister = async () => {
             </section>`;
   blogEl.innerHTML = registerHtml;
   const aEl = document.querySelector(".form-inner .link ");
-  aEl.addEventListener("click", (e) => {
-    renderHeader();
-    getBlogs();
+  aEl.addEventListener("click", async (e) => {
+    await renderHeader();
+    await getBlogs();
   });
   const btnLogin = document.querySelector(".btn-login");
   btnLogin.addEventListener("click", (e) => {
@@ -69,7 +70,9 @@ export const renderRegister = async () => {
 
   const registerForm = document.querySelector(".form-register");
   if (registerForm) {
-    registerForm.addEventListener("submit", (e) => {
+    registerForm.addEventListener("submit", async (e) => {
+      let message = "";
+      let type = "failed";
       e.preventDefault();
       const nameEl = e.target.querySelector('.form-input[name="name"]');
       const emailEl = e.target.querySelector('.form-input[name="email"]');
@@ -80,14 +83,17 @@ export const renderRegister = async () => {
       const name = nameEl.value;
 
       if (email === "" || password === "" || name === "") {
-        confirm("Nhập đầy đủ thông tin?");
+        message = "Nhập đầy đủ thông tin";
+        toast({ message, type });
       } else {
-        if (confirm(validateForm(email, password))) {
-          handleRegister({ email, password, name }).then(() => {
-            emailEl.value = "";
-            passwordEl.value = "";
-            nameEl.value = "";
-          });
+        message = validateForm(email, password);
+        if (message === "") {
+          await handleRegister({ email, password, name });
+          emailEl.value = "";
+          passwordEl.value = "";
+          nameEl.value = "";
+        } else {
+          toast({ message, type });
         }
       }
     });

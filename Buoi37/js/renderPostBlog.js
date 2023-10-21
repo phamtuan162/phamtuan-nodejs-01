@@ -1,4 +1,5 @@
 import { postBlog, formatDate, handlePicker } from "./function.js";
+import { toast } from "./toastMessage.js";
 const userActionEl = document.querySelector(".user-action .container");
 
 export const renderPostBlog = async (data) => {
@@ -45,21 +46,27 @@ export const renderPostBlog = async (data) => {
                 <button class="btn btn-post" type="submit">Write new!</button>`;
 
     handlePicker("#datetimepicker");
-    formPostEl.addEventListener("submit", (e) => {
+    formPostEl.addEventListener("submit", async (e) => {
       e.preventDefault();
+      let message = "";
+      let type = "failed";
       const dateEl = document.querySelector("#datetimepicker");
-      const titleEl = document.querySelector(".form-input");
+      const titleEl = document.querySelector('.form-input[name="title"]');
       const contentEl = document.querySelector(".form-textarea");
       const title = titleEl.value;
       const content = contentEl.value;
       const date = dateEl.value;
       if (title === "" || content === "" || date === "") {
-        confirm("Nhập đầy đủ thông tin");
+        message = "Nhập đầy đủ thông tin";
+        toast({ message, type });
       } else if (new Date(date) < new Date()) {
-        confirm("Ngày đăng phải sau hiện tại");
+        message = "Ngày đăng phải sau hiện tại";
+        toast({ message, type });
       } else {
-        postBlog(title, content);
-        alert("Bài viết của bạn sẽ đăng vào lúc : " + formatDate(date));
+        await postBlog(title, content);
+        message = "Bài viết của bạn sẽ đăng vào lúc : " + formatDate(date);
+        type = "info";
+        toast({ message, type });
         titleEl.value = "";
         contentEl.value = "";
         dateEl.value = "";

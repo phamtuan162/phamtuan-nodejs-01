@@ -1,4 +1,4 @@
-import { getTime } from "./function.js";
+import { getTime, handleLink } from "./function.js";
 const blogEl = document.querySelector(".blogs .container");
 
 export const renderBlogs = async (blogs) => {
@@ -14,7 +14,7 @@ export const renderBlogs = async (blogs) => {
   );
   console.log(blogs);
   if (blogs.length) {
-    blogs.forEach(({ content, title, userId: user, createdAt }) => {
+    blogs.forEach(({ title, content, userId: user, createdAt }) => {
       const dateBlog = new Date(createdAt);
       const dateNow = new Date();
       const timePost = getTime((dateNow.getTime() - dateBlog.getTime()) / 1000);
@@ -71,7 +71,7 @@ export const renderBlogs = async (blogs) => {
 
       const descEl = document.createElement("p");
       descEl.classList.add("desc");
-      descEl.innerText = `${content}`;
+      descEl.innerHTML = handleLink(content);
       blogItem.append(descEl);
     });
   }

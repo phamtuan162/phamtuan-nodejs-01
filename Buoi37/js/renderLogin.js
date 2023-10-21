@@ -1,9 +1,11 @@
 import { renderRegister } from "./renderRegister.js";
+import { toast } from "./toastMessage.js";
 import { getBlogs, handleLogin } from "./function.js";
 import { renderHeader } from "./renderHeader.js";
+
 const blogEl = document.querySelector(".blogs .container");
 
-export const renderLogin = async () => {
+export const renderLogin = async (email = "") => {
   blogEl.innerText = "";
   const loginHtml = `  <section class="form-inner">
               <div class="info-group">
@@ -21,7 +23,7 @@ export const renderLogin = async () => {
                     type="email"
                     class="form-input"
                     placeholder="Please enter the email"
-                    value=""
+                    value="${email}"
                   />
                 </div>
                 <div class="form-control">
@@ -49,9 +51,9 @@ export const renderLogin = async () => {
             </section>`;
   blogEl.innerHTML = loginHtml;
   const aEl = document.querySelector(".form-inner .link ");
-  aEl.addEventListener("click", (e) => {
-    renderHeader();
-    getBlogs();
+  aEl.addEventListener("click", async (e) => {
+    await renderHeader();
+    await getBlogs();
   });
   const btnRegister = document.querySelector(".btn-register");
   btnRegister.addEventListener("click", (e) => {
@@ -70,7 +72,9 @@ export const renderLogin = async () => {
       const password = passwordEl.value;
 
       if (email === "" || password === "") {
-        confirm("Nhập đầy đủ thông tin?");
+        const message = "Nhập đầy đủ thông tin?";
+        const type = "Failed";
+        toast({ message, type });
       } else {
         handleLogin({ email, password }).then(() => {
           emailEl.value = "";
