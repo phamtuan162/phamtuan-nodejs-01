@@ -71,7 +71,8 @@ export const renderBlogs = async (blogs) => {
 
       const descEl = document.createElement("p");
       descEl.classList.add("desc");
-      descEl.innerHTML = handleLink(content);
+      const contentNew = handleLink(content).replace(/&/g, "&amp;");
+      descEl.innerHTML = contentNew;
       blogItem.append(descEl);
     });
   }

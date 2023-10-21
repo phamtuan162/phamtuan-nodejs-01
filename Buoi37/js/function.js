@@ -187,30 +187,39 @@ export function validateForm(email, password) {
 export function handleLink(content) {
   const patternEmail = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/g;
   const patternTel = /((0|\+84)\d{9})/g;
-  const patternLink = /^(?:http|https):\/\/[a-z-_0-9\.]+\.([a-z]{2,})\/.*$/;
+  const patternLink = /((https?:\/\/)|(www\.))[^\s]+/g;
   const patternYoutube =
-    /https:\/\/(?:www\.)?youtube\.com\/(watch\?v=|embed\/|v\/)?[a-zA-Z0-9_-]+(&[^\s]+)?|https:\/\/youtu\.be\/[a-zA-Z0-9_-]+(&[^\s]+)?/g;
-  content = content
+    /(https?:\/\/(www\.)?(youtube\.com|youtu\.be)\/[^\s]+)/g;
+  const contentNew = content
     .replace(/\s+/g, " ")
-    .replace(/\n{2,}/g, "\n")
-    .replace(patternEmail, (match) => {
+    .replace(/\n{3,}/g, "\n\n")
+    .replace(/\n/g, " <br/> ")
+    .trim()
+    .replaceAll(patternEmail, (match) => {
       return `<a href="mailto:${match}" target="_blank">${match}</a>`;
     })
-    .replace(patternTel, (match) => {
+    .replaceAll(patternTel, (match) => {
       return `<a href="tel:${match}" target="_blank">${match}</a>`;
     })
-    .replace(patternLink, (match) => {
+    .replaceAll(patternLink, (match) => {
       if (patternYoutube.test(match)) {
-        match = match.replace(patternYoutube, (match) => {
-          let videoId = match.split("v=")[1]
-            ? match.split("v=")[1].split("&")[0]
-            : match.split("/").pop();
-          return `<iframe width="560" height="315" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allowfullscreen></iframe>`;
-        });
+        let videoId = match.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/)[2];
+        videoId = videoId.split(/[^0-9a-z_-]/i)[0];
+        return `
+        <iframe
+          width='560'
+          height='315'
+          src='https://www.youtube.com/embed/${videoId}'
+          title='YouTube video player'
+          frameBorder='0'
+          allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+          allowFullScreen></iframe>
+      `;
       } else {
         match = `<a href="${match}" target="_blank">${match}</a>`;
       }
+
       return match;
     });
-  return content;
+  return contentNew;
 }
