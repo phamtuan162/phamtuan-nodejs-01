@@ -33,9 +33,7 @@ const startRouter = (routes, defaultLayout) => {
   routes.forEach((route) => {
     configureRoute(route.path, route.component, defaultLayout);
   });
-
   setNotFoundPage();
-
   routerPage.resolve();
 };
 
