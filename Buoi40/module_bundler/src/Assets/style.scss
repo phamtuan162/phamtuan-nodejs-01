@@ -1,0 +1,19 @@
+#app {
+  a {
+    text-decoration: none;
+  }
+  ul,
+  li {
+    list-style: none;
+    padding-left: 0;
+  }
+  header {
+    border-bottom: 1px solid #ccc;
+    a {
+      color: red;
+    }
+  }
+  footer {
+    color: green;
+  }
+}

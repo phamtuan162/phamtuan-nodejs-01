@@ -1,5 +1,6 @@
 import { handleLogout } from "./function.js";
 import { renderLogin } from "./renderLogin.js";
+import { route } from "./router.js";
 const headerInner = document.querySelector(".header__inner");
 export const renderHeader = async () => {
   headerInner.innerText = "";
@@ -17,12 +18,15 @@ export const renderHeader = async () => {
       handleLogout(e);
     });
   } else {
-    const btnLogin = document.createElement("button");
+    const btnLogin = document.createElement("a");
+    btnLogin.href = "./login";
+    btnLogin.style.textDecoration = "none";
     btnLogin.innerText = "Đăng nhập";
     btnLogin.classList.add("btn");
     headerInner.append(btnLogin);
     btnLogin.addEventListener("click", (e) => {
       e.preventDefault();
+      // route(e);
       btnLogin.remove();
       renderLogin();
     });

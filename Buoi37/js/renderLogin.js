@@ -2,6 +2,7 @@ import { renderRegister } from "./renderRegister.js";
 import { toast } from "./toastMessage.js";
 import { getBlogs, handleLogin } from "./function.js";
 import { renderHeader } from "./renderHeader.js";
+import { route } from "./router.js";
 
 const blogEl = document.querySelector(".blogs .container");
 
@@ -52,6 +53,7 @@ export const renderLogin = async (email = "") => {
   blogEl.innerHTML = loginHtml;
   const aEl = document.querySelector(".form-inner .link ");
   aEl.addEventListener("click", async (e) => {
+    // route(e);
     await renderHeader();
     await getBlogs();
   });
