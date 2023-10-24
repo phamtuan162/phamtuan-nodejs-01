@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../Assets/Style.scss";
+import "../Assets/style.scss";
 
 export const DefaultLayout = () => {
   return `
