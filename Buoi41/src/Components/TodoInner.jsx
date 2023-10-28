@@ -16,6 +16,7 @@ export const TodoInner = () => {
     setLoading(true);
     getTodo().then((data) => {
       const listTodo = data.listTodo;
+      console.log(listTodo);
       setLoading(false);
       setTodos(listTodo);
     });

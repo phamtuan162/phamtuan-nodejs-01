@@ -21,10 +21,7 @@ function App() {
 
   return (
     <>
-      <div className="todo">
-        {!email && <Loading />}
-        <TodoInner />
-      </div>
+      <div className="todo">{email ? <TodoInner /> : <Loading />}</div>
       <ToastContainer />
     </>
   );
