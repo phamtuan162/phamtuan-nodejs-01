@@ -37,6 +37,7 @@ li {
     font-size: 2rem;
   }
   .form-add {
+    position: relative;
     max-width: 384px;
     width: 100%;
   }
@@ -61,7 +62,8 @@ li {
       color: #ccc;
     }
   }
-  .btn-add {
+  .btn-add,
+  .btn-search {
     padding: 8px 16px;
     border-radius: 4px;
     font-size: 1.8rem;
@@ -71,6 +73,12 @@ li {
     border: none;
     color: #fff;
     flex-shrink: 0;
+  }
+  .btn-search {
+    position: absolute;
+    background-color: #f97316;
+    right: -20px;
+    translate: 100%;
   }
   .todo-list {
     display: flex;
@@ -106,6 +114,7 @@ li {
       .btn-cancel {
         background-color: #f97316;
       }
+
       .completed {
         display: flex;
         gap: 10px;

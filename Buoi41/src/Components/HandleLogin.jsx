@@ -1,35 +1,43 @@
 import { toast } from "react-toastify";
 import { getApiKey } from "../config/todoApi";
 
-export const handleLogin = async (setEmail) => {
+export const handleLogin = async (setLoading, setEmail) => {
   const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zAZ0-9.-]+\.[a-zA-Z]{2,}$/;
   let enteredEmail = localStorage.getItem("email");
 
   if (!enteredEmail) {
-    enteredEmail = prompt("Please enter your email:", "example@example.com");
-  }
-
-  if (emailPattern.test(enteredEmail)) {
-    const checkEmail = await getApiKey(enteredEmail);
-    if (checkEmail) {
-      const username = enteredEmail.split("@")[0];
-      setEmail(enteredEmail);
-      localStorage.setItem("email", enteredEmail);
-      toast.success(`Chào mừng bạn đã quay trở lại ${username}`);
-    } else {
-      await toast.error("Email không tồn tại", {
+    enteredEmail = prompt(
+      "Xin vui lòng nhập email của bạn:",
+      "example@example.com"
+    );
+    if (emailPattern.test(enteredEmail)) {
+      getApiKey(enteredEmail).then((checkEmail) => {
+        if (checkEmail) {
+          const username = enteredEmail.split("@")[0];
+          localStorage.setItem("email", enteredEmail);
+          setLoading(false);
+          setEmail(enteredEmail);
+          toast.success(`Chào mừng bạn đã quay trở lại ${username}`);
+        } else {
+          toast.error("Email không tồn tại", {
+            onClose: () => {
+              handleLogin(setLoading, setEmail);
+            },
+          });
+        }
+      });
+    } else if (enteredEmail === "") {
+      toast.error("Nhập email", {
         onClose: () => {
-          handleLogin(setEmail);
+          handleLogin(setLoading, setEmail);
         },
       });
-      localStorage.removeItem("email");
+    } else {
+      toast.error("Email không đúng định dạng", {
+        onClose: () => {
+          handleLogin(setLoading, setEmail);
+        },
+      });
     }
-  } else {
-    await toast.error("Email không đúng định dạng", {
-      onClose: () => {
-        handleLogin(setEmail);
-      },
-    });
-    localStorage.removeItem("email");
   }
 };

@@ -11,103 +11,83 @@ const handleApiError = () => {
   });
 };
 
+const checkApiKey = () => {
+  const apiKey = localStorage.getItem("apiKey");
+  if (!apiKey) {
+    return false;
+  }
+  return apiKey;
+};
+
 export const getApiKey = async (email) => {
-  if (email) {
-    const { data, response } = await client.get(`/api-key?email=${email}`);
-    if (response.ok) {
-      const apiKey = data.data.apiKey;
-      localStorage.setItem("apiKey", apiKey);
-      return true;
-    } else {
-      return false;
-    }
+  if (!email) return false;
+
+  const { data, response } = await client.get(`/api-key?email=${email}`);
+  if (response.ok) {
+    localStorage.setItem("apiKey", data.data.apiKey);
+    return true;
+  } else {
+    return false;
   }
 };
+
 export const getTodo = async () => {
-  const apiKey = localStorage.getItem("apiKey");
-  if (apiKey) {
-    const { data, response } = await client.get(`/todos`, apiKey);
-    if (response.ok) {
-      return data.data;
-    } else {
-      localStorage.removeItem("apiKey");
-      const email = localStorage.getItem("email");
-      getApiKey(email).then((check) => {
-        if (check) {
-          getTodo();
-        } else {
-          handleApiError();
-        }
-      });
-    }
+  const apiKey = checkApiKey();
+  if (!apiKey) return;
+
+  const { data, response } = await client.get("/todos", apiKey);
+  if (response.ok) {
+    return data;
   }
 };
 
 export const postTodo = async (body) => {
-  const apiKey = localStorage.getItem("apiKey");
-  if (apiKey) {
-    const { data, response } = await client.post(`/todos`, body, apiKey);
-    const { message } = data;
-    if (response.ok) {
-      toast.success(message);
-      return data.data;
-    } else {
-      toast.error(message);
-      localStorage.removeItem("apiKey");
-      const email = localStorage.getItem("email");
-      getApiKey(email).then((check) => {
-        if (check) {
-          postTodo(body);
-        } else {
-          handleApiError();
-        }
-      });
-    }
+  const apiKey = checkApiKey();
+  if (!apiKey) return;
+
+  const { data, response } = await client.post("/todos", body, apiKey);
+  if (response.ok) {
+    toast.success(data.message);
+    return data;
+  } else {
+    handleApiError();
   }
 };
 
 export const updateTodo = async (id, body) => {
-  const apiKey = localStorage.getItem("apiKey");
-  if (apiKey) {
-    const { data, response } = await client.patch(`/todos/${id}`, body, apiKey);
-    const { message } = data;
-    if (response.ok) {
-      toast.success(message);
-      return data.data;
-    } else {
-      toast.error(message);
-      localStorage.removeItem("apiKey");
-      const email = localStorage.getItem("email");
-      getApiKey(email).then((check) => {
-        if (check) {
-          updateTodo(id, body);
-        } else {
-          handleApiError();
-        }
-      });
-    }
+  const apiKey = checkApiKey();
+  if (!apiKey) return;
+
+  const { data, response } = await client.patch(`/todos/${id}`, body, apiKey);
+  if (response.ok) {
+    toast.success(data.message);
+    return data;
+  } else {
+    handleApiError();
   }
 };
 
 export const deleteTodo = async (id) => {
-  const apiKey = localStorage.getItem("apiKey");
-  if (apiKey) {
-    const { response, data } = await client.delete(`/todos/${id}`, apiKey);
-    const { message } = data;
-    if (response.ok) {
-      toast.success(message);
-      return data.data;
-    } else {
-      toast.error(message);
-      localStorage.removeItem("apiKey");
-      const email = localStorage.getItem("email");
-      getApiKey(email).then((check) => {
-        if (check) {
-          deleteTodo(id);
-        } else {
-          handleApiError();
-        }
-      });
-    }
+  const apiKey = checkApiKey();
+  if (!apiKey) return;
+
+  const { response, data } = await client.delete(`/todos/${id}`, apiKey);
+  if (response.ok) {
+    toast.success(data.message);
+    return data;
+  } else {
+    handleApiError();
+  }
+};
+
+export const searchTodo = async (value) => {
+  const apiKey = checkApiKey();
+  if (!apiKey) return;
+
+  const { response, data } = await client.get(`/todos?q=${value}`, apiKey);
+  if (response.ok) {
+    return data;
+  } else {
+    handleApiError();
   }
 };
