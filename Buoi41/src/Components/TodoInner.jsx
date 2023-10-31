@@ -18,20 +18,6 @@ export const TodoInner = ({ setLoading }) => {
   const debouncedSearch = useDebounce(search);
   useEffect(() => {
     fetchData();
-  }, []);
-
-  useEffect(() => {
-    setLoading(true);
-    const fetchData = async () => {
-      searchTodo(debouncedSearch).then((data) => {
-        setLoading(false);
-        if (data) {
-          const listTodo = data.data.listTodo;
-          setTodos(listTodo);
-        }
-      });
-    };
-    fetchData();
   }, [debouncedSearch]);
 
   const fetchData = async () => {

@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 export function Todo({ todo, handleUpdateTodo, handleDeleteTodo }) {
   const { todo: value, isCompleted, _id: todoId } = todo;
@@ -23,17 +23,17 @@ export function Todo({ todo, handleUpdateTodo, handleDeleteTodo }) {
   };
   const handleEditSave = () => {
     if (inputValue) {
+      setIsEditing(false);
       handleUpdateTodo(todoId, {
         todo: inputValue,
         isCompleted: completed,
       });
     } else {
-      const shouldDelete = window.confirm(
-        "Dữ liệu trống nếu vẫn cập nhật thì sẽ xóa đi "
-      );
-      if (shouldDelete) {
-        handleDeleteTodo(todoId);
-      }
+      toast.warning("Nếu ô nhập trống sẽ tự chuyển thành chế độ xóa", {
+        onClose: () => {
+          handleDeleteTodo(todoId);
+        },
+      });
     }
   };
   return (
