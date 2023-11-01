@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { getApiKey } from "../config/todoApi";
 import { toast } from "react-toastify";
 let isSearch = false;
-export function TodoForm({ handleAddTodo, setSearch, search }) {
+export function TodoForm({ handleAddTodo, setSearch }) {
   const [value, setValue] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
