@@ -5,7 +5,8 @@ const { LIMIT } = config;
 export const handleApiError = () => {
   toast.error("Lỗi cần reload lại trang", {
     onClose: () => {
-      localStorage.clear();
+      localStorage.removeItem("apiKey");
+      localStorage.removeItem("email");
       window.location.reload();
     },
   });
@@ -56,6 +57,7 @@ export const postOrder = async (body) => {
   const apiKey = checkApiKey();
   if (!apiKey) return;
   const { data, response } = await client.post(`/orders`, body, apiKey);
+  console.log(data);
   if (response.ok) {
     return data.data;
   } else {

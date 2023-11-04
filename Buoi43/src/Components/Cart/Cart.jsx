@@ -1,8 +1,10 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../App";
-export default function Cart({ setCart }) {
-  const { cart } = useContext(AppContext);
-
+import { getProducts, postOrder } from "../../config/shopApi";
+import { toast } from "react-toastify";
+export default function Cart() {
+  const { cart, setCart } = useContext(AppContext);
+  const { products, setProducts } = useContext(AppContext);
   const handleChange = (e, productId) => {
     const updatedCart = [...cart];
     const newQuantity = parseInt(e.target.value);
@@ -22,6 +24,22 @@ export default function Cart({ setCart }) {
     localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
 
+  const handlePayment = () => {
+    const orderData = cart.map((item) => ({
+      productId: item._id,
+      quantity: item.quantity,
+    }));
+    postOrder(orderData).then(async (data) => {
+      if (data) {
+        toast.info("Thanh toán thành công");
+        localStorage.removeItem("cart");
+        setCart([]);
+        const newProducts = await getProducts();
+        setProducts(newProducts);
+      }
+    });
+  };
+
   const TotalQuantity = () => {
     const totalQuantity = cart.reduce(
       (total, item) => total + item.quantity,
@@ -38,47 +56,57 @@ export default function Cart({ setCart }) {
     return totalPrice;
   };
   return cart.length > 0 ? (
-    <table className="cart">
-      <thead>
-        <tr>
-          <th style={{ width: "30%" }}>Hình ảnh</th>
-          <th style={{ width: "20%" }}>Tên sản phẩm</th>
-          <th style={{ width: "20%" }}>Số lượng</th>
-          <th style={{ width: "10%" }}>Còn lại</th>
-          <th style={{ width: "20%" }}>Giá tiền</th>
-        </tr>
-      </thead>
-      <tbody>
-        {cart.map(({ _id, name, quantity, price, image, left }) => {
-          return (
-            <tr key={_id}>
-              <td>
-                <img src={image} alt="" />
-              </td>
-              <td>{name}</td>
-              <td>
-                <input
-                  type="number"
-                  value={quantity}
-                  onChange={(e) => {
-                    handleChange(e, _id);
-                  }}
-                />
-              </td>
-              <td>{left}</td>
-              <td>{price * quantity}$</td>
-            </tr>
-          );
-        })}
-      </tbody>
-      <tfoot>
-        <tr>
-          <td colSpan={2}>Total</td>
-          <td colSpan={2}>{TotalQuantity()}</td>
-          <td>{TotalPrice()}$</td>
-        </tr>
-      </tfoot>
-    </table>
+    <>
+      <table className="cart">
+        <thead>
+          <tr>
+            <th style={{ width: "30%" }}>Hình ảnh</th>
+            <th style={{ width: "20%" }}>Tên sản phẩm</th>
+            <th style={{ width: "20%" }}>Số lượng</th>
+            <th style={{ width: "10%" }}>Còn lại</th>
+            <th style={{ width: "20%" }}>Giá tiền</th>
+          </tr>
+        </thead>
+        <tbody>
+          {cart.map(({ _id, name, quantity, price, image, left }) => {
+            return (
+              <tr key={_id}>
+                <td>
+                  <img src={image} alt="" />
+                </td>
+                <td>{name}</td>
+                <td>
+                  <input
+                    type="number"
+                    value={quantity}
+                    onChange={(e) => {
+                      handleChange(e, _id);
+                    }}
+                  />
+                </td>
+                <td>{left}</td>
+                <td>{price * quantity}$</td>
+              </tr>
+            );
+          })}
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colSpan={2}>Total</td>
+            <td colSpan={2}>{TotalQuantity()}</td>
+            <td>{TotalPrice()}$</td>
+          </tr>
+        </tfoot>
+      </table>
+      <button
+        type="button"
+        className="btn"
+        style={{ marginRight: "auto", fontSize: "2rem" }}
+        onClick={handlePayment}
+      >
+        Thanh Toán
+      </button>
+    </>
   ) : (
     <div style={{ marginTop: "20px", color: "#fff" }}>
       Chưa có sản phẩm nào trong giỏ hàng

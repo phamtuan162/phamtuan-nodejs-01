@@ -47,6 +47,7 @@ function App() {
   }, []);
 
   const handleAddToCart = async (product) => {
+    setLoading(true);
     const updatedCart = [...cart];
     const existingProduct = updatedCart.find(
       (item) => item._id === product._id
@@ -60,11 +61,14 @@ function App() {
     }
     setCart(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
+    setLoading(false);
     toast.success("Sản phẩm đã được thêm vào giỏ hàng!");
   };
 
   return (
-    <AppContext.Provider value={{ cart, products }}>
+    <AppContext.Provider
+      value={{ cart, products, setCart, setLoading, setProducts }}
+    >
       <div className="shop">
         <div className="shop-inner">
           <h1>Welcome to Shop!</h1>
@@ -72,11 +76,8 @@ function App() {
 
           {email !== "" && (
             <>
-              <ProductList
-                setLoading={setLoading}
-                handleAddToCart={handleAddToCart}
-              />
-              <Cart setCart={setCart} />
+              <ProductList handleAddToCart={handleAddToCart} />
+              <Cart />
             </>
           )}
         </div>
