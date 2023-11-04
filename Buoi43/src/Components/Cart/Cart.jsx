@@ -82,6 +82,7 @@ export default function Cart() {
                     onChange={(e) => {
                       handleChange(e, _id);
                     }}
+                    min={1}
                   />
                 </td>
                 <td>{left}</td>
