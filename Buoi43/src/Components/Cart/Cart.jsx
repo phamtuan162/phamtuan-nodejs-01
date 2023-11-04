@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 export default function Cart() {
   const { cart, setCart } = useContext(AppContext);
   const { products, setProducts } = useContext(AppContext);
+  const { setLoading } = useContext(AppContext);
   const handleChange = (e, productId) => {
     const updatedCart = [...cart];
     const newQuantity = parseInt(e.target.value);
@@ -25,12 +26,14 @@ export default function Cart() {
   };
 
   const handlePayment = () => {
+    setLoading(true);
     const orderData = cart.map((item) => ({
       productId: item._id,
       quantity: item.quantity,
     }));
     postOrder(orderData).then(async (data) => {
       if (data) {
+        setLoading(false);
         toast.info("Thanh toán thành công");
         localStorage.removeItem("cart");
         setCart([]);
