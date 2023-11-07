@@ -14,9 +14,10 @@ export default function Profile() {
   const sendEmail = async (e) => {
     e.preventDefault();
     dispatch({
-      type: "loading/switch",
+      type: "loading",
       payload: true,
     });
+
     await emailjs
       .sendForm(
         "service_xmx3j9l",
@@ -32,8 +33,9 @@ export default function Profile() {
           toast.error("Gửi yêu cầu trợ giúp thất bại. Vui lòng thử lại!");
         }
       );
+
     dispatch({
-      type: "loading/switch",
+      type: "loading",
       payload: false,
     });
   };
