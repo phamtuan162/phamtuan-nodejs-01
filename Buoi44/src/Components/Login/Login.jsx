@@ -4,14 +4,14 @@ import { useSelector } from "../../core/useSelector";
 import { toast } from "react-toastify";
 
 export default function Login() {
-  const { loginWithPopup } = useAuth0();
+  const { isAuthenticated, loginWithPopup } = useAuth0();
   const { dispatch } = useSelector();
 
   const handleLogin = async () => {
     dispatch({ type: "loading", payload: true });
     await loginWithPopup();
     dispatch({ type: "loading", payload: false });
-    toast.success("Đăng nhập thành công");
+    if (!isAuthenticated) toast.success("Đăng nhập thành công");
   };
   return (
     <div className="login">
