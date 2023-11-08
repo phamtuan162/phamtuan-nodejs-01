@@ -11,7 +11,7 @@ export default function Login() {
     dispatch({ type: "loading", payload: true });
     await loginWithPopup();
     dispatch({ type: "loading", payload: false });
-    if (isAuthenticated) toast.success("Đăng nhập thành công");
+    toast.success("Đăng nhập thành công");
   };
   return (
     <div className="login">
