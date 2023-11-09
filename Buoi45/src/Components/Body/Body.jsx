@@ -4,8 +4,9 @@ const Body = () => {
   const commonHeadingStyles = {
     fontSize: "4xl",
     lineHeight: "1.2",
-    fontWeight: "700",
+    fontWeight: "bold",
   };
+
   return (
     <Box p="16px">
       <Divider
@@ -14,16 +15,16 @@ const Body = () => {
         top="0px"
         left="0px"
         h="8px"
-        bg="#319795"
+        bg="primary.500"
         w={`${(6 / 8) * 100}%`}
       />
-      <Heading as="h2" {...commonHeadingStyles} color="#319795">
+      <Heading as="h2" {...commonHeadingStyles} color="primary.500">
         Chào mừng bạn đến với trò chơi đoán số!
       </Heading>
-      <Heading as="h2" {...commonHeadingStyles} color="#2c7a7b">
+      <Heading as="h2" {...commonHeadingStyles} color="primary.600">
         Còn 8/8 lần
       </Heading>
-      <Heading as="h2" {...commonHeadingStyles} color="#2c7a7b">
+      <Heading as="h2" {...commonHeadingStyles} color="primary.600">
         Bạn cần tìm kiếm một số từ 1 đến 99
       </Heading>
     </Box>
