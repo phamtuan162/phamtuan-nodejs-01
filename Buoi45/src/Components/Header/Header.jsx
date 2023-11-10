@@ -1,10 +1,7 @@
 import React from "react";
-import { useColorMode, IconButton, Box, Flex } from "@chakra-ui/react";
+import { IconButton, Box, Flex } from "@chakra-ui/react";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
-
-const Header = () => {
-  const { colorMode, toggleColorMode } = useColorMode();
-
+const Header = ({ colorMode, toggleColorMode }) => {
   return (
     <Box p="16px">
       <Flex justify="end">
