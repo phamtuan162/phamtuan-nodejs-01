@@ -35,6 +35,10 @@ export const rootReducer = (state, action) => {
         data: newData,
         timeCurrent: timeNewCurrent,
         message: action.payload.message,
+        isAddTable:
+          action.payload.number === state.randomNumber || timeNewCurrent === 0
+            ? true
+            : false,
       };
     }
 
@@ -45,6 +49,8 @@ export const rootReducer = (state, action) => {
         timeCurrent: action.payload,
         turn: data.length > 0 ? state.turn + 1 : 0,
         randomNumber: getRandomNumber(),
+        message: "Chào mừng bạn đến với trò chơi đoán số!",
+        isAddTable: false,
       };
     }
     case "table/remove": {

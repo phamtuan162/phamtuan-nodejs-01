@@ -25,8 +25,9 @@ const ResultTable = () => {
   const pageTableRef = useRef(0);
 
   const { state, dispatch } = useSelector();
-  const { turn } = state;
+  const { isAddTable } = state;
   const data = getLocalStorage("data") || [];
+
   useEffect(() => {
     pageTableRef.current = 0;
     const scrollWidth = tableRef.current?.clientWidth * pageTableRef.current;
@@ -36,7 +37,8 @@ const ResultTable = () => {
         behavior: "smooth",
       });
     }
-  }, [data]);
+  }, [isAddTable]);
+
   useEffect(() => {
     const currentTableRef = tableRef.current;
 
