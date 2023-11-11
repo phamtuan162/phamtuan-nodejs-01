@@ -11,7 +11,9 @@ const colors = {
 
 const theme = extendTheme({ colors });
 console.log(theme);
-ReactDOM.createRoot(document.getElementById("root")).render(
+ReactDOM.createRoot(document.getElementById("root"), {
+  identifierPrefix: "field-",
+}).render(
   <ChakraProvider theme={theme}>
     <App />
   </ChakraProvider>

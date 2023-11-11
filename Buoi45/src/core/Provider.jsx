@@ -4,12 +4,13 @@ import { getLocalStorage } from "../utils/localStorage";
 import getRandomNumber from "../helpers/getRandomNumber";
 import MAX_TIME from "../config/config";
 export const ProviderContext = createContext();
+const data = getLocalStorage("data");
+
 export default function Provider({ children }) {
   const initialState = {
-    loading: false,
-    turn: 0,
-    result: false,
-    data: getLocalStorage("data") || [],
+    turn: data.length || 0,
+    timeCurrent: MAX_TIME,
+    data: data || [],
     randomNumber: getRandomNumber(),
   };
   const [state, dispatch] = useReducer(rootReducer, initialState);

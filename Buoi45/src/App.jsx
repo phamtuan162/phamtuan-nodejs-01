@@ -5,7 +5,6 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Provider from "./core/Provider";
 import { useColorMode } from "@chakra-ui/react";
-import Form from "./Components/Form/Form";
 
 function App() {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -17,7 +16,7 @@ function App() {
     <Provider>
       <Header colorMode={colorMode} toggleColorMode={toggleColorMode} />
       <Body />
-      <Form />
+
       <ToastContainer
         position="bottom-right"
         autoClose="3000"

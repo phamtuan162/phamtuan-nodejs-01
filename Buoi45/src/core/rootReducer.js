@@ -1,30 +1,57 @@
-import { setLocalStorage, getLocalStorage } from "../utils/localStorage";
+import {
+  setLocalStorage,
+  getLocalStorage,
+  clearLocalStorage,
+} from "../utils/localStorage";
+import getRandomNumber from "../helpers/getRandomNumber";
+import MAX_TIME from "../config/config";
 export const rootReducer = (state, action) => {
   switch (action.type) {
-    case "loading": {
-      return {
-        ...state,
-        loading: action.payload,
-      };
-    }
     case "form/submit": {
       const newData = [...state.data];
+      const timeNewCurrent = state.timeCurrent - 1;
       newData[state.turn] = Array.isArray(newData[state.turn])
         ? [...newData[state.turn]]
         : [];
-      newData[state.turn].push({
+
+      const newItem = {
         ...action.payload,
         time: newData[state.turn].length + 1,
-      });
-      setLocalStorage("data", newData);
+        right: action.payload.number === state.randomNumber ? true : undefined,
+      };
+
+      newData[state.turn].push(newItem);
+
+      if (
+        action.payload.number === state.randomNumber ||
+        timeNewCurrent === 0
+      ) {
+        setLocalStorage("data", newData);
+      }
 
       return {
         ...state,
-        turn:
-          state.randomNumber === action.payload.number
-            ? state.turn + 1
-            : state.turn,
         data: newData,
+        timeCurrent: timeNewCurrent,
+      };
+    }
+
+    case "form/playAgain": {
+      const data = getLocalStorage("data");
+      return {
+        ...state,
+        timeCurrent: action.payload,
+        turn: data.length > 0 ? state.turn + 1 : 0,
+        randomNumber: getRandomNumber(),
+      };
+    }
+    case "table/remove": {
+      clearLocalStorage("data");
+      return {
+        ...state,
+        data: [],
+        timeCurrent: MAX_TIME,
+        turn: 0,
       };
     }
 

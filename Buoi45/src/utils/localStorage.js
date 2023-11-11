@@ -13,7 +13,6 @@ export const setLocalStorage = (key, value) => {
   return value;
 };
 
-// export const clearLocalStorage = (key) => {
-//   localStorage.removeItem(key);
-//   return data;
-// };
+export const clearLocalStorage = (key) => {
+  localStorage.removeItem(key);
+};

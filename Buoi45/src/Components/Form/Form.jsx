@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useId } from "react";
 import {
   Button,
   FormLabel,
@@ -13,8 +13,9 @@ import { toast } from "react-toastify";
 const Form = () => {
   const inputRef = useRef(null);
   const buttonRef = useRef(null);
+  const id = useId();
   const { state, dispatch } = useSelector();
-  const { randomNumber, data } = state;
+  const { randomNumber, data, timeCurrent } = state;
   const [playAgain, setPlayAgain] = useState(false);
   const [InputValue, setInputValue] = useState();
   useEffect(() => {
@@ -43,7 +44,6 @@ const Form = () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [playAgain]);
-  console.log(data);
   console.log(randomNumber);
 
   const handleSubmit = (e) => {
@@ -55,23 +55,36 @@ const Form = () => {
       return;
     }
 
+    let message;
     if (number === randomNumber) {
       setPlayAgain(true);
-      toast.success("Bạn đoán đúng số rồi");
+      message = "Bạn đoán đúng số rồi";
+      toast.success(message);
     } else {
-      toast.warning(
+      message =
         number > randomNumber
           ? "Bạn cần giảm xuống 1 chút"
-          : "Bạn cần tăng thêm 1 chút"
-      );
+          : "Bạn cần tăng thêm 1 chút";
+
+      if (timeCurrent - 1 === 0) {
+        setPlayAgain(true);
+        message = "Hết lượt đoán, bạn không đoán đúng số";
+        toast.error(message);
+      } else {
+        toast.warning(message);
+      }
     }
+
     dispatch({
       type: "form/submit",
       payload: { number },
     });
   };
 
-  const handlePlayAgain = (e) => {};
+  const handlePlayAgain = (e) => {
+    setPlayAgain(false);
+    dispatch({ type: "form/playAgain", payload: MAX_TIME });
+  };
 
   const handleChange = (e) => {
     const regex = new RegExp(`^[0-9]{0,${(RANGE_NUMBER - 1 + "").length}}$`);
@@ -94,8 +107,11 @@ const Form = () => {
         <form onSubmit={handleSubmit}>
           <Flex direction="column" gap="20px" align="center">
             <FormControl>
-              <FormLabel color="primary.500">Hãy thử nhập 1 số</FormLabel>
+              <FormLabel htmlFor={id} color="primary.500">
+                Hãy thử nhập 1 số
+              </FormLabel>
               <Input
+                id={id}
                 ref={inputRef}
                 type="text"
                 name="number"
