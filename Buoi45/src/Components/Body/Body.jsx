@@ -5,8 +5,9 @@ import { useSelector } from "../../core/useSelector.js";
 import ResultTable from "../ResultTable/ResultTable.jsx";
 import Form from "../Form/Form.jsx";
 const Body = () => {
-  const { state, dispatch } = useSelector();
-  const { data, turn, timeCurrent } = state;
+  const { state } = useSelector();
+  const { timeCurrent } = state;
+  const { message } = state;
   const commonHeadingStyles = {
     fontSize: "4xl",
     lineHeight: "1.2",
@@ -25,7 +26,7 @@ const Body = () => {
         w={`${(timeCurrent / MAX_TIME) * 100}%`}
       />
       <Heading as="h2" {...commonHeadingStyles} color="primary.500">
-        Chào mừng bạn đến với trò chơi đoán số!
+        {message}
       </Heading>
       <Heading as="h2" {...commonHeadingStyles} color="primary.600">
         Còn {timeCurrent}/{MAX_TIME} lần

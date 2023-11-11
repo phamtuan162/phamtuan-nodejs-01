@@ -27,49 +27,46 @@ const ResultTable = () => {
   const { state, dispatch } = useSelector();
   const { turn } = state;
   const data = getLocalStorage("data") || [];
-  // useEffect(() => {
-  //   if (result === "CORRECT" || turn === 0) {
-  //     pageTableRef.current = 0;
-  //     const scrollWidth = tableRef.current?.clientWidth * pageTableRef.current;
-  //     if (tableRef.current) {
-  //       tableRef.current.scroll({
-  //         left: scrollWidth,
-  //         behavior: "smooth",
-  //       });
-  //     }
-  //   }
-  // }, [data, state]);
   useEffect(() => {
-    function handleScrollTable(e) {
+    pageTableRef.current = 0;
+    const scrollWidth = tableRef.current?.clientWidth * pageTableRef.current;
+    if (tableRef.current) {
+      tableRef.current.scroll({
+        left: scrollWidth,
+        behavior: "smooth",
+      });
+    }
+  }, [data]);
+  useEffect(() => {
+    const currentTableRef = tableRef.current;
+
+    function handleKeyDown(e) {
       if (e.key === "ArrowRight" && pageTableRef.current < data?.length - 1) {
         pageTableRef.current += 1;
       } else if (e.key === "ArrowLeft" && pageTableRef.current > 0) {
         pageTableRef.current -= 1;
       }
 
-      const scrollWidth = tableRef.current.clientWidth * pageTableRef.current;
-      tableRef.current.scroll({
-        left: scrollWidth,
+      currentTableRef.scroll({
+        left: currentTableRef.clientWidth * pageTableRef.current,
         behavior: "smooth",
       });
     }
-
-    function handlePageTable() {
-      const scrollLeft = tableRef.current.scrollLeft;
+    function handleScroll() {
+      const scrollLeft = currentTableRef.scrollLeft;
       pageTableRef.current = Math.round(
-        scrollLeft / tableRef.current.clientWidth
+        scrollLeft / currentTableRef.clientWidth
       );
     }
-
-    if (tableRef.current) {
-      document.addEventListener("keydown", handleScrollTable);
-      tableRef.current.addEventListener("scroll", handlePageTable);
+    if (currentTableRef) {
+      document.addEventListener("keydown", handleKeyDown);
+      currentTableRef.addEventListener("scroll", handleScroll);
     }
 
     return () => {
-      if (tableRef.current) {
-        document.removeEventListener("keydown", handleScrollTable);
-        tableRef.current.removeEventListener("scroll", handlePageTable);
+      if (currentTableRef) {
+        document.removeEventListener("keydown", handleKeyDown);
+        currentTableRef.addEventListener("scroll", handleScroll);
       }
     };
   }, [data]);
@@ -116,11 +113,14 @@ const ResultTable = () => {
                     {item.map(({ number, time, right }, index) => {
                       return (
                         <Tr key={index}>
-                          <Td>
+                          <Td p="0px">
                             <Text textAlign="center">{time}</Text>
                           </Td>
-                          <Td textAlign="center">
-                            <Text color={right ? "primary.500" : "#822727"}>
+                          <Td p="0px">
+                            <Text
+                              textAlign="center"
+                              color={right ? "primary.500" : "#822727"}
+                            >
                               {number}
                             </Text>
                           </Td>
@@ -129,7 +129,7 @@ const ResultTable = () => {
                     })}
                   </Tbody>
                   <TableCaption fontSize="md">
-                    Lần chơi thứ: {index + 1} / {data.length}
+                    Lần chơi thứ: {data.length - index} / {data.length}
                   </TableCaption>
                   <TableCaption fontSize="md">
                     Số lần nhập tối đa: {MAX_TIME}

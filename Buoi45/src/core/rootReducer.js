@@ -18,6 +18,7 @@ export const rootReducer = (state, action) => {
         ...action.payload,
         time: newData[state.turn].length + 1,
         right: action.payload.number === state.randomNumber ? true : undefined,
+        message: undefined,
       };
 
       newData[state.turn].push(newItem);
@@ -33,6 +34,7 @@ export const rootReducer = (state, action) => {
         ...state,
         data: newData,
         timeCurrent: timeNewCurrent,
+        message: action.payload.message,
       };
     }
 

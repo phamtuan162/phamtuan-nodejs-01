@@ -49,13 +49,14 @@ const Form = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const number = +inputRef.current.value;
+    let message;
 
     if (!number) {
-      toast.warning("Nhập số muốn đoán");
+      message = "Nhập số muốn đoán";
+      toast.warning(message);
       return;
     }
 
-    let message;
     if (number === randomNumber) {
       setPlayAgain(true);
       message = "Bạn đoán đúng số rồi";
@@ -77,7 +78,7 @@ const Form = () => {
 
     dispatch({
       type: "form/submit",
-      payload: { number },
+      payload: { number, message },
     });
   };
 

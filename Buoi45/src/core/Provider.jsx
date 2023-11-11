@@ -12,6 +12,7 @@ export default function Provider({ children }) {
     timeCurrent: MAX_TIME,
     data: data || [],
     randomNumber: getRandomNumber(),
+    message: "Chào mừng bạn đến với trò chơi đoán số!",
   };
   const [state, dispatch] = useReducer(rootReducer, initialState);
   return (
