@@ -2,6 +2,7 @@ import { legacy_createStore as createStore } from "redux";
 import {
   setLocalStorage,
   getLocalStorage,
+  clearLocalStorage,
 } from "../../../Buoi45/src/utils/localStorage";
 const initialState = {
   carts: getLocalStorage("carts") || [],
@@ -52,6 +53,10 @@ const rootReducer = (state = initialState, action) => {
       setLocalStorage("carts", cartNew);
 
       return { ...state, carts: cartNew };
+    }
+    case "cart/deleteAll": {
+      clearLocalStorage("carts");
+      return { ...state, carts: [] };
     }
     default:
       return state;

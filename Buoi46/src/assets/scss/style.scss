@@ -16,6 +16,8 @@ a {
   text-decoration: none;
 }
 #root {
+  margin-bottom: 64px;
+
   .header {
     background-color: #252b48;
     position: fixed;
@@ -74,6 +76,7 @@ a {
         justify-content: center;
         gap: 20px;
       }
+
       .product-item {
         flex-basis: calc(100% / 4 - 20px);
         padding: 24px;
@@ -247,6 +250,138 @@ a {
           }
         }
       }
+      .total-price-cart {
+        margin: 16px 0 32px;
+        font-size: 3.2rem;
+        line-height: 4.8rem;
+        font-weight: 400;
+        .right {
+          font-size: 3.4rem;
+          line-height: 5rem;
+          &::before {
+            content: "$";
+            color: #9d174d;
+          }
+        }
+      }
+      .btn-checkout {
+        border: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 6px 12px;
+        font-size: 1.6rem;
+        line-height: 2.4rem;
+        font-weight: 400;
+        background-color: rgb(25, 135, 84);
+        color: #fff;
+        border-radius: 6px;
+        cursor: pointer;
+        width: 40rem;
+      }
     }
+    .product-detail {
+      margin: 40px auto 0;
+      width: 80%;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 20px;
+      img {
+        display: block;
+        max-height: 480px;
+        flex-shrink: 0;
+        flex-basis: calc(100% / 2 - 10px);
+        padding: 16px;
+        border-radius: 10px;
+        box-shadow: 0 0 1px 3px #9d174d;
+        object-fit: contain;
+      }
+      .details {
+        flex-basis: calc(100% / 2 - 10px);
+        padding: 6px;
+        text-align: left;
+        .brand {
+          margin: 20px 0;
+          color: #9d174d;
+          font-size: 3.2rem;
+          line-height: 3.8rem;
+        }
+        .title {
+          font-size: 2.2rem;
+          line-height: 2.7rem;
+        }
+        .desc {
+          margin-top: 20px;
+          font-size: 1.8rem;
+          line-height: 2.1rem;
+          font-weight: 600;
+        }
+        .category {
+          display: block;
+          margin-top: 20px;
+          font-size: 1.4rem;
+          line-height: 2.2rem;
+          font-weight: 400;
+        }
+        .price {
+          margin-top: 20px;
+          font-size: 4rem;
+          font-weight: 600;
+          line-height: 4.8rem;
+          &::before {
+            content: "$";
+            color: #9d174d;
+          }
+        }
+        .action {
+          margin-top: 20px;
+          display: flex;
+          gap: 20px;
+          button {
+            padding: 8px;
+            line-height: 2.4rem;
+            color: #fff;
+            border: none;
+            font-weight: 400;
+            font-size: 1.6rem;
+            line-height: 2.4rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #9d174d;
+            border-radius: 5px;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+
+  .pagination {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    cursor: pointer;
+  }
+  .previous,
+  .next {
+    color: #9d174d;
+  }
+  .active {
+    color: #9d174d;
+    font-size: 2rem;
+  }
+
+  .page-item {
+    list-style: none;
+    padding: 2px 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2px;
   }
 }
