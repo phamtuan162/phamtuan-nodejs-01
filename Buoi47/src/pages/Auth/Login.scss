@@ -1,0 +1,22 @@
+.login {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  h1 {
+    margin: 20px 0;
+    font-size: 2rem;
+    line-height: 3rem;
+    font-weight: 600;
+  }
+  input {
+    padding: 10px;
+    font-size: 2rem;
+    line-height: 3rem;
+    font-weight: 400;
+    background-color: rgb(94, 234, 212);
+    border: none;
+  }
+}

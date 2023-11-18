@@ -40,8 +40,9 @@ const ProductList = () => {
   };
   const handlePageClick = (e) => {
     setLoading(true);
-    navigate(`/product/${+e.selected + 1}`);
-    setNumberPage(+e.selected + 1);
+    const nextPage = +e.selected + 1;
+    navigate(`/product/${nextPage}`);
+    setNumberPage(nextPage);
   };
   return (
     <div className="products">
