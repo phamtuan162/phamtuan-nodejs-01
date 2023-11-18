@@ -1,5 +1,5 @@
 export const client = {
-  serverApi: import.meta.env.VITE_SERVER_API,
+  serverApi: import.meta.env.VITE_KEY,
   setUrl: function (url) {
     this.serverApi = url;
   },
