@@ -2,7 +2,7 @@ import { client } from "../utils/clientUtils";
 import { checkApiKey } from "./checkApiKey";
 import { HandleApiError } from "./HandleApiError";
 export const getData = async () => {
-  const apiKey = checkApiKey();
+  const apiKey = await checkApiKey();
   if (!apiKey) return;
 
   const { data, response } = await client.get(`/tasks`, apiKey);

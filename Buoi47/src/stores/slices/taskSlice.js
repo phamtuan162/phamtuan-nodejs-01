@@ -1,5 +1,5 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getData } from "../../services/getData";
+import { createSlice } from "@reduxjs/toolkit";
+import { fetchData } from "../middleware/fetchData";
 const initialState = {
   tasks: localStorage.getItem("tasks") || [],
   status: "idle",
@@ -10,29 +10,20 @@ export const taskSlice = createSlice({
   initialState,
   reducers: {
     updates: (state, action) => {
-      state.tasks = action.payload;
+      state.tasks = action.payload.tasks;
     },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchTasks.pending, (state) => {
+      .addCase(fetchData.pending, (state) => {
         state.status = "pending";
       })
-      .addCase(fetchTasks.fulfilled, (state, action) => {
-        state.tasks = action.payload;
+      .addCase(fetchData.fulfilled, (state, action) => {
+        state.tasks = action.payload.tasks;
         state.status = "success";
       })
-      .addCase(fetchTasks.rejected, (state) => {
+      .addCase(fetchData.rejected, (state) => {
         state.status = "error";
       });
   },
-});
-
-export const fetchTasks = createAsyncThunk("fetchTasks", async () => {
-  const data = await getData();
-  if (data) {
-    return data.tasks;
-  } else {
-    return [];
-  }
 });

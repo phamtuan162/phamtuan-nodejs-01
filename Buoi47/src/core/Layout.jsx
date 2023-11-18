@@ -6,7 +6,10 @@ import { useEffect } from "react";
 function Layout() {
   const navigate = useNavigate();
   useEffect(() => {
-    navigate("/login");
+    const apiKey = localStorage.getItem("apiKey");
+    if (!apiKey) {
+      navigate("/login");
+    }
   }, []);
   return <Routes>{publicRoute}</Routes>;
 }

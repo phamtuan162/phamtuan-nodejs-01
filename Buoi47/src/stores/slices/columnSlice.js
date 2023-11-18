@@ -1,5 +1,5 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getData } from "../../services/getData";
+import { createSlice } from "@reduxjs/toolkit";
+import { fetchData } from "../middleware/fetchData";
 const initialState = {
   columns: localStorage.getItem("column") || [],
   status: "idle",
@@ -14,24 +14,15 @@ export const columnSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchColumns.pending, (state) => {
+      .addCase(fetchData.pending, (state) => {
         state.status = "pending";
       })
-      .addCase(fetchColumns.fulfilled, (state, action) => {
-        state.columns = action.payload;
+      .addCase(fetchData.fulfilled, (state, action) => {
+        state.columns = action.payload.columns;
         state.status = "success";
       })
-      .addCase(fetchColumns.rejected, (state) => {
+      .addCase(fetchData.rejected, (state) => {
         state.status = "error";
       });
   },
-});
-
-export const fetchColumns = createAsyncThunk("fetchColumns", async () => {
-  const data = await getData();
-  if (data) {
-    return data.columns;
-  } else {
-    return [];
-  }
 });
