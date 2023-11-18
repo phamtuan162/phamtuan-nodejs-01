@@ -1,5 +1,5 @@
 export const client = {
-  serverApi: import.meta.env.VITE_KEY,
+  serverApi: "https://api-exercise-trello.vercel.app/api/v1",
   setUrl: function (url) {
     this.serverApi = url;
   },
