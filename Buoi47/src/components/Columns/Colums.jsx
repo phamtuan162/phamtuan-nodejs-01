@@ -1,9 +1,22 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Tasks from "../Tasks/Tasks";
 import "./columns.scss";
+import { columnSlice } from "../../stores/slices/columnSlice";
+const { addColumn } = columnSlice.actions;
 function Colums() {
   const columns = useSelector((state) => state.column.columns);
-
+  const dispatch = useDispatch();
+  const HandleAddColumn = () => {
+    const column = `Column ${columns.length + 1}`;
+    const updatedColumns = [
+      ...columns,
+      {
+        columnName: column,
+        column: column.toLowerCase(),
+      },
+    ];
+    dispatch(addColumn(updatedColumns));
+  };
   console.log(columns);
   return (
     <div className="column-list">
@@ -57,7 +70,7 @@ function Colums() {
         })}
       </div>
 
-      <button className="btn-add">
+      <button className="btn-add" onClick={HandleAddColumn}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
