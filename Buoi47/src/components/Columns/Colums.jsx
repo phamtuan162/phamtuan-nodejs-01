@@ -6,17 +6,18 @@ const { addColumn } = columnSlice.actions;
 function Colums() {
   const columns = useSelector((state) => state.column.columns);
   const dispatch = useDispatch();
-  //   const HandleAddColumn = () => {
-  //     const column = `Column ${columns.length + 1}`;
-  //     const updatedColumns = [
-  //       ...columns,
-  //       {
-  //         columnName: column,
-  //         column: column.toLowerCase(),
-  //       },
-  //     ];
-  //     dispatch(addColumn(updatedColumns));
-  //   };
+  const HandleAddColumn = () => {
+    console.log(1);
+    // const column = `Column ${columns.length + 1}`;
+    // const updatedColumns = [
+    //   ...columns,
+    //   {
+    //     columnName: column,
+    //     column: column.toLowerCase(),
+    //   },
+    // ];
+    // dispatch(addColumn(updatedColumns));
+  };
   console.log(columns);
   return (
     <div className="column-list">
