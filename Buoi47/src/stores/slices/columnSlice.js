@@ -18,8 +18,10 @@ export const columnSlice = createSlice({
         state.status = "pending";
       })
       .addCase(fetchData.fulfilled, (state, action) => {
-        state.columns = action.payload.columns;
-        state.status = "success";
+        if (action.payload && action.payload.columns) {
+          state.columns = action.payload.columns;
+          state.status = "success";
+        }
       })
       .addCase(fetchData.rejected, (state) => {
         state.status = "error";

@@ -19,8 +19,10 @@ export const taskSlice = createSlice({
         state.status = "pending";
       })
       .addCase(fetchData.fulfilled, (state, action) => {
-        state.tasks = action.payload.tasks;
-        state.status = "success";
+        if (action.payload && action.payload.tasks) {
+          state.tasks = action.payload.tasks;
+          state.status = "success";
+        }
       })
       .addCase(fetchData.rejected, (state) => {
         state.status = "error";
