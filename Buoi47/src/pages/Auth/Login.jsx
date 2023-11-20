@@ -1,6 +1,6 @@
 import "./Login.scss";
 import { useRef, useState } from "react";
-import { getApiKey } from "../../helpers/getApiKey";
+import { getApiKey } from "../../services/getApiKey";
 import { useNavigate } from "react-router-dom";
 function Login() {
   const [email, setEmail] = useState("");
