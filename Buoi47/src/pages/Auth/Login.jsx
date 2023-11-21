@@ -2,6 +2,7 @@ import "./Login.scss";
 import { useRef, useState } from "react";
 import { getApiKey } from "../../services/getApiKey";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 function Login() {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
@@ -22,6 +23,7 @@ function Login() {
         const check = await getApiKey(email);
 
         if (check) {
+          toast.success("Đăng nhập thành công");
           navigate("/");
         }
       } else {

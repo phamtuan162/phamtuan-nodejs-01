@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import "./columns.scss";
 import { taskSlice } from "../../../stores/slices/taskSlice";
+import { columnSlice } from "../../../stores/slices/columnSlice";
 import { postTask } from "../../../services/postTask";
 import { toast } from "react-toastify";
 import Loading from "../../Loading/Loading";
@@ -10,37 +11,52 @@ import {
   horizontalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import Column from "./Column";
-
-const { updates } = taskSlice.actions;
+import { v4 as uuidv4 } from "uuid";
+import { setLocalStorage } from "../../../utils/localStorage";
+const { updateTask } = taskSlice.actions;
+const { updateColumn } = columnSlice.actions;
 function Colums({ columns }) {
-  const tasks = useSelector((state) => state.task.tasks);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
-  const HandleAddTask = (column) => {
+
+  const tasksOld = columns.reduce((acc, column) => {
+    const { columnName } = column;
+    const columnTasks = column.tasks.map(({ column, content }) => ({
+      column,
+      content,
+      columnName: columnName,
+    }));
+    return acc.concat(columnTasks);
+  }, []);
+  const HandleAddTask = async (column) => {
     setLoading(true);
     const taskNew = {
-      content: `Task ${tasks.length + 1}`,
-      columnName: column.columnName,
       column: column.column,
+      content: `Task ${tasksOld.length + 1}`,
+      columnName: column.columnName,
     };
-    const tasksOld = columns.reduce((acc, col) => {
-      const tasksForColumn = tasks
-        .filter((task) => task.column === col.column)
-        .map((task) => ({
-          content: task.content,
-          columnName: col.columnName,
-          column: task.column,
-        }));
+    const updatedTask = [...tasksOld, taskNew];
 
-      return [...acc, ...tasksForColumn];
-    }, []);
-    postTask([...tasksOld, taskNew]).then(async (data) => {
+    postTask(updatedTask).then(async (data) => {
       if (data) {
-        await dispatch(updates(data.tasks));
+        await dispatch(updateColumn(data.columns));
+        await dispatch(updateTask(data.tasks));
         setLoading(false);
         toast.success("Thêm task mới thành công");
       }
     });
+  };
+
+  const HandleAddColumn = async () => {
+    const column = parseInt(uuidv4().slice(0, 4), 16) % 10000;
+    const newColumn = {
+      column: `${column}`,
+      columnName: `Column ${columns.length + 1}`,
+      _id: uuidv4(),
+    };
+    const updatedColumn = [...columns, newColumn];
+    await dispatch(updateColumn(updatedColumn));
+    toast.success("Thêm column mới thành công");
   };
 
   return (
@@ -58,12 +74,13 @@ function Colums({ columns }) {
                   key={column._id}
                   column={column}
                   HandleAddTask={HandleAddTask}
+                  setLoading={setLoading}
                 />
               );
             })}
           </SortableContext>
         </div>
-        <button className="btn-add">
+        <button className="btn-add" onClick={HandleAddColumn}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

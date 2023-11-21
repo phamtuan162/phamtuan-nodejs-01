@@ -1,7 +1,17 @@
 import Tasks from "../Tasks/Tasks";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-function Column({ column, HandleAddTask }) {
+import { useState } from "react";
+import { getLocalStorage } from "../../../utils/localStorage";
+import { useDispatch } from "react-redux";
+import { columnSlice } from "../../../stores/slices/columnSlice";
+import { taskSlice } from "../../../stores/slices/taskSlice";
+import { toast } from "react-toastify";
+import { postTask } from "../../../services/postTask";
+const { updateTask } = taskSlice.actions;
+const { updateColumn } = columnSlice.actions;
+function Column({ column, HandleAddTask, setLoading }) {
+  const dispatch = useDispatch();
   const {
     attributes,
     listeners,
@@ -19,15 +29,39 @@ function Column({ column, HandleAddTask }) {
     opacity: isDragging ? 0.3 : undefined,
   };
 
+  const HandleRemoveColumn = async (column) => {
+    setLoading(true);
+    const tasks = getLocalStorage("tasks");
+    let columns = getLocalStorage("columns");
+
+    if (!tasks || !columns) {
+      setLoading(false);
+      return;
+    }
+
+    // postTask(tasksUpdate).then(async (data) => {
+    //   if (data) {
+    //     console.log(data);
+    //     await dispatch(updateColumn(data.columns));
+    //     await dispatch(updateTask(data.tasks));
+    //     setLoading(false);
+    //     toast.success("Xóa column thành công ");
+    //   }
+    // });
+  };
+
   return (
     <div ref={setNodeRef} style={dndKitCommonStyle} {...attributes}>
-      <div {...listeners} className="column-item" key={column._id}>
+      <div className="column-item" key={column._id} {...listeners}>
         <div className="column-item-header">
           <div className="column-name">
             <div className="edit">0</div>
             {column.columnName}
           </div>
-          <button className="btn-remove">
+          <button
+            className="btn-remove"
+            onClick={() => HandleRemoveColumn(column)}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -43,13 +77,13 @@ function Column({ column, HandleAddTask }) {
           </button>
         </div>
         <div className="column-item-body">
-          <Tasks column={column.column} />
+          <Tasks column={column} />
         </div>
-        <div className="column-item-footer">
-          <button
-            className="btn-add-task"
-            onClick={() => HandleAddTask(column)}
-          >
+        <div
+          className="column-item-footer"
+          onClick={() => HandleAddTask(column)}
+        >
+          <button className="btn-add-task">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"

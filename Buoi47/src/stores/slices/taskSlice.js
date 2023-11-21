@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchData } from "../middleware/fetchData";
-import { setLocalStorage } from "../../utils/localStorage";
+import { setLocalStorage, getLocalStorage } from "../../utils/localStorage";
 const initialState = {
-  tasks: localStorage.getItem("tasks") || [],
+  tasks: getLocalStorage("tasks") || [],
   status: "idle",
 };
 
@@ -10,9 +10,9 @@ export const taskSlice = createSlice({
   name: "task",
   initialState,
   reducers: {
-    updates: (state, action) => {
-      setLocalStorage("tasks", action.payload);
+    updateTask: (state, action) => {
       state.tasks = action.payload;
+      setLocalStorage("tasks", action.payload);
     },
   },
   extraReducers: (builder) => {

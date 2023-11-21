@@ -8,7 +8,10 @@ function Task({ task }) {
     transform,
     transition,
     isDragging,
-  } = useSortable({ id: task._id, data: { ...task, task_id: task._id } });
+  } = useSortable({
+    id: task._id,
+    data: { ...task, task_id: task._id },
+  });
   const dndKitTaskStyle = {
     transform: CSS.Translate.toString(transform),
     transition,

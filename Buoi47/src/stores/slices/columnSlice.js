@@ -1,15 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchData } from "../middleware/fetchData";
+import { getLocalStorage, setLocalStorage } from "../../utils/localStorage";
 const initialState = {
-  columns: localStorage.getItem("column") || [],
+  columns: getLocalStorage("columns") || [],
   status: "idle",
 };
 export const columnSlice = createSlice({
   name: "column",
   initialState,
   reducers: {
-    addColumn: (state, action) => {
+    updateColumn: (state, action) => {
       state.columns = action.payload;
+      setLocalStorage("columns", action.payload);
     },
   },
   extraReducers: (builder) => {
