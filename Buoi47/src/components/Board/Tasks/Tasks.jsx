@@ -5,7 +5,6 @@ import {
 } from "@dnd-kit/sortable";
 import "./tasks.scss";
 import Task from "./Task";
-import { getLocalStorage } from "../../../utils/localStorage";
 import { taskSlice } from "../../../stores/slices/taskSlice";
 import { postTask } from "../../../services/postTask";
 import { useDispatch, useSelector } from "react-redux";

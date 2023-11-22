@@ -1,6 +1,5 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { getLocalStorage } from "../../../utils/localStorage";
 function Task({ task, HandleRemoveTask }) {
   // const check = task._id.includes("placeholder-card");
   const {

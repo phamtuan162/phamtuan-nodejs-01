@@ -2,7 +2,6 @@ import Tasks from "../Tasks/Tasks";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { useState, useRef, useEffect } from "react";
-import { getLocalStorage } from "../../../utils/localStorage";
 import { useDispatch } from "react-redux";
 import { columnSlice } from "../../../stores/slices/columnSlice";
 import { taskSlice } from "../../../stores/slices/taskSlice";
@@ -80,8 +79,8 @@ function Column({ column, HandleAddTask, setLoading, tasksOld }) {
   return (
     <div ref={setNodeRef} style={dndKitCommonStyle} {...attributes}>
       <div className="column-item" key={column._id} {...listeners}>
-        <div className="column-item-header" onClick={() => HandleClick()}>
-          <div className="column-name">
+        <div className="column-item-header">
+          <div className="column-name" onClick={() => HandleClick()}>
             <div className="edit">0</div>
             {isEditing ? (
               <input

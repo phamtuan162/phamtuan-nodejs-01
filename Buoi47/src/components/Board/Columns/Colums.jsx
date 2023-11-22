@@ -13,7 +13,6 @@ import {
 import Column from "./Column";
 import { v4 as uuidv4 } from "uuid";
 import { getLocalStorage } from "../../../utils/localStorage";
-import { generatePlaceholderTask } from "../../../utils/generatePlaceHolderTask";
 
 const { updateTask } = taskSlice.actions;
 const { updateColumn } = columnSlice.actions;
