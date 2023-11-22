@@ -190,6 +190,7 @@ function Board() {
 
   const HandleDragEnd = (e) => {
     const { active, over } = e;
+    console.log(e);
     if (!over || !active) return;
     if (activeDragItemType === ACTIVE_DRAG_ITEM_TYPE.TASK) {
       const {

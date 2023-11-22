@@ -13,6 +13,18 @@ export const columnSlice = createSlice({
       state.columns = action.payload;
       setLocalStorage("columns", action.payload);
     },
+    editColumnName: (state, action) => {
+      state.columns = state.columns.map((column) => {
+        if (column._id === action.payload._id) {
+          return {
+            ...column,
+            columnName: action.payload.columnName,
+          };
+        }
+        return column;
+      });
+      setLocalStorage("columns", state.columns);
+    },
   },
   extraReducers: (builder) => {
     builder

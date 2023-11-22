@@ -1,7 +1,7 @@
 import Tasks from "../Tasks/Tasks";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { getLocalStorage } from "../../../utils/localStorage";
 import { useDispatch } from "react-redux";
 import { columnSlice } from "../../../stores/slices/columnSlice";
@@ -9,9 +9,12 @@ import { taskSlice } from "../../../stores/slices/taskSlice";
 import { toast } from "react-toastify";
 import { postTask } from "../../../services/postTask";
 const { updateTask } = taskSlice.actions;
-const { updateColumn } = columnSlice.actions;
+const { updateColumn, editColumnName } = columnSlice.actions;
 function Column({ column, HandleAddTask, setLoading, tasksOld }) {
   const dispatch = useDispatch();
+  const [isEditing, setIsEditing] = useState(false);
+  const [columnName, setColumnName] = useState(column.columnName);
+  const inputRef = useRef(null);
   const {
     attributes,
     listeners,
@@ -29,6 +32,12 @@ function Column({ column, HandleAddTask, setLoading, tasksOld }) {
     opacity: isDragging ? 0.3 : undefined,
   };
 
+  useEffect(() => {
+    if (isEditing && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [isEditing]);
+
   const HandleRemoveColumn = async (column) => {
     setLoading(true);
 
@@ -44,13 +53,48 @@ function Column({ column, HandleAddTask, setLoading, tasksOld }) {
     });
   };
 
+  const HandleClick = () => {
+    setIsEditing(true);
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  };
+
+  const handleInputChange = (e) => {
+    setColumnName(e.target.value);
+  };
+
+  const HandleBlurInput = async (column) => {
+    column.columnName = columnName;
+    await dispatch(editColumnName(column));
+    setIsEditing(false);
+  };
+
+  const handleInputKeyDown = (e, column) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      HandleBlurInput(column);
+    }
+  };
+
   return (
     <div ref={setNodeRef} style={dndKitCommonStyle} {...attributes}>
       <div className="column-item" key={column._id} {...listeners}>
-        <div className="column-item-header">
+        <div className="column-item-header" onClick={() => HandleClick()}>
           <div className="column-name">
             <div className="edit">0</div>
-            {column.columnName}
+            {isEditing ? (
+              <input
+                ref={inputRef}
+                value={columnName}
+                onChange={handleInputChange}
+                onBlur={() => HandleBlurInput(column)}
+                onKeyDown={(e) => handleInputKeyDown(e, column)}
+                type="text"
+              />
+            ) : (
+              <p className="name">{column.columnName}</p>
+            )}
           </div>
           <button
             className="btn-remove"
