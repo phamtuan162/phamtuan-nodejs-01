@@ -51,6 +51,23 @@ function Board() {
     setOrderedColumns(mapOrder(newColumns, columnOrderIds, "_id"));
   }, [columns, tasks]);
 
+  useEffect(() => {
+    if (orderedColumns.length) {
+      tasksUpdated = orderedColumns.reduce((acc, column) => {
+        const { columnName } = column;
+        const columnTasks = column.tasks.map(({ _id, column, content }) => ({
+          _id,
+          column,
+          content,
+          columnName: columnName,
+        }));
+        return acc.concat(columnTasks);
+      }, []);
+      setLocalStorage("tasks", tasksUpdated);
+      setLocalStorage("columns", orderedColumns);
+    }
+  }, [orderedColumns]);
+
   const mouseSensor = useSensor(MouseSensor, {
     activationConstraint: { distance: 10 },
   });
@@ -106,8 +123,6 @@ function Board() {
       const nextOverColumn = nextColumns.find(
         (column) => column._id === overColumn._id
       );
-
-      console.log(nextActiveColumn, nextOverColumn);
 
       if (nextActiveColumn) {
         nextActiveColumn.tasks = nextActiveColumn.tasks.filter(
@@ -237,17 +252,6 @@ function Board() {
           return nextColumns;
         });
       }
-      tasksUpdated = orderedColumns.reduce((acc, column) => {
-        const { columnName } = column;
-        const columnTasks = column.tasks.map(({ _id, column, content }) => ({
-          _id,
-          column,
-          content,
-          columnName: columnName,
-        }));
-        return acc.concat(columnTasks);
-      }, []);
-      setLocalStorage("tasks", tasksUpdated);
     }
     if (activeDragItemType === ACTIVE_DRAG_ITEM_TYPE.COLUMN) {
       if (active.id !== over.id) {
