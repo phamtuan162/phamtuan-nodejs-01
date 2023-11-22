@@ -7,33 +7,39 @@ import {
   useSensors,
   MouseSensor,
   TouchSensor,
+  closestCorners,
+  pointerWithin,
+  getFirstCollision,
 } from "@dnd-kit/core";
 import { mapOrder } from "../../utils/sort";
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { arrayMove } from "@dnd-kit/sortable";
 import Column from "./Columns/Column";
 import Task from "./Tasks/Task";
 import { postTask } from "../../services/postTask";
 import { setLocalStorage } from "../../utils/localStorage";
-import { cloneDeep } from "lodash";
-
+import { cloneDeep, isEmpty } from "lodash";
+import { generatePlaceholderTask } from "../../utils/generatePlaceHolderTask";
 const ACTIVE_DRAG_ITEM_TYPE = {
   COLUMN: "ACTIVE_DRAG_ITEM_COLUMN",
   TASK: "ACTIVE_DRAG_ITEM_TASK",
 };
+
 function Board() {
   const columns = useSelector((state) => state.column.columns);
   const tasks = useSelector((state) => state.task.tasks);
-  const newColumns = columns.map((column) => {
-    const newTasks = tasks.filter((task) => task.column === column.column);
-    const taskOrderIds = newTasks.map((task) => task._id);
+  const lastOverId = useRef(null);
 
-    return { ...column, tasks: [...newTasks], taskOrderIds };
+  const newColumns = columns.map((column) => {
+    let findTasks = tasks.filter((task) => task.column === column.column);
+    const taskOrderIds = findTasks.map((task) => task._id);
+
+    return { ...column, tasks: [...findTasks], taskOrderIds };
   });
+
   let tasksUpdated;
   const columnOrderIds = newColumns.map((column) => column._id);
-
   const [orderedColumns, setOrderedColumns] = useState([]);
   const [activeDragItemId, setActiveDragItemId] = useState(null);
   const [activeDragItemType, setActiveDragItemType] = useState(null);
@@ -101,10 +107,16 @@ function Board() {
         (column) => column._id === overColumn._id
       );
 
+      console.log(nextActiveColumn, nextOverColumn);
+
       if (nextActiveColumn) {
         nextActiveColumn.tasks = nextActiveColumn.tasks.filter(
           (task) => task._id !== activeDraggingTaskId
         );
+
+        // if (isEmpty(nextActiveColumn.tasks)) {
+        //   nextActiveColumn.tasks = [generatePlaceholderTask(nextActiveColumn)];
+        // }
         nextActiveColumn.taskOrderIds = nextActiveColumn.tasks.map(
           (task) => task._id
         );
@@ -124,6 +136,11 @@ function Board() {
           0,
           rebuild_activeDraggingCardData
         );
+
+        // nextOverColumn.tasks = nextOverColumn.tasks.filter(
+        //   (task) => !task.FE_PlaceholderTask
+        // );
+
         nextOverColumn.taskOrderIds = nextOverColumn.tasks.map(
           (task) => task._id
         );
@@ -256,12 +273,51 @@ function Board() {
     setActiveDragItemType(null);
     setOldColumnWhenDraggingTask(null);
   };
+
+  const collisionDetectionStrategy = useCallback(
+    (args) => {
+      if (activeDragItemType === ACTIVE_DRAG_ITEM_TYPE.COLUMN) {
+        return closestCorners({ ...args });
+      }
+      const pointerIntersections = pointerWithin(args);
+
+      if (!pointerIntersections?.length) return;
+
+      let overId = getFirstCollision(pointerIntersections, "id");
+
+      if (overId) {
+        const checkColumn = orderedColumns.find(
+          (column) => column._id === overId
+        );
+        if (checkColumn) {
+          overId = closestCorners({
+            ...args,
+            droppableContainers: args.droppableContainers.filter(
+              (container) => {
+                return (
+                  container._id !== overId &&
+                  checkColumn?.cardOrderIds?.includes(container.id)
+                );
+              }
+            ),
+          })[0]?.id;
+        }
+
+        lastOverId.current = overId;
+        return [{ id: overId }];
+      }
+      return lastOverId.current ? [{ id: lastOverId.current }] : [];
+    },
+    [activeDragItemType, orderedColumns]
+  );
+
   return (
     <DndContext
       onDragEnd={HandleDragEnd}
       onDragStart={HandleDragStart}
       onDragOver={HandleDragOver}
       sensors={sensors}
+      // collisionDetection={collisionDetectionStrategy}
     >
       <Colums columns={orderedColumns} />
       <DragOverlay dropAnimation={dropAnimation}>

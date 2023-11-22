@@ -11,7 +11,7 @@ function Home() {
   const hasDataFetched = useRef(false);
 
   useEffect(() => {
-    if (!hasDataFetched.current && !columns.length && !tasks.length) {
+    if (!hasDataFetched.current && (!columns.length || !tasks.length)) {
       dispatch(fetchData());
       hasDataFetched.current = true;
     }

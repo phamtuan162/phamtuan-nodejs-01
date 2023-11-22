@@ -12,7 +12,8 @@ import {
 } from "@dnd-kit/sortable";
 import Column from "./Column";
 import { v4 as uuidv4 } from "uuid";
-import { setLocalStorage } from "../../../utils/localStorage";
+import { getLocalStorage } from "../../../utils/localStorage";
+import { generatePlaceholderTask } from "../../../utils/generatePlaceHolderTask";
 
 const { updateTask } = taskSlice.actions;
 const { updateColumn } = columnSlice.actions;
@@ -30,18 +31,26 @@ function Colums({ columns }) {
     }));
     return acc.concat(columnTasks);
   }, []);
+
   const HandleAddTask = async (column) => {
+    const columns = getLocalStorage("columns");
     setLoading(true);
     const taskNew = {
       column: column.column,
       content: `Task ${tasksOld.length + 1}`,
       columnName: column.columnName,
     };
-    const updatedTask = [...tasksOld, { ...taskNew, _id: undefined }];
-
+    const updatedTask = [
+      ...tasksOld.map((task) => ({
+        column: task.column,
+        content: task.content,
+        columnName: task.columnName,
+      })),
+      taskNew,
+    ];
     postTask(updatedTask).then(async (data) => {
       if (data) {
-        await dispatch(updateColumn(data.columns));
+        await dispatch(updateColumn(columns ? columns : data.columns));
         await dispatch(updateTask(data.tasks));
         setLoading(false);
         toast.success("Thêm task mới thành công");
@@ -56,7 +65,9 @@ function Colums({ columns }) {
       columnName: `Column ${columns.length + 1}`,
       _id: uuidv4(),
     };
+    // const updatedTask = [...tasksOld, generatePlaceholderTask(newColumn)];
     const updatedColumn = [...columns, newColumn];
+
     await dispatch(updateColumn(updatedColumn));
     toast.success("Thêm column mới thành công");
   };

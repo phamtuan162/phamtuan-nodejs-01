@@ -14,6 +14,7 @@ import { toast } from "react-toastify";
 const { updateTask } = taskSlice.actions;
 
 function Tasks({ column, setLoading, tasksOld }) {
+  console.log(column);
   const dispatch = useDispatch();
   const orderedTasks = mapOrder(column.tasks, column?.taskOrderIds, "_id");
   const HandleRemoveTask = (task) => {

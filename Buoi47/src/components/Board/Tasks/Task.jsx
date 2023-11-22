@@ -1,6 +1,8 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import { getLocalStorage } from "../../../utils/localStorage";
 function Task({ task, HandleRemoveTask }) {
+  const check = task._id.includes("placeholder-card");
   const {
     attributes,
     listeners,
@@ -20,7 +22,10 @@ function Task({ task, HandleRemoveTask }) {
   return (
     <div
       ref={setNodeRef}
-      style={dndKitTaskStyle}
+      style={{
+        ...dndKitTaskStyle,
+        display: check ? "none" : "block",
+      }}
       {...listeners}
       {...attributes}
       key={task._id}
