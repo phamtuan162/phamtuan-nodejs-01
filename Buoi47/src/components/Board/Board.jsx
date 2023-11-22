@@ -19,9 +19,7 @@ import Column from "./Columns/Column";
 import { taskSlice } from "../../stores/slices/taskSlice";
 import { columnSlice } from "../../stores/slices/columnSlice";
 import Task from "./Tasks/Task";
-import { postTask } from "../../services/postTask";
-import { setLocalStorage } from "../../utils/localStorage";
-import { cloneDeep, isEmpty } from "lodash";
+import { cloneDeep } from "lodash";
 
 const ACTIVE_DRAG_ITEM_TYPE = {
   COLUMN: "ACTIVE_DRAG_ITEM_COLUMN",
