@@ -12,10 +12,12 @@ import {
   getFirstCollision,
 } from "@dnd-kit/core";
 import { mapOrder } from "../../utils/sort";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState, useRef, useCallback } from "react";
 import { arrayMove } from "@dnd-kit/sortable";
 import Column from "./Columns/Column";
+import { taskSlice } from "../../stores/slices/taskSlice";
+import { columnSlice } from "../../stores/slices/columnSlice";
 import Task from "./Tasks/Task";
 import { postTask } from "../../services/postTask";
 import { setLocalStorage } from "../../utils/localStorage";
@@ -25,11 +27,13 @@ const ACTIVE_DRAG_ITEM_TYPE = {
   COLUMN: "ACTIVE_DRAG_ITEM_COLUMN",
   TASK: "ACTIVE_DRAG_ITEM_TASK",
 };
-
+const { updateTask } = taskSlice.actions;
+const { updateColumn } = columnSlice.actions;
 function Board() {
   const columns = useSelector((state) => state.column.columns);
   const tasks = useSelector((state) => state.task.tasks);
   const lastOverId = useRef(null);
+  const dispatch = useDispatch();
 
   const newColumns = columns.map((column) => {
     let findTasks = tasks.filter((task) => task.column === column.column);
@@ -55,14 +59,18 @@ function Board() {
     if (orderedColumns.length) {
       tasksUpdated = orderedColumns.reduce((acc, column) => {
         const { columnName } = column;
-        const columnTasks = column.tasks.map(({ _id, column, content }) => ({
-          _id,
+        const columnTasks = column.tasks.map(({ column, content }) => ({
           column,
           content,
           columnName: columnName,
         }));
         return acc.concat(columnTasks);
       }, []);
+      // postTask(tasksUpdated).then((data) => {
+      //   if (data) {
+      //     dispatch(updateTask(data.tasks));
+      //   }
+      // });
       setLocalStorage("tasks", tasksUpdated);
       setLocalStorage("columns", orderedColumns);
     }
