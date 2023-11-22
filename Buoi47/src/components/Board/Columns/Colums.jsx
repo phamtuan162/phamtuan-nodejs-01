@@ -50,7 +50,7 @@ function Colums({ columns }) {
     ];
     postTask(updatedTask).then(async (data) => {
       if (data) {
-        await dispatch(updateColumn(columns ? columns : data.columns));
+        await dispatch(updateColumn(columns.length ? columns : data.columns));
         await dispatch(updateTask(data.tasks));
         setLoading(false);
         toast.success("Thêm task mới thành công");
