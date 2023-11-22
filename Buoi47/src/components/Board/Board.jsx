@@ -25,7 +25,6 @@ const ACTIVE_DRAG_ITEM_TYPE = {
 function Board() {
   const columns = useSelector((state) => state.column.columns);
   const tasks = useSelector((state) => state.task.tasks);
-  console.log(tasks, columns);
   const newColumns = columns.map((column) => {
     const newTasks = tasks.filter((task) => task.column === column.column);
     const taskOrderIds = newTasks.map((task) => task._id);
@@ -241,11 +240,12 @@ function Board() {
           (orderedColumn) => orderedColumn._id === over.id
         );
         const dndOrderedColumns = arrayMove(orderedColumns, oldIndex, newIndex);
-        const columnsUpdated = orderedColumns.map((column) => ({
+        const columnsUpdated = dndOrderedColumns.map((column) => ({
           column: column.column,
           columnName: column.columnName,
           _id: column._id,
         }));
+
         setLocalStorage("columns", columnsUpdated);
         setOrderedColumns(dndOrderedColumns);
       }

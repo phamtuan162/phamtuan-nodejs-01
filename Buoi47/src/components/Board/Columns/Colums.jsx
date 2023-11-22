@@ -1,9 +1,9 @@
-import { useSelector, useDispatch } from "react-redux";
 import "./columns.scss";
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 import { taskSlice } from "../../../stores/slices/taskSlice";
 import { columnSlice } from "../../../stores/slices/columnSlice";
 import { postTask } from "../../../services/postTask";
-import { toast } from "react-toastify";
 import Loading from "../../Loading/Loading";
 import { useState } from "react";
 import {
@@ -13,15 +13,17 @@ import {
 import Column from "./Column";
 import { v4 as uuidv4 } from "uuid";
 import { setLocalStorage } from "../../../utils/localStorage";
+
 const { updateTask } = taskSlice.actions;
 const { updateColumn } = columnSlice.actions;
+
 function Colums({ columns }) {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
-
   const tasksOld = columns.reduce((acc, column) => {
     const { columnName } = column;
-    const columnTasks = column.tasks.map(({ column, content }) => ({
+    const columnTasks = column.tasks.map(({ _id, column, content }) => ({
+      _id,
       column,
       content,
       columnName: columnName,
@@ -35,7 +37,7 @@ function Colums({ columns }) {
       content: `Task ${tasksOld.length + 1}`,
       columnName: column.columnName,
     };
-    const updatedTask = [...tasksOld, taskNew];
+    const updatedTask = [...tasksOld, { ...taskNew, _id: undefined }];
 
     postTask(updatedTask).then(async (data) => {
       if (data) {
@@ -75,6 +77,7 @@ function Colums({ columns }) {
                   column={column}
                   HandleAddTask={HandleAddTask}
                   setLoading={setLoading}
+                  tasksOld={tasksOld}
                 />
               );
             })}

@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 import { postTask } from "../../../services/postTask";
 const { updateTask } = taskSlice.actions;
 const { updateColumn } = columnSlice.actions;
-function Column({ column, HandleAddTask, setLoading }) {
+function Column({ column, HandleAddTask, setLoading, tasksOld }) {
   const dispatch = useDispatch();
   const {
     attributes,
@@ -31,23 +31,17 @@ function Column({ column, HandleAddTask, setLoading }) {
 
   const HandleRemoveColumn = async (column) => {
     setLoading(true);
-    const tasks = getLocalStorage("tasks");
-    let columns = getLocalStorage("columns");
 
-    if (!tasks || !columns) {
-      setLoading(false);
-      return;
-    }
-
-    // postTask(tasksUpdate).then(async (data) => {
-    //   if (data) {
-    //     console.log(data);
-    //     await dispatch(updateColumn(data.columns));
-    //     await dispatch(updateTask(data.tasks));
-    //     setLoading(false);
-    //     toast.success("Xóa column thành công ");
-    //   }
-    // });
+    const findTask = tasksOld.filter((item) => item.column !== column.column);
+    const updatedTask = findTask.map(({ _id, ...rest }) => ({ ...rest }));
+    postTask(updatedTask).then(async (data) => {
+      if (data) {
+        await dispatch(updateColumn(data.columns));
+        await dispatch(updateTask(data.tasks));
+        setLoading(false);
+        toast.success("Xóa column thành công ");
+      }
+    });
   };
 
   return (
@@ -77,7 +71,7 @@ function Column({ column, HandleAddTask, setLoading }) {
           </button>
         </div>
         <div className="column-item-body">
-          <Tasks column={column} />
+          <Tasks column={column} setLoading={setLoading} tasksOld={tasksOld} />
         </div>
         <div
           className="column-item-footer"
