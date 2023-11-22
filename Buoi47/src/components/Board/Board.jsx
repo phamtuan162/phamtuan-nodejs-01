@@ -22,7 +22,7 @@ import Task from "./Tasks/Task";
 import { postTask } from "../../services/postTask";
 import { setLocalStorage } from "../../utils/localStorage";
 import { cloneDeep, isEmpty } from "lodash";
-import { generatePlaceholderTask } from "../../utils/generatePlaceHolderTask";
+
 const ACTIVE_DRAG_ITEM_TYPE = {
   COLUMN: "ACTIVE_DRAG_ITEM_COLUMN",
   TASK: "ACTIVE_DRAG_ITEM_TASK",
