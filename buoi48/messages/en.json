@@ -1,0 +1,14 @@
+{
+  "header": {
+    "name": "Pham Minh Tuan"
+  },
+  "profile": {
+    "info-contact": "Contact Info",
+    "fullname": "Pham Minh Tuan",
+    "phone": "PhoneNumber",
+    "interest": "Interest",
+    "interest-content": "play game,play soccer,read manga,...",
+    "study-at": "Study At",
+    "school": "University of Transport and Communications(UTC)"
+  }
+}
