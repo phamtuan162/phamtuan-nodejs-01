@@ -33,7 +33,9 @@ function Header() {
           className="sm:hidden"
         />
         <NavbarBrand className="brand">
-          <p className="font-bold text-inherit ">TRAVEL</p>
+          <Link href="/">
+            <p className="font-bold text-inherit ">TRAVEL</p>
+          </Link>
         </NavbarBrand>
       </NavbarContent>
 
