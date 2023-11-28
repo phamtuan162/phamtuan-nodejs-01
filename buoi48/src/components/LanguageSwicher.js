@@ -1,8 +1,7 @@
 "use client";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Button } from "@nextui-org/react";
-
+import { Button } from "@nextui-org/button";
 export default function LanguageSwitcher() {
   const router = useRouter();
   const { locale } = useParams();
@@ -13,9 +12,7 @@ export default function LanguageSwitcher() {
 
   const changeLanguage = () => {
     const newLanguage = language === "vn" ? "en" : "vn";
-
     setLanguage(newLanguage);
-
     router.push(newLanguage);
     localStorage.setItem("lang", newLanguage);
   };
@@ -28,7 +25,7 @@ export default function LanguageSwitcher() {
           color="default"
           onClick={changeLanguage}
         >
-          {language === "vn" ? "vi" : "en"}
+          {language === "vn" ? "en" : "vi"}
         </Button>
       </div>
     </div>

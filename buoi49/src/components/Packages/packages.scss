@@ -1,0 +1,49 @@
+#packages {
+  padding: 1.8rem 0;
+
+  .box {
+    img {
+      height: 25rem;
+      width: 100%;
+      object-fit: cover;
+    }
+    .content {
+      flex: 1;
+      padding: 2rem;
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+    }
+    h3 {
+      i {
+        color: #ffa500;
+      }
+      font-size: 2rem;
+      color: #333;
+    }
+    p {
+      font-size: 1.7rem;
+      color: #666;
+      padding: 1rem 0;
+      &:first-of-type {
+        flex: 1;
+      }
+    }
+    .stars {
+      i {
+        font-size: 1.7rem;
+        color: #ffa500;
+      }
+    }
+    .price {
+      font-size: 2rem;
+      color: #333;
+      padding-top: 1rem;
+      span {
+        color: #666;
+        font-size: 1.5rem;
+        text-decoration: line-through;
+      }
+    }
+  }
+}
