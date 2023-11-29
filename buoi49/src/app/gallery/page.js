@@ -1,8 +1,4 @@
 import { getData } from "@/utils/getData";
-export const metadata = {
-  title: "Gallery",
-  description: "Gallery Shop",
-};
 import Link from "next/link";
 import React from "react";
 import { IMGLINK } from "@/config/config";

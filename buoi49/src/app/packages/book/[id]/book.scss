@@ -1,7 +1,7 @@
-.detail {
+.book {
   position: relative;
   margin: 3rem auto;
-  margin-bottom: 20rem;
+  margin-bottom: 50rem;
   width: 90%;
   border-radius: 1rem;
   display: flex;
@@ -59,29 +59,38 @@
     }
     .inputBox {
       flex: 1 1 25rem;
+      input,
+      select {
+        width: 100%;
+        padding: 1.2rem 1.4rem;
+        border-radius: 5rem;
+        border: 0.2rem solid #ffa500;
+        font-size: 1.4rem;
+        color: #aaa;
+        text-transform: none;
+        background: none;
+        margin-top: 1rem;
+      }
       span {
         display: block;
+        font-size: 2rem;
+        font-weight: 600;
+        color: #aaa;
 
-        text-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
         h1 {
           font-weight: 600;
-          font-size: 2em;
+          font-size: 1.5em;
 
           color: #333;
           color: #ffa500;
         }
-        .btn-book {
-          width: 100%;
-          padding: 1.2rem 1.4rem;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          border-radius: 5rem;
-        }
       }
+    }
+    .btn {
+      border-radius: 5rem;
     }
   }
 }
-.dark .detail .book-form {
+.dark .book .book-form {
   background-color: #333333;
 }

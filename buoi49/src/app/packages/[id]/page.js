@@ -1,10 +1,7 @@
 import { getPackage } from "@/utils/getPackage";
 import { IMGLINK } from "@/config/config";
 import "./detail.scss";
-export const metadata = {
-  title: "PackageDetail",
-  description: "PackageDetail",
-};
+
 import Link from "next/link";
 export default async function PackageDetail({ params }) {
   const { id } = params;
@@ -19,7 +16,7 @@ export default async function PackageDetail({ params }) {
     >
       <div className="content">
         <span>{home.name}</span>
-        <h3>Kinh đô thời trang</h3>
+        <h3>{home.content}</h3>
         <p>{home.textcontent}</p>
         <a className="btn">Tìm hiểu thêm</a>
       </div>
@@ -33,7 +30,7 @@ export default async function PackageDetail({ params }) {
 
           <div className="inputBox">
             <span>
-              <Link className="btn btn-book" href={"./payment"}>
+              <Link className="btn btn-book" href={`./book/${id}`}>
                 Đặt ngay
               </Link>
             </span>
