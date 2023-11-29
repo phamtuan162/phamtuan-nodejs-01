@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 
-export default function ThemeSwitcher() {
+export default function ThemeSwitcher({ clickSearch, search }) {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
@@ -28,7 +28,19 @@ export default function ThemeSwitcher() {
         ></i>
       )}
       <i className=" fas fa-user icon" id="login-btn"></i>
-      <i className=" icon fas fa-search" id="search-btn"></i>
+      {search ? (
+        <i
+          className="icon fas fa-search fa-times"
+          id="search-btn"
+          onClick={clickSearch}
+        ></i>
+      ) : (
+        <i
+          className=" icon fas fa-search"
+          id="search-btn"
+          onClick={clickSearch}
+        ></i>
+      )}
     </>
   );
 }

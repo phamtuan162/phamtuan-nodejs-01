@@ -11,11 +11,14 @@ import {
 } from "@nextui-org/react";
 import ThemeSwitcher from "./ThemeSwicher";
 import "./header.scss";
-import React from "react";
+import FormSearch from "./FormSearch";
+import React, { useRef } from "react";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [search, setSearch] = React.useState(false);
 
+  const formSearchRef = useRef(null);
   const menuItems = [
     "Trang chủ",
     "Đặt lịch",
@@ -25,6 +28,22 @@ function Header() {
     "Đánh giá",
     "Liên hệ",
   ];
+  const clickSearch = () => {
+    if (search) {
+      setSearch(false);
+      if (formSearchRef.current) {
+        formSearchRef.current.style.clipPath =
+          "polygon(0 0, 100% 0, 100% 0, 0 0)";
+      }
+    } else {
+      setSearch(true);
+      if (formSearchRef.current) {
+        formSearchRef.current.style.clipPath =
+          "polygon(0 0,100% 0,100% 100%,0 100%)";
+      }
+    }
+  };
+
   return (
     <Navbar className="navbar" onMenuOpenChange={setIsMenuOpen}>
       <NavbarContent>
@@ -78,7 +97,7 @@ function Header() {
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem className=" lg:flex">
-          <ThemeSwitcher />
+          <ThemeSwitcher clickSearch={clickSearch} search={search} />
         </NavbarItem>
       </NavbarContent>
       <NavbarMenu style={{ backgroundColor: "rgba(51, 51, 51, 0.9)" }}>
@@ -98,6 +117,7 @@ function Header() {
           </NavbarMenuItem>
         ))}
       </NavbarMenu>
+      <FormSearch formSearchRef={formSearchRef} />
     </Navbar>
   );
 }
