@@ -7,7 +7,7 @@ const Profile = () => {
   const t = useTranslations("profile");
   const router = useRouter();
   const handleLogout = async () => {
-    await signOut();
+    window.location.href = "/api/auth/signout";
   };
   return (
     <Button type="button" color="danger" onClick={handleLogout}>

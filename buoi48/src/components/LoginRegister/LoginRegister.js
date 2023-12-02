@@ -58,16 +58,7 @@ const LoginRegister = () => {
   const HandleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
-  // const handleSocialLogin = async () => {
-  //   const result = await signIn("credentials", {
-  //     redirect: false,
-  //   });
-  //   console.log(result);
 
-  //   if (result?.url) {
-  //     router.push("/");
-  //   }
-  // };
   const { name, email, password } = form;
   return (
     <Card className="login-register max-w-full w-[400px] h-[450px]">
