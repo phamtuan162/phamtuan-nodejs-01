@@ -9,16 +9,24 @@ import {
   NavbarItem,
   Link,
 } from "@nextui-org/react";
+import { useSession } from "next-auth/react";
 
 import ThemeSwitcher from "./ThemeSwicher";
 import LanguageSwitcher from "./LanguageSwicher";
 const Header = () => {
+  const router = useRouter();
+  const { data: session } = useSession();
   const { locale } = useParams();
   const pathName = usePathname();
-  console.log(pathName);
   const isLocalePath = /^\/(en|vi)\/?$/.test(pathName);
   const t = useTranslations("header");
-
+  const handleClick = () => {
+    if (session) {
+      router.push(isLocalePath ? `./${locale}/profile` : "./profile");
+    } else {
+      router.push(isLocalePath ? `./${locale}/auth` : "./auth");
+    }
+  };
   return (
     <Navbar>
       <NavbarBrand style={{ flexGrow: "0" }}>
@@ -98,7 +106,7 @@ const Header = () => {
           </Link>
         </NavbarItem>
         <NavbarItem className=" lg:flex">
-          <Link href={isLocalePath ? `./${locale}/profile` : "./profile"}>
+          <Link onClick={handleClick}>
             <svg
               height="24"
               width="24"

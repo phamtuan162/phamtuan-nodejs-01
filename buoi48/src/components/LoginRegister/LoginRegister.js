@@ -9,13 +9,21 @@ import { postLogin } from "@/utils/postLogin";
 import { postRegister } from "@/utils/postRegister";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { useSession, signIn } from "next-auth/react";
+import { useEffect } from "react";
 const LoginRegister = () => {
   const router = useRouter();
+  const { data: session } = useSession();
   const [form, setForm] = useState({
     name: "",
     email: "",
     password: "",
   });
+  useEffect(() => {
+    if (session) {
+      router.push("/");
+    }
+  }, [session]);
   const t = useTranslations("auth");
   const [isVisible, setIsVisible] = useState(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
@@ -50,6 +58,16 @@ const LoginRegister = () => {
   const HandleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
+  // const handleSocialLogin = async () => {
+  //   const result = await signIn("credentials", {
+  //     redirect: false,
+  //   });
+  //   console.log(result);
+
+  //   if (result?.url) {
+  //     router.push("/");
+  //   }
+  // };
   const { name, email, password } = form;
   return (
     <Card className="login-register max-w-full w-[400px] h-[450px]">
@@ -116,6 +134,7 @@ const LoginRegister = () => {
             color="success"
             variant="ghost"
             className="w-full"
+            onClick={signIn}
           >
             {t("socialLogin")}
           </Button>
