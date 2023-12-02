@@ -9,6 +9,33 @@
     "interest": "Sở thích",
     "interest-content": "chơi game,đá bóng,đọc truyện,...",
     "study-at": "Học tại",
-    "school": "Trường Đại học Giao Thông Vận Tải(UTC)"
+    "school": "Trường Đại học Giao Thông Vận Tải(UTC)",
+    "logout": "Đăng xuất"
+  },
+  "contact": {
+    "Contact": "Contact",
+    "subject1": "Liên hệ với tôi",
+    "subject2": "Yêu cầu tính năng",
+    "subject3": "Lỗi 404",
+    "subject4": "Lỗi 500",
+    "label_name": "Tên",
+    "label_email": "Email",
+    "label_subject": "Vấn đề",
+    "label_message": "Tin nhắn",
+    "placeholder_name": "Vui lòng nhập tên của bạn",
+    "placeholder_email": "Vui lòng nhập email của bạn",
+    "placeholder_subject": "Liên hệ tôi",
+    "placeholder_message": "Bạn có gì nhắn nhủ không?",
+    "send": "Gửi"
+  },
+  "auth": {
+    "loginRegister": "Đăng nhập/Đăng ký",
+    "label_username": "Tên đăng nhập",
+    "label_email": "Email",
+    "label_password": "Mật khẩu",
+    "placeholder_username": "Vui lòng nhập tên tài khoản của bạn",
+    "placeholder_email": "Vui lòng nhập email của bạn",
+    "placeholder_password": "Vui lòng nhập password của bạn",
+    "socialLogin": "Đăng nhập mạng xã hội"
   }
 }

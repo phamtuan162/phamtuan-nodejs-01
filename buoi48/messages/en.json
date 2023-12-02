@@ -9,6 +9,33 @@
     "interest": "Interest",
     "interest-content": "play game,play soccer,read manga,...",
     "study-at": "Study At",
-    "school": "University of Transport and Communications(UTC)"
+    "school": "University of Transport and Communications(UTC)",
+    "logout": "Logout"
+  },
+  "contact": {
+    "Contact": "Contact",
+    "subject1": "Contact me",
+    "subject2": "Feature requires",
+    "subject3": "Error 404",
+    "subject4": "Error 500",
+    "label_name": "Name",
+    "label_email": "Email",
+    "label_subject": "Subject",
+    "label_message": "Message",
+    "placeholder_name": "Please enter your name",
+    "placeholder_email": "Please enter your email",
+    "placeholder_subject": "Contact me",
+    "placeholder_message": "Have any message",
+    "send": "Send"
+  },
+  "auth": {
+    "loginRegister": "Login/Register",
+    "label_username": "Username",
+    "label_email": "Email",
+    "label_password": "Password",
+    "placeholder_username": "Please enter your Username",
+    "placeholder_email": "Please enter your email",
+    "placeholder_password": "Please enter your password",
+    "socialLogin": "Social Login"
   }
 }
