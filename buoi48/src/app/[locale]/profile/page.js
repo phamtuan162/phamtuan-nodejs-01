@@ -8,7 +8,6 @@ const Profile = () => {
   const router = useRouter();
   const handleLogout = async () => {
     await signOut();
-    router.push("/");
   };
   return (
     <Button type="button" color="danger" onClick={handleLogout}>
