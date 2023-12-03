@@ -1,6 +1,6 @@
 "use client";
 import "./Profile.scss";
-import { Card, CardBody } from "@nextui-org/react";
+import { Card, CardBody, Image } from "@nextui-org/react";
 import { useTranslations } from "next-intl";
 
 const Profile = () => {
@@ -11,9 +11,8 @@ const Profile = () => {
         <h1 className="name">{t("fullname")}</h1>
         <div className="profile-content">
           <div className="profile-left">
-            <img
-              src="https://scontent.fhan14-1.fna.fbcdn.net/v/t39.30808-6/313370942_1800895403597560_2958304362541436586_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=5f2048&_nc_ohc=IlKxwU2bkwsAX85hxCC&_nc_ht=scontent.fhan14-1.fna&oh=00_AfDTX8rJMLo7xbnfB599bUDgBL5z12qXpyIw450reeCyJQ&oe=6567CF38"
-              alt=""
+            <Image
+              src="https://scontent.fhph1-3.fna.fbcdn.net/v/t39.30808-6/313370942_1800895403597560_2958304362541436586_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=9c7eae&_nc_ohc=VO99TyrVRSMAX93KWxr&_nc_ht=scontent.fhph1-3.fna&oh=00_AfBvrAzRFSx5-foGK91U54kcpz4L7zPVVMYfPlBnxMBwRQ&oe=6571B278"
               className="avatar"
             />
           </div>
