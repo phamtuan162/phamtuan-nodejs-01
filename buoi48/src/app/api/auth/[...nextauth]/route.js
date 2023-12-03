@@ -36,6 +36,7 @@ export const authOptions = {
         },
       },
       async authorize(credentials) {
+        console.log(process.env.NEXT_PUBLIC_SERVER_API);
         const response = await fetch(
           `${process.env.NEXT_PUBLIC_SERVER_API}/auth/login `,
           {
