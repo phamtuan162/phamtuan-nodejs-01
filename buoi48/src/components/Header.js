@@ -1,6 +1,7 @@
 "use client";
 import { useTranslations } from "next-intl";
 import { useParams, useRouter, usePathname } from "next/navigation";
+import { useSession, signIn } from "next-auth/react";
 
 import {
   Navbar,
@@ -9,7 +10,6 @@ import {
   NavbarItem,
   Link,
 } from "@nextui-org/react";
-import { useSession } from "next-auth/react";
 
 import ThemeSwitcher from "./ThemeSwicher";
 import LanguageSwitcher from "./LanguageSwicher";
@@ -20,11 +20,11 @@ const Header = () => {
   const pathName = usePathname();
   const isLocalePath = /^\/(en|vi)\/?$/.test(pathName);
   const t = useTranslations("header");
-  const handleClick = () => {
+  const handleClick = async () => {
     if (session) {
       router.push(isLocalePath ? `./${locale}/profile` : "./profile");
     } else {
-      router.push(isLocalePath ? `./${locale}/auth` : "./auth");
+      signIn();
     }
   };
   return (
