@@ -54,7 +54,7 @@ const Contact = () => {
     form.current.reset();
   };
   return (
-    <Card className="contact max-w-full w-[400px] h-[480px]">
+    <Card className="contact max-w-full w-[400px] h-[490px]">
       <CardBody className="container">
         <h1 className="title">{t("Contact")}</h1>
         <form
