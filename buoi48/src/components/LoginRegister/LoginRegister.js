@@ -19,41 +19,44 @@ const LoginRegister = () => {
     email: "",
     password: "",
   });
-  useEffect(() => {
-    if (session) {
-      router.push("/");
-    }
-  }, [session]);
+  // useEffect(() => {
+  //   if (session) {
+  //     router.push("/");
+  //   }
+  // }, [session]);
   const t = useTranslations("auth");
   const [isVisible, setIsVisible] = useState(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
 
   const HandleLoginRegister = async (e) => {
     e.preventDefault();
-
-    await postLogin({
+    signIn("credentials", {
       email: form.email,
       password: form.password,
-    }).then(async ({ data, message }) => {
-      if (data) {
-        toast.success(message);
-        router.push("./profile");
-      } else {
-        toast.error(message);
-        if (message === "Tài khoản không tồn tại") {
-          toast.info("Chuyển sang đăng ký");
-          postRegister(form).then((check) => {
-            if (check) {
-              setForm({
-                name: "",
-                email: "",
-                password: "",
-              });
-            }
-          });
-        }
-      }
     });
+    // await postLogin({
+    //   email: form.email,
+    //   password: form.password,
+    // }).then(async ({ data, message }) => {
+    //   if (data) {
+    //     toast.success(message);
+    //     router.push("./profile");
+    //   } else {
+    //     toast.error(message);
+    //     if (message === "Tài khoản không tồn tại") {
+    //       toast.info("Chuyển sang đăng ký");
+    //       postRegister(form).then((check) => {
+    //         if (check) {
+    //           setForm({
+    //             name: "",
+    //             email: "",
+    //             password: "",
+    //           });
+    //         }
+    //       });
+    //     }
+    //   }
+    // });
   };
   const HandleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
