@@ -21,15 +21,15 @@ export default async function RootLayout({ children, params }) {
   return (
     <html lang={locale} className="dark">
       <body>
-        <SessionProvider session={session}>
-          <Providers>
-            <NextIntlClientProvider messages={messages}>
+        <Providers>
+          <NextIntlClientProvider messages={messages}>
+            <SessionProvider session={session}>
               <ToastContainer />
               <Header />
               {children}
-            </NextIntlClientProvider>
-          </Providers>
-        </SessionProvider>
+            </SessionProvider>
+          </NextIntlClientProvider>
+        </Providers>
       </body>
     </html>
   );
