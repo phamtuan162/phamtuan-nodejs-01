@@ -36,9 +36,8 @@ export const authOptions = {
         },
       },
       async authorize(credentials) {
-        console.log(process.env.NEXT_PUBLIC_SERVER_API);
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_SERVER_API}/auth/login `,
+          `https://api-social-psi.vercel.app/api/v1/auth/login `,
           {
             method: "POST",
             headers: {
@@ -51,7 +50,7 @@ export const authOptions = {
         if (data.code === 400) {
           if (data.message === "Tài khoản không tồn tại") {
             const response = await fetch(
-              `${process.env.NEXT_PUBLIC_SERVER_API}/auth/register`,
+              `https://api-social-psi.vercel.app/api/v1/auth/register `,
               {
                 method: "POST",
                 headers: {
