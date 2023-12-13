@@ -24,7 +24,9 @@ const Header = () => {
     if (session) {
       router.push(isLocalePath ? `./${locale}/profile` : "./profile");
     } else {
-      signIn();
+      router.push(isLocalePath ? `./${locale}/auth` : "./auth");
+
+      // signIn();
     }
   };
   return (

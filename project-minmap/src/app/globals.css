@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.dark {
+  background-color: #333;
+}
+.dark nav,
+.dark .contact {
+  background-color: #333;
+}

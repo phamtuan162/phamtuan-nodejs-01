@@ -5,9 +5,6 @@ import { EyeFilledIcon } from "./EyeFilledIcon";
 import { EyeSlashFilledIcon } from "./EyeSlashFilledIcon ";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
-import { postLogin } from "@/utils/postLogin";
-import { postRegister } from "@/utils/postRegister";
-import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { useSession, signIn } from "next-auth/react";
 import { useEffect } from "react";
@@ -19,21 +16,18 @@ const LoginRegister = () => {
     email: "",
     password: "",
   });
-  // useEffect(() => {
-  //   if (session) {
-  //     router.push("/");
-  //   }
-  // }, [session]);
+  useEffect(() => {
+    if (session) {
+      router.push("./");
+    }
+  }, [session]);
   const t = useTranslations("auth");
   const [isVisible, setIsVisible] = useState(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
 
   const HandleLoginRegister = async (e) => {
     e.preventDefault();
-    signIn("credentials", {
-      email: form.email,
-      password: form.password,
-    });
+    signIn("credentials", form);
     // await postLogin({
     //   email: form.email,
     //   password: form.password,
