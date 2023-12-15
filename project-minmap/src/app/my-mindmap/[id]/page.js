@@ -10,7 +10,7 @@ const CreateMindMap = () => {
   const { data: session, update } = useSession();
   const { id: flow_id } = useParams();
   const flow = JSON.parse(localStorage.getItem("flowArr"));
-
+  window.heap.add;
   const flowNeedFind = flow?.find((item) => item.flow_id === flow_id);
   let dateCreate = flowNeedFind?.dateCreate || formatCurrentTime();
 

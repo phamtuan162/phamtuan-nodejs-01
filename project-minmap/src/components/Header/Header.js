@@ -17,6 +17,7 @@ import ThemeSwitcher from "./ThemeSwicher";
 
 const Header = () => {
   const { data: session } = useSession();
+  console.log(session);
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const handleLogout = async () => {
     window.location.href = "/api/auth/signout";
