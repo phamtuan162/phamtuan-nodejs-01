@@ -21,7 +21,7 @@ const LayoutHome = () => {
               alt="Sơ đồ tư duy"
               loading="lazy"
               decoding="async"
-              src="http://f8-mindmap.sanphamkythuat.online:880/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fso-do-tu-duy.95dad645.jpg&w=3840&q=75"
+              src="/sodotuduy.webp"
               style={{ color: "transparent" }}
             />
           </div>
