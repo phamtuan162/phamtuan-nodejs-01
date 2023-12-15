@@ -14,14 +14,13 @@ import {
 import { useSession, signIn } from "next-auth/react";
 
 import ThemeSwitcher from "./ThemeSwicher";
-import { data } from "autoprefixer";
+
 const Header = () => {
   const { data: session } = useSession();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const handleLogout = async () => {
     window.location.href = "/api/auth/signout";
   };
-
   if (!session) {
     localStorage.removeItem("flowArr");
   }

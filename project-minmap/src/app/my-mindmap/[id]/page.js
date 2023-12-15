@@ -1,11 +1,13 @@
 "use client";
 import React, { useState, useCallback, useEffect } from "react";
 import { useParams } from "next/navigation";
+import { useSession } from "next-auth/react";
 import { ReactFlowProvider } from "reactflow";
 import CreateFlow from "./Flow";
 import { formatCurrentTime } from "@/utils/formatCurrentTime";
 import { toast } from "react-toastify";
 const CreateMindMap = () => {
+  const { data: session, update } = useSession();
   const { id: flow_id } = useParams();
   const flow = JSON.parse(localStorage.getItem("flowArr"));
 
@@ -23,7 +25,7 @@ const CreateMindMap = () => {
   const handleChange = (e, setter) => {
     setter(e.target.textContent);
   };
-  const onSave = useCallback(() => {
+  const onSave = useCallback(async () => {
     if (rfInstance) {
       const flow = rfInstance.toObject();
       let newFlow = {
@@ -33,9 +35,7 @@ const CreateMindMap = () => {
         dateCreate: dateCreate,
         ...flow,
       };
-      // if (!flow || !created) {
-      //   newFlow = { ...newFlow, dateCreate: formatCurrentTime() };
-      // }
+
       const existingFlows = JSON.parse(localStorage.getItem("flowArr")) || [];
       const existingIndex = existingFlows.findIndex(
         (item) => item.flow_id === flow_id
@@ -46,11 +46,15 @@ const CreateMindMap = () => {
         existingFlows.push(newFlow);
       }
       localStorage.setItem("flowArr", JSON.stringify(existingFlows));
+      // update({
+      //   name: "Tuấn",
+      // });
     }
   }, [rfInstance, name, desc, flow_id]);
   useEffect(() => {
     onSave();
-  }, [onSave]);
+  }, []);
+
   return (
     <div className="py-5 mx-auto">
       <div className="text-start container mx-auto flex flex-wrap">

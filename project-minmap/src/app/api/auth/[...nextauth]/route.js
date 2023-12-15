@@ -46,6 +46,28 @@ export const authOptions = {
       clientSecret: process.env.CLIENT_SECRET_FACEBOOK ?? "",
     }),
   ],
+  callbacks: {
+    jwt({ token, trigger, session, user }) {
+      user.info = "Tuấn";
+      console.log(user);
+      if (trigger === "update" && session?.name) {
+        token.name = session.name;
+      }
+      return token;
+    },
+    async session({ session, trigger, user, newSession }) {
+      console.log(user);
+
+      if (trigger === "update" && newSession?.name) {
+        session.name = newSession.name;
+      }
+      return session;
+    },
+  },
+
+  session: {
+    strategy: "jwt",
+  },
 };
 
 export const handler = NextAuth(authOptions);
