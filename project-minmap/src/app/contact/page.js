@@ -4,10 +4,10 @@ import "./contact.scss";
 import emailjs from "@emailjs/browser";
 import { useRef } from "react";
 import { toast } from "react-toastify";
-
+import { useSession } from "next-auth/react";
 const Contact = () => {
   const form = useRef();
-
+  const { data: session } = useSession();
   const HandleSubmit = async (e) => {
     e.preventDefault();
     await emailjs
@@ -57,6 +57,7 @@ const Contact = () => {
             name="user_email"
             variant="bordered"
             label="Email"
+            defaultValue={session?.user.email}
           />
 
           <Input

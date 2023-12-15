@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import { useParams, useRouter, usePathname } from "next/navigation";
 
 import {
   Navbar,
@@ -15,16 +14,17 @@ import {
 import { useSession, signIn } from "next-auth/react";
 
 import ThemeSwitcher from "./ThemeSwicher";
+import { data } from "autoprefixer";
 const Header = () => {
-  const router = useRouter();
-  const { locale } = useParams();
-  const pathName = usePathname();
   const { data: session } = useSession();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-
   const handleLogout = async () => {
     window.location.href = "/api/auth/signout";
   };
+
+  if (!session) {
+    localStorage.removeItem("flowArr");
+  }
 
   const menuItems = [
     { name: "Trang chủ", href: "/" },
@@ -48,11 +48,7 @@ const Header = () => {
 
       <NavbarContent className="hidden lg:flex gap-4" justify="center">
         <NavbarItem>
-          <Link
-            color="foreground"
-            href="/"
-            className=" hover:underline hover:text-blue-400"
-          >
+          <Link color="foreground" href="/" className=" hover:bg-zinc-300 p-2">
             Trang chủ
           </Link>
         </NavbarItem>
@@ -60,7 +56,7 @@ const Header = () => {
           <Link
             href="./introduce"
             color="foreground"
-            className=" hover:underline hover:text-blue-400"
+            className=" hover:bg-zinc-300 p-2"
           >
             Giới thiệu
           </Link>
@@ -69,7 +65,7 @@ const Header = () => {
           <Link
             href="./feature"
             color="foreground"
-            className=" hover:underline hover:text-blue-400"
+            className=" hover:bg-zinc-300 p-2"
           >
             Tính năng
           </Link>
@@ -78,7 +74,7 @@ const Header = () => {
           <Link
             href="./price_board"
             color="foreground"
-            className=" hover:underline hover:text-blue-400"
+            className="hover:bg-zinc-300 p-2"
           >
             Bảng giá
           </Link>
@@ -86,7 +82,7 @@ const Header = () => {
         <NavbarItem>
           <Link
             color="foreground"
-            className=" hover:underline hover:text-blue-400"
+            className=" hover:bg-zinc-300 p-2"
             href="./contact"
           >
             Liên hệ
@@ -100,10 +96,15 @@ const Header = () => {
         {session ? (
           <>
             <NavbarItem>
-              <p className=" text-blue-400 ">Hi, {session.user.name}</p>
+              <p className=" text-blue-600 hover:bg-blue-200 p-2 ">
+                Hi, {session.user.name}
+              </p>
             </NavbarItem>
             <NavbarItem>
-              <Link href="my-mindmap" className="text-blue-400">
+              <Link
+                href="/my-mindmap"
+                className="text-blue-600 hover:bg-blue-200 p-2"
+              >
                 Mindmap
               </Link>
             </NavbarItem>

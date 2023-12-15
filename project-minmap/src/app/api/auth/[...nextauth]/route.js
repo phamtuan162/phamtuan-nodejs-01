@@ -1,10 +1,38 @@
 import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import FacebookProvider from "next-auth/providers/facebook";
-
+import CredentialsProvider from "next-auth/providers/credentials";
 import NextAuth from "next-auth/next";
+
+import { LoginUser } from "@/utils/LoginUser";
 export const authOptions = {
   providers: [
+    CredentialsProvider({
+      name: "Credentials",
+      credentials: {
+        name: {
+          label: "Username:",
+          type: "text",
+          placeholder: "vui lòng nhập tên tài khoản",
+          required: true,
+        },
+        email: {
+          label: "email:",
+          type: "text",
+          placeholder: "vui lòng nhập email",
+          required: true,
+        },
+        password: {
+          label: "Password:",
+          type: "password",
+          placeholder: "vui lòng nhập password",
+          required: true,
+        },
+      },
+      async authorize(credentials) {
+        return await LoginUser(credentials);
+      },
+    }),
     GitHubProvider({
       clientId: process.env.CLIENT_ID_GITHUB ?? "",
       clientSecret: process.env.CLIENT_SECRET_GITHUB ?? "",
