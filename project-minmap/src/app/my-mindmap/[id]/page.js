@@ -1,13 +1,12 @@
 "use client";
 import React, { useState, useCallback, useEffect } from "react";
 import { useParams } from "next/navigation";
-import { useSession } from "next-auth/react";
 import { ReactFlowProvider } from "reactflow";
 import CreateFlow from "./Flow";
 import { formatCurrentTime } from "@/utils/formatCurrentTime";
 import { toast } from "react-toastify";
 const CreateMindMap = () => {
-  const { data: session, update } = useSession();
+  // const { data: session, update } = useSession();
   const { id: flow_id } = useParams();
   const flow = JSON.parse(localStorage.getItem("flowArr"));
   const flowNeedFind = flow?.find((item) => item.flow_id === flow_id);
@@ -27,6 +26,7 @@ const CreateMindMap = () => {
   const onSave = useCallback(async () => {
     if (rfInstance) {
       const flow = rfInstance.toObject();
+      console.log(flow);
       let newFlow = {
         flow_id: flow_id,
         flow_name: name,
@@ -52,7 +52,7 @@ const CreateMindMap = () => {
   }, [rfInstance, name, desc, flow_id]);
   useEffect(() => {
     onSave();
-  }, []);
+  }, [onSave]);
 
   return (
     <div className="py-5 mx-auto">

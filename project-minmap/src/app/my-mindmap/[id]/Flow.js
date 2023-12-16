@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useRef, useMemo } from "react";
 import ReactFlow, {
   useNodesState,
   useEdgesState,
@@ -7,9 +7,6 @@ import ReactFlow, {
   useReactFlow,
   Controls,
   MiniMap,
-  getIncomers,
-  getOutgoers,
-  getConnectedEdges,
   updateEdge,
   Background,
 } from "reactflow";
@@ -27,8 +24,10 @@ const initialNodes = [
   },
 ];
 
-const nodeTypes = { textUpdater: TextUpdateNode };
+// const nodeTypes = { textUpdater: TextUpdateNode };
 export default function Flow({ setRfInstance, flowNeedFind }) {
+  let viewportSet = false;
+  // const [viewportSet, setViewportSet] = useState(false);
   const edgeUpdateSuccessful = useRef(true);
   const connectingNodeId = useRef(null);
   const [nodes, setNodes, onNodesChange] = useNodesState(
@@ -41,10 +40,13 @@ export default function Flow({ setRfInstance, flowNeedFind }) {
   const { screenToFlowPosition, setViewport } = useReactFlow();
   let id = flowNeedFind?.nodes.length - 1 || 0;
   const getId = () => `${id + 1}`;
-  // if (flowNeedFind) {
+
+  // if (flowNeedFind && !viewportSet) {
   //   const { x = 0, y = 0, zoom = 1 } = flowNeedFind.viewport;
   //   setViewport({ x, y, zoom });
+  //   viewportSet = true;
   // }
+
   const onConnect = useCallback((params) => {
     connectingNodeId.current = null;
     setEdges((eds) => addEdge(params, eds));
@@ -85,33 +87,33 @@ export default function Flow({ setRfInstance, flowNeedFind }) {
     },
     [screenToFlowPosition]
   );
+  const onEdgeUpdate = useCallback(
+    (oldEdge, newConnection) =>
+      setEdges((els) => updateEdge(oldEdge, newConnection, els)),
+    []
+  );
 
-  // const onNodesDelete = useCallback(
-  //   (deleted) => {
-  //     setEdges(
-  //       deleted.reduce((acc, node) => {
-  //         const incomers = getIncomers(node, nodes, edges);
-  //         const outgoers = getOutgoers(node, nodes, edges);
-  //         const connectedEdges = getConnectedEdges([node], edges);
+  const onLabelChange = useCallback(
+    (nodeId, newLabel) => {
+      setNodes((currentNodes) =>
+        currentNodes.map((node) =>
+          node.id === nodeId
+            ? { ...node, data: { ...node.data, label: newLabel } }
+            : node
+        )
+      );
+    },
+    [setNodes]
+  );
 
-  //         const remainingEdges = acc.filter(
-  //           (edge) => !connectedEdges.includes(edge)
-  //         );
-
-  //         const createdEdges = incomers.flatMap(({ id: source }) =>
-  //           outgoers.map(({ id: target }) => ({
-  //             id: `${source}->${target}`,
-  //             source,
-  //             target,
-  //           }))
-  //         );
-
-  //         return [...remainingEdges, ...createdEdges];
-  //       }, edges)
-  //     );
-  //   },
-  //   [nodes, edges]
-  // );
+  const nodeTypes = useMemo(
+    () => ({
+      textUpdater: (props) => (
+        <TextUpdateNode {...props} onLabelChange={onLabelChange} />
+      ),
+    }),
+    [onLabelChange]
+  );
 
   return (
     <div style={{ height: "100%" }}>
@@ -124,6 +126,7 @@ export default function Flow({ setRfInstance, flowNeedFind }) {
         onConnectStart={onConnectStart}
         onConnectEnd={onConnectEnd}
         nodeTypes={nodeTypes}
+        onEdgeUpdate={onEdgeUpdate}
         fitView
         nodeOrigin={[0.5, 0]}
         onInit={setRfInstance}
