@@ -5,7 +5,9 @@ import { ReactFlowProvider } from "reactflow";
 import CreateFlow from "./Flow";
 import { formatCurrentTime } from "@/utils/formatCurrentTime";
 import { toast } from "react-toastify";
+import Share from "./Share";
 const CreateMindMap = () => {
+  const [open, setOpen] = useState(false);
   // const { data: session, update } = useSession();
   const { id: flow_id } = useParams();
   const flow = JSON.parse(localStorage.getItem("flowArr"));
@@ -54,6 +56,10 @@ const CreateMindMap = () => {
     onSave();
   }, [onSave]);
 
+  const openShare = () => {
+    setOpen(!open);
+  };
+
   return (
     <div className="py-5 mx-auto">
       <div className="text-start container mx-auto flex flex-wrap">
@@ -100,7 +106,9 @@ const CreateMindMap = () => {
             aria-label="Share on Linkedin"
           >
             <i className="fa-solid fa-share"></i>
-            <span className="ml-2">Chia sẻ</span>
+            <span className="ml-2" onClick={openShare}>
+              Chia sẻ
+            </span>
           </button>
         </div>
       </div>
@@ -112,6 +120,7 @@ const CreateMindMap = () => {
           />
         </ReactFlowProvider>
       </div>
+      {open ? <Share setOpen={setOpen} flowNeedFind={flowNeedFind} /> : ""}
     </div>
   );
 };
