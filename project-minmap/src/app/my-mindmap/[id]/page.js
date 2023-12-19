@@ -12,8 +12,8 @@ const CreateMindMap = () => {
   const { id: flow_id } = useParams();
   const flow = JSON.parse(localStorage.getItem("flowArr"));
   const flowNeedFind = flow?.find((item) => item.flow_id === flow_id);
+  const [mode, setMode] = useState(flowNeedFind?.flow_mode || "private");
   let dateCreate = flowNeedFind?.dateCreate || formatCurrentTime();
-
   const [rfInstance, setRfInstance] = useState(null);
   const [name, setName] = useState(
     flowNeedFind ? flowNeedFind.flow_name : "Mindmap không có tên"
@@ -28,12 +28,12 @@ const CreateMindMap = () => {
   const onSave = useCallback(async () => {
     if (rfInstance) {
       const flow = rfInstance.toObject();
-      console.log(flow);
       let newFlow = {
         flow_id: flow_id,
         flow_name: name,
         flow_desc: desc,
         dateCreate: dateCreate,
+        flow_mode: mode,
         ...flow,
       };
 
@@ -51,13 +51,26 @@ const CreateMindMap = () => {
       //   name: "Tuấn",
       // });
     }
-  }, [rfInstance, name, desc, flow_id]);
+  }, [rfInstance, name, desc, flow_id, mode]);
   useEffect(() => {
     onSave();
   }, [onSave]);
 
   const openShare = () => {
     setOpen(!open);
+  };
+
+  const handleSaveModeFlow = (e, modeShare) => {
+    e.preventDefault();
+    const updateFlow = flow.map((item) => {
+      if (item.flow_id === flowNeedFind.flow_id) {
+        return { ...item, flow_mode: modeShare };
+      }
+      return item;
+    });
+    localStorage.setItem("flowArr", JSON.stringify(updateFlow));
+    setMode(modeShare);
+    toast.success("Lưu thành công");
   };
 
   return (
@@ -120,7 +133,15 @@ const CreateMindMap = () => {
           />
         </ReactFlowProvider>
       </div>
-      {open ? <Share setOpen={setOpen} flowNeedFind={flowNeedFind} /> : ""}
+      {open ? (
+        <Share
+          setOpen={setOpen}
+          flowNeedFind={flowNeedFind}
+          handleSaveModeFlow={handleSaveModeFlow}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 };

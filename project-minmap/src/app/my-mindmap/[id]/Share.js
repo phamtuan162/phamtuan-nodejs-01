@@ -1,19 +1,14 @@
 "use client";
-
 import { useState } from "react";
-const Share = ({ setOpen, flowNeedFind }) => {
+const Share = ({ setOpen, flowNeedFind, handleSaveModeFlow }) => {
   const location = window.location.href;
-  const [publicShare, setPublicShare] = useState(false);
+  const [modeShare, setModeShare] = useState(flowNeedFind.flow_mode);
   const closeShare = () => {
     setOpen(false);
   };
 
   const handleMode = (e) => {
-    if (e.target.value === "private") {
-      setPublicShare(false);
-    } else {
-      setPublicShare(true);
-    }
+    setModeShare(e.target.value);
   };
 
   return (
@@ -47,7 +42,7 @@ const Share = ({ setOpen, flowNeedFind }) => {
                       type="radio"
                       value="private"
                       name="mode"
-                      checked={!publicShare}
+                      checked={modeShare === "private" ? true : false}
                       onChange={handleMode}
                     />
                     <label
@@ -66,7 +61,7 @@ const Share = ({ setOpen, flowNeedFind }) => {
                       value="public"
                       name="mode"
                       onChange={handleMode}
-                      checked={publicShare}
+                      checked={modeShare === "public" ? true : false}
                     />
                     <label
                       htmlFor="radio2"
@@ -77,7 +72,7 @@ const Share = ({ setOpen, flowNeedFind }) => {
                     </label>
                   </div>
                 </div>
-                {!publicShare ? (
+                {modeShare === "private" ? (
                   <div>
                     <p>
                       Nếu chọn riêng tư, chỉ có bạn mới được quyền xem Mindmap
@@ -149,10 +144,12 @@ const Share = ({ setOpen, flowNeedFind }) => {
                   <i className="fas fa-times"></i> Đóng
                 </button>
                 <button
+                  onClick={(e) => handleSaveModeFlow(e, modeShare)}
                   type="submit"
                   className="py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-700 mr-2"
                 >
-                  <i className="fas fa-plus"></i> Lưu lại
+                  <i className="fas fa-plus"></i>
+                  Lưu lại
                 </button>
               </div>
             </div>

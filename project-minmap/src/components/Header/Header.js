@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 
 import {
   Navbar,
@@ -11,20 +11,29 @@ import {
   NavbarMenu,
   NavbarMenuItem,
 } from "@nextui-org/react";
-import { useSession, signIn } from "next-auth/react";
-
+import { useSession, signIn, signOut } from "next-auth/react";
 import ThemeSwitcher from "./ThemeSwicher";
-
+import { toast } from "react-toastify";
+import { usePathname } from "next/navigation";
 const Header = () => {
   const { data: session } = useSession();
-  console.log(session);
+  const pathName = usePathname();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  useEffect(() => {
+    if (pathName.startsWith("/my-mindmap") && !session) {
+      signIn();
+    }
+  }, [session]);
   const handleLogout = async () => {
-    window.location.href = "/api/auth/signout";
+    toast.warning("Bạn có muốn đăng xuất không,Click Here", {
+      onClick: async () => {
+        await signOut();
+        localStorage.removeItem("flowArr");
+        window.location.href = "/";
+        toast.success("Bạn đăng xuất thành công");
+      },
+    });
   };
-  if (!session) {
-    localStorage.removeItem("flowArr");
-  }
 
   const menuItems = [
     { name: "Trang chủ", href: "/" },
