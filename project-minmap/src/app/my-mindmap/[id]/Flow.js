@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback, useRef, useMemo } from "react";
+import React, { useCallback, useRef, useEffect, useMemo } from "react";
 import ReactFlow, {
   useNodesState,
   useEdgesState,
@@ -24,10 +24,7 @@ const initialNodes = [
   },
 ];
 
-// const nodeTypes = { textUpdater: TextUpdateNode };
 export default function Flow({ setRfInstance, flowNeedFind }) {
-  let viewportSet = false;
-  // const [viewportSet, setViewportSet] = useState(false);
   const edgeUpdateSuccessful = useRef(true);
   const connectingNodeId = useRef(null);
   const [nodes, setNodes, onNodesChange] = useNodesState(
@@ -41,11 +38,12 @@ export default function Flow({ setRfInstance, flowNeedFind }) {
   let id = flowNeedFind?.nodes.length - 1 || 0;
   const getId = () => `${id + 1}`;
 
-  // if (flowNeedFind && !viewportSet) {
-  //   const { x = 0, y = 0, zoom = 1 } = flowNeedFind.viewport;
-  //   setViewport({ x, y, zoom });
-  //   viewportSet = true;
-  // }
+  useEffect(() => {
+    if (flowNeedFind) {
+      const { x = 0, y = 0, zoom = 1 } = flowNeedFind.viewport;
+      setViewport({ x, y, zoom });
+    }
+  }, [flowNeedFind]);
 
   const onConnect = useCallback((params) => {
     connectingNodeId.current = null;

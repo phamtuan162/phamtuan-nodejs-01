@@ -110,9 +110,7 @@ const Share = ({ setOpen, flowNeedFind, handleSaveModeFlow }) => {
                     </div>
                     <div className="group relative mt-3">
                       <label className="block w-full pb-1 text-sm font-medium text-gray-500 transition-all duration-200 ease-in-out group-focus-within:text-blue-400">
-                        {flowNeedFind.flow_desc === "Chưa có mô tả"
-                          ? ""
-                          : flowNeedFind.flow_desc}
+                        {flowNeedFind.flow_desc}
                       </label>
                       <textarea
                         type="text"

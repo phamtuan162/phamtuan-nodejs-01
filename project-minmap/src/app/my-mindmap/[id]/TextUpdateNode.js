@@ -1,12 +1,10 @@
 "use client";
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 import { Handle, Position } from "reactflow";
 import "./text-update-node.scss";
 function TextUpdateNode({ id, data, isConnectable, onLabelChange }) {
-  // const [nodeName, setNodeName] = useState(data.label);
   const onChange = useCallback(
     (e) => {
-      // setNodeName(e.target.value);
       onLabelChange(id, e.target.value);
     },
     [id, onLabelChange]

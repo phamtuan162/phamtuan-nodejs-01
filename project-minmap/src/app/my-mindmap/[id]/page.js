@@ -8,7 +8,6 @@ import { toast } from "react-toastify";
 import Share from "./Share";
 const CreateMindMap = () => {
   const [open, setOpen] = useState(false);
-  // const { data: session, update } = useSession();
   const { id: flow_id } = useParams();
   const flow = JSON.parse(localStorage.getItem("flowArr"));
   const flowNeedFind = flow?.find((item) => item.flow_id === flow_id);
@@ -47,9 +46,6 @@ const CreateMindMap = () => {
         existingFlows.push(newFlow);
       }
       localStorage.setItem("flowArr", JSON.stringify(existingFlows));
-      // update({
-      //   name: "Tuấn",
-      // });
     }
   }, [rfInstance, name, desc, flow_id, mode]);
   useEffect(() => {
