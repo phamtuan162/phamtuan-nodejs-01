@@ -17,18 +17,25 @@ import { toast } from "react-toastify";
 import { usePathname } from "next/navigation";
 const Header = () => {
   const { data: session } = useSession();
+  console.log(session);
   const pathName = usePathname();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   useEffect(() => {
     if (pathName.startsWith("/my-mindmap") && !session) {
       signIn();
     }
+    if (session?.user.id) {
+      const userId = session.user.id;
+      localStorage.setItem("user_id", JSON.stringify(userId));
+    }
   }, [session]);
+
   const handleLogout = async () => {
     toast.warning("Bạn có muốn đăng xuất không,Click Here", {
       onClick: async () => {
         await signOut();
         localStorage.removeItem("flowArr");
+        localStorage.removeItem("user_id");
         window.location.href = "/";
         toast.success("Bạn đăng xuất thành công");
       },

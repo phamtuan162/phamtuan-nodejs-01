@@ -1,10 +1,22 @@
 "use client";
 import { toast } from "react-toastify";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getLocalStorage } from "@/utils/getLocalStorage";
+
+// import { getFlowUser } from "@/services/getFlowUser";
+// import Loading from "@/components/Loading/Loading";
 function ListMyFlow() {
-  const [flows, setFlows] = useState(
-    JSON.parse(localStorage.getItem("flowArr"))
-  );
+  const userId = getLocalStorage("user_id");
+  const [flows, setFlows] = useState(getLocalStorage("flowArr") || []);
+
+  // useEffect(() => {
+  //   const fetchFlows = async () => {
+  //     const flowData = await getFlowUser(userId);
+  //     setFlows(flowData);
+  //   };
+
+  //   fetchFlows();
+  // }, [userId]);
   const deleteMyFlow = (flow_id) => {
     const flowArrNew = flows.filter((item) => item.flow_id !== flow_id);
 

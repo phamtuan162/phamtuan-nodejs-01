@@ -6,28 +6,37 @@ import CreateFlow from "./Flow";
 import { formatCurrentTime } from "@/utils/formatCurrentTime";
 import { toast } from "react-toastify";
 import Share from "./Share";
+import { getLocalStorage } from "@/utils/getLocalStorage";
+import { postFlow } from "@/services/postFlow";
 const CreateMindMap = () => {
-  const [open, setOpen] = useState(false);
   const { id: flow_id } = useParams();
-  const flow = JSON.parse(localStorage.getItem("flowArr"));
-  const flowNeedFind = flow?.find((item) => item.flow_id === flow_id);
+  const userId = getLocalStorage("user_id");
+  const flow = getLocalStorage("flowArr");
+  const flowNeedFind = flow.find((item) => item.flow_id === flow_id);
   const [mode, setMode] = useState(flowNeedFind?.flow_mode || "private");
   let dateCreate = flowNeedFind?.dateCreate || formatCurrentTime();
   const [rfInstance, setRfInstance] = useState(null);
+  const [open, setOpen] = useState(false);
   const [name, setName] = useState(
-    flowNeedFind ? flowNeedFind.flow_name : "Mindmap không có tên"
+    flowNeedFind?.flow_name || "Mindmap không có tên"
   );
-  const [desc, setDesc] = useState(
-    flowNeedFind ? flowNeedFind.flow_desc : "Chưa có mô tả"
-  );
+  const [desc, setDesc] = useState(flowNeedFind?.flow_desc || "Chưa có mô tả");
+  const checkUser = flowNeedFind ? flowNeedFind.user_id === userId : true;
+  useEffect(() => {
+    if (!checkUser && flowNeedFind?.flow_mode === "private") {
+      window.location.href = "/";
+    }
+  }, [checkUser, flowNeedFind]);
 
   const handleChange = (e, setter) => {
     setter(e.target.textContent);
   };
+
   const onSave = useCallback(async () => {
     if (rfInstance) {
       const flow = rfInstance.toObject();
-      let newFlow = {
+      const newFlow = {
+        user_id: userId,
         flow_id: flow_id,
         flow_name: name,
         flow_desc: desc,
@@ -36,18 +45,22 @@ const CreateMindMap = () => {
         ...flow,
       };
 
-      const existingFlows = JSON.parse(localStorage.getItem("flowArr")) || [];
+      const existingFlows = getLocalStorage("flowArr");
       const existingIndex = existingFlows.findIndex(
         (item) => item.flow_id === flow_id
       );
+
       if (existingIndex !== -1) {
         existingFlows[existingIndex] = newFlow;
       } else {
         existingFlows.push(newFlow);
       }
       localStorage.setItem("flowArr", JSON.stringify(existingFlows));
+      document.title = name;
+      // await postFlow(newFlow);
     }
-  }, [rfInstance, name, desc, flow_id, mode]);
+  }, [rfInstance, name, desc, flow_id, mode, userId]);
+
   useEffect(() => {
     onSave();
   }, [onSave]);
@@ -59,11 +72,11 @@ const CreateMindMap = () => {
   const handleSaveModeFlow = (e, modeShare) => {
     e.preventDefault();
     const updateFlow = flow.map((item) => {
-      if (item.flow_id === flowNeedFind.flow_id) {
-        return { ...item, flow_mode: modeShare };
-      }
-      return item;
+      return item.flow_id === flowNeedFind.flow_id
+        ? { ...item, flow_mode: modeShare }
+        : item;
     });
+
     localStorage.setItem("flowArr", JSON.stringify(updateFlow));
     setMode(modeShare);
     toast.success("Lưu thành công");
@@ -91,34 +104,38 @@ const CreateMindMap = () => {
           ></p>
         </div>
         <div className="w-1/5 flex justify-end items-center">
-          <button
-            className="border-2 duration-200 ease inline-flex items-center mb-1 mr-1 transition py-1 px-2 text-sm rounded text-white border-green-600 bg-green-600 hover:bg-green-700 hover:border-green-700"
-            onClick={async () => {
-              try {
-                await onSave();
-                toast.success("Lưu thành công");
-              } catch (error) {
-                console.error("Lỗi khi lưu: ", error);
-                toast.error("Có lỗi xảy ra khi lưu");
-              }
-            }}
-          >
-            <i className="fa-solid fa-save"></i>
-            <span className="ml-2">Lưu thay đổi</span>
-          </button>
-          <button
-            type="button"
-            className="border-2 duration-200 ease inline-flex items-center mb-1 mr-1 transition py-1 px-2 text-sm rounded text-white border-blue-600 bg-blue-600 hover:bg-blue-700 hover:border-blue-700"
-            target="_blank"
-            rel="noopener"
-            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=&amp;title=&amp;summary=&amp;source="
-            aria-label="Share on Linkedin"
-          >
-            <i className="fa-solid fa-share"></i>
-            <span className="ml-2" onClick={openShare}>
-              Chia sẻ
-            </span>
-          </button>
+          {checkUser && (
+            <>
+              <button
+                className="border-2 duration-200 ease inline-flex items-center mb-1 mr-1 transition py-1 px-2 text-sm rounded text-white border-green-600 bg-green-600 hover:bg-green-700 hover:border-green-700"
+                onClick={async () => {
+                  try {
+                    await onSave();
+                    toast.success("Lưu thành công");
+                  } catch (error) {
+                    console.error("Lỗi khi lưu: ", error);
+                    toast.error("Có lỗi xảy ra khi lưu");
+                  }
+                }}
+              >
+                <i className="fa-solid fa-save"></i>
+                <span className="ml-2">Lưu thay đổi</span>
+              </button>
+              <button
+                type="button"
+                className="border-2 duration-200 ease inline-flex items-center mb-1 mr-1 transition py-1 px-2 text-sm rounded text-white border-blue-600 bg-blue-600 hover:bg-blue-700 hover:border-blue-700"
+                target="_blank"
+                rel="noopener"
+                href="https://www.linkedin.com/shareArticle?mini=true&amp;url=&amp;title=&amp;summary=&amp;source="
+                aria-label="Share on Linkedin"
+              >
+                <i className="fa-solid fa-share"></i>
+                <span className="ml-2" onClick={openShare}>
+                  Chia sẻ
+                </span>
+              </button>
+            </>
+          )}
         </div>
       </div>
       <div className="py-5" style={{ width: "100%", height: "500px" }}>

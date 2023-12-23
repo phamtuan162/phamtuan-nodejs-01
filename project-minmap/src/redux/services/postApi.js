@@ -1,9 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { usePathname } from "next/navigation";
+const pathName = usePathname();
 
 export const postApi = createApi({
   reducerPath: "postApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:3005",
+    baseUrl: `${pathName}`,
   }),
   endpoints: (builder) => ({
     getPosts: builder.query({

@@ -1,0 +1,46 @@
+{
+  "flows": [
+    {
+      "user_id": "1",
+      "edges": [],
+      "nodes": [
+        {
+          "width": 200,
+          "height": 50,
+          "id": "0",
+          "data": { "label": "My Mindmap" },
+          "position": { "x": 0, "y": 0 },
+          "positionAbsolute": { "x": 0, "y": 0 },
+          "type": "textUpdater"
+        }
+      ],
+      "dateCreate": "20/12/2023 17:51:4",
+      "flow_desc": "Chưa có mô tả",
+      "flow_id": "46b523b0-802c-46d0-95cf-0a6e1386ea29",
+      "flow_mode": "public",
+      "flow_name": "Mindmap không có tên",
+      "viewport": { "x": 0, "y": 0, "zoom": 1 }
+    },
+    {
+      "user_id": "100085129420751575269",
+      "edges": [],
+      "nodes": [
+        {
+          "width": 200,
+          "height": 50,
+          "id": "0",
+          "data": { "label": "My Mindmap" },
+          "position": { "x": 0, "y": 0 },
+          "positionAbsolute": { "x": 0, "y": 0 },
+          "type": "textUpdater"
+        }
+      ],
+      "dateCreate": "20/12/2023 17:51:4",
+      "flow_desc": "Chưa có mô tả",
+      "flow_id": "46b523b0-802c-46d0-95cf-0a6e1386ea29",
+      "flow_mode": "public",
+      "flow_name": "Mindmap không có tên",
+      "viewport": { "x": 0, "y": 0, "zoom": 1 }
+    }
+  ]
+}
