@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect } from "react";
-
+import { usePathname } from "next/navigation";
 import {
   Navbar,
   NavbarBrand,
@@ -14,7 +14,6 @@ import {
 import { useSession, signIn, signOut } from "next-auth/react";
 import ThemeSwitcher from "./ThemeSwicher";
 import { toast } from "react-toastify";
-import { usePathname } from "next/navigation";
 const Header = () => {
   const { data: session } = useSession();
   const pathName = usePathname();
