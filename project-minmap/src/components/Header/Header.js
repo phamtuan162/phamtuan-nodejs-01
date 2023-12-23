@@ -17,7 +17,6 @@ import { toast } from "react-toastify";
 import { usePathname } from "next/navigation";
 const Header = () => {
   const { data: session } = useSession();
-  console.log(session);
   const pathName = usePathname();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   useEffect(() => {

@@ -7,7 +7,6 @@ import { formatCurrentTime } from "@/utils/formatCurrentTime";
 import { toast } from "react-toastify";
 import Share from "./Share";
 import { getLocalStorage } from "@/utils/getLocalStorage";
-import { postFlow } from "@/services/postFlow";
 const CreateMindMap = () => {
   const { id: flow_id } = useParams();
   const userId = getLocalStorage("user_id");
@@ -57,7 +56,6 @@ const CreateMindMap = () => {
       }
       localStorage.setItem("flowArr", JSON.stringify(existingFlows));
       document.title = name;
-      // await postFlow(newFlow);
     }
   }, [rfInstance, name, desc, flow_id, mode, userId]);
 
