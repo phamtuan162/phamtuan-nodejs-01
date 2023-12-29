@@ -20,7 +20,10 @@ import { taskSlice } from "../../stores/slices/taskSlice";
 import { columnSlice } from "../../stores/slices/columnSlice";
 import Task from "./Tasks/Task";
 import { cloneDeep } from "lodash";
+import { isEmpty } from "lodash";
 import { setLocalStorage } from "../../utils/localStorage";
+import { generatePlaceholderTask } from "../../utils/generatePlaceholderTask";
+
 const ACTIVE_DRAG_ITEM_TYPE = {
   COLUMN: "ACTIVE_DRAG_ITEM_COLUMN",
   TASK: "ACTIVE_DRAG_ITEM_TASK",
@@ -131,9 +134,9 @@ function Board() {
           (task) => task._id !== activeDraggingTaskId
         );
 
-        // if (isEmpty(nextActiveColumn.tasks)) {
-        //   nextActiveColumn.tasks = [generatePlaceholderTask(nextActiveColumn)];
-        // }
+        if (isEmpty(nextActiveColumn.tasks)) {
+          nextActiveColumn.tasks = [generatePlaceholderTask(nextActiveColumn)];
+        }
         nextActiveColumn.taskOrderIds = nextActiveColumn.tasks.map(
           (task) => task._id
         );
@@ -154,9 +157,9 @@ function Board() {
           rebuild_activeDraggingCardData
         );
 
-        // nextOverColumn.tasks = nextOverColumn.tasks.filter(
-        //   (task) => !task.FE_PlaceholderTask
-        // );
+        nextOverColumn.tasks = nextOverColumn.tasks.filter(
+          (task) => !task.FE_PlaceholderTask
+        );
 
         nextOverColumn.taskOrderIds = nextOverColumn.tasks.map(
           (task) => task._id
@@ -207,7 +210,6 @@ function Board() {
 
   const HandleDragEnd = (e) => {
     const { active, over } = e;
-    console.log(e);
     if (!over || !active) return;
     if (activeDragItemType === ACTIVE_DRAG_ITEM_TYPE.TASK) {
       const {
@@ -324,7 +326,7 @@ function Board() {
       onDragStart={HandleDragStart}
       onDragOver={HandleDragOver}
       sensors={sensors}
-      // collisionDetection={collisionDetectionStrategy}
+      collisionDetection={collisionDetectionStrategy}
     >
       <Colums columns={orderedColumns} />
       <DragOverlay dropAnimation={dropAnimation}>

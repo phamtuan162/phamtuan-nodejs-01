@@ -1,7 +1,16 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import { useState, useRef } from "react";
+import { useDispatch } from "react-redux";
+import { taskSlice } from "../../../stores/slices/taskSlice";
+const { editTaskContent } = taskSlice.actions;
+
 function Task({ task, HandleRemoveTask }) {
-  // const check = task._id.includes("placeholder-card");
+  const dispatch = useDispatch();
+  const [isEditing, setIsEditing] = useState(false);
+  const [taskContent, setTaskContent] = useState(task.content);
+  const inputRef = useRef(null);
+
   const {
     attributes,
     listeners,
@@ -18,19 +27,56 @@ function Task({ task, HandleRemoveTask }) {
     transition,
     opacity: isDragging ? 0.3 : undefined,
   };
+  const handleInputChange = (e) => {
+    setTaskContent(e.target.value);
+  };
+  const HandleClick = () => {
+    setIsEditing(true);
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  };
+  const HandleBlurInput = async (task) => {
+    const updatedTask = { ...task, content: taskContent };
+    await dispatch(editTaskContent(updatedTask));
+    setIsEditing(false);
+  };
+
+  const handleInputKeyDown = (e, task) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      HandleBlurInput(task);
+    }
+  };
   return (
     <div
       ref={setNodeRef}
       style={{
         ...dndKitTaskStyle,
-        // display: check ? "none" : "block",
+        visibility: task?._id.includes("-placeholder-card")
+          ? "hidden"
+          : "visible",
+        height: task?._id.includes("-placeholder-card") ? "1px" : "100px",
       }}
       {...listeners}
       {...attributes}
       key={task._id}
       className="tasks-item"
+      onClick={HandleClick}
     >
-      <p>{task.content}</p>
+      {isEditing ? (
+        <input
+          ref={inputRef}
+          value={taskContent}
+          onChange={handleInputChange}
+          onBlur={() => HandleBlurInput(task)}
+          onKeyDown={(e) => handleInputKeyDown(e, task)}
+          type="text"
+        />
+      ) : (
+        <p>{task.content}</p>
+      )}
+
       <button className="btn-remove" onClick={() => HandleRemoveTask(task)}>
         <svg
           xmlns="http://www.w3.org/2000/svg"

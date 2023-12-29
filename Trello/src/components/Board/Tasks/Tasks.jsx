@@ -7,13 +7,12 @@ import "./tasks.scss";
 import Task from "./Task";
 import { taskSlice } from "../../../stores/slices/taskSlice";
 import { postTask } from "../../../services/postTask";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 
 const { updateTask } = taskSlice.actions;
 
 function Tasks({ column, setLoading, tasksOld }) {
-  console.log(column);
   const dispatch = useDispatch();
   const orderedTasks = mapOrder(column.tasks, column?.taskOrderIds, "_id");
   const HandleRemoveTask = (task) => {

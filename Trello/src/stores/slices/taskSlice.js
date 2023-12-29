@@ -14,6 +14,18 @@ export const taskSlice = createSlice({
       state.tasks = action.payload;
       setLocalStorage("tasks", action.payload);
     },
+    editTaskContent: (state, action) => {
+      state.tasks = state.tasks.map((task) => {
+        if (task._id === action.payload._id) {
+          return {
+            ...task,
+            content: action.payload.content,
+          };
+        }
+        return task;
+      });
+      setLocalStorage("tasks", state.tasks);
+    },
   },
   extraReducers: (builder) => {
     builder

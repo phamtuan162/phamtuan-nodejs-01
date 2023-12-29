@@ -11,6 +11,7 @@ import {
   horizontalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import Column from "./Column";
+import { generatePlaceholderTask } from "../../../utils/generatePlaceholderTask";
 import { v4 as uuidv4 } from "uuid";
 import { getLocalStorage } from "../../../utils/localStorage";
 
@@ -64,10 +65,11 @@ function Colums({ columns }) {
       columnName: `Column ${columns.length + 1}`,
       _id: uuidv4(),
     };
-    // const updatedTask = [...tasksOld, generatePlaceholderTask(newColumn)];
     const updatedColumn = [...columns, newColumn];
+    const updatedTask = [...tasksOld, generatePlaceholderTask(newColumn)];
 
     await dispatch(updateColumn(updatedColumn));
+    await dispatch(updateTask(updatedTask));
     toast.success("Thêm column mới thành công");
   };
 
