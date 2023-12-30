@@ -16,12 +16,8 @@ import ThemeSwitcher from "./ThemeSwicher";
 import { toast } from "react-toastify";
 const Header = () => {
   const { data: session } = useSession();
-  const pathName = usePathname();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   useEffect(() => {
-    if (pathName.startsWith("/my-mindmap") && !session) {
-      signIn();
-    }
     if (session?.user.id) {
       const userId = session.user.id;
       localStorage.setItem("user_id", JSON.stringify(userId));
