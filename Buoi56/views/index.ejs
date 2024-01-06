@@ -1,0 +1,9 @@
+<h1>Trang chủ</h1>
+<p>Chào bạn: <%= user.name %></p>
+<form
+  action="/auth/dang-xuat"
+  onsubmit="return confirm('Bạn có chắc chắn muốn đăng xuất không?')"
+  method="post"
+>
+  <button class="btn btn-danger">Đăng xuất</button>
+</form>
