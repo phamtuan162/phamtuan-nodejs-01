@@ -32,6 +32,11 @@ module.exports = {
         req.flash("old", req.body);
         return res.redirect("/auth/dang-nhap");
       }
+      if (user.status === false) {
+        req.flash("msg", "Tài khoản chưa được kích hoạt");
+        req.flash("old", req.body);
+        return res.redirect("/auth/dang-nhap");
+      }
 
       req.session.isLogin = true;
       req.session.user = user;
@@ -55,7 +60,7 @@ module.exports = {
     res.render("auth/register", { req, msg });
   },
   handleRegister: async (req, res) => {
-    const { email, password, name } = req.body;
+    const { email, password, name, status } = req.body;
     const schema = object({
       email: string()
         .required("Vui lòng nhập email")
