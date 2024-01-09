@@ -27,14 +27,13 @@ module.exports = {
       const body = await schema.validate(req.body, { abortEarly: false });
       const user = await User.findOne({ where: { email: body.email } });
 
+      req.flash("old", req.body);
       if (!user || !(await bcrypt.compare(body.password, user.password))) {
         req.flash("msg", "Email hoặc mật khẩu không chính xác");
-        req.flash("old", req.body);
         return res.redirect("/auth/dang-nhap");
       }
       if (user.status === false) {
         req.flash("msg", "Tài khoản chưa được kích hoạt");
-        req.flash("old", req.body);
         return res.redirect("/auth/dang-nhap");
       }
 
