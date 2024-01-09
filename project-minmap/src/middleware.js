@@ -1,8 +1,8 @@
 "use client";
 import { NextResponse } from "next/server";
 export function middleware(request) {
-  const token = request.cookies.get("appSession")?.value;
-  if (!token) {
+  const sessionToken = request.cookies.get("next-auth.session-token")?.value;
+  if (!sessionToken) {
     return NextResponse.redirect(new URL("/api/auth/signin", request.url));
   }
 }

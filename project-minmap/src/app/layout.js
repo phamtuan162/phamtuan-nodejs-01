@@ -7,8 +7,8 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
 export const metadata = {
-  title: "Min map",
-  description: "Min map",
+  title: "Mind map",
+  description: "Mind map",
 };
 
 export default async function RootLayout({ children }) {

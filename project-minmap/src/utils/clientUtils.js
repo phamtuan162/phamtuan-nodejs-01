@@ -1,5 +1,5 @@
 export const client = {
-  serverApi: "http://localhost:3000/api/flows",
+  serverApi: "https://g36kj7-8080.csb.app",
   setUrl: function (url) {
     this.serverApi = url;
   },

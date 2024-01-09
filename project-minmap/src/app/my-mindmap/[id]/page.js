@@ -6,16 +6,18 @@ import CreateFlow from "./Flow";
 import { formatCurrentTime } from "@/utils/formatCurrentTime";
 import { toast } from "react-toastify";
 import Share from "./Share";
+import { postFlow, updateFlow } from "@/services/flowApi";
 import { getLocalStorage } from "@/utils/getLocalStorage";
 const CreateMindMap = () => {
   const { id: flow_id } = useParams();
   const userId = getLocalStorage("user_id");
   const flow = getLocalStorage("flowArr");
-  const flowNeedFind = flow.find((item) => item.flow_id === flow_id);
+  const flowNeedFind = flow.find((item) => item.id === flow_id);
   const [mode, setMode] = useState(flowNeedFind?.flow_mode || "private");
   let dateCreate = flowNeedFind?.dateCreate || formatCurrentTime();
   const [rfInstance, setRfInstance] = useState(null);
   const [open, setOpen] = useState(false);
+  let save = false;
   const [name, setName] = useState(
     flowNeedFind?.flow_name || "Mindmap không có tên"
   );
@@ -31,33 +33,41 @@ const CreateMindMap = () => {
     setter(e.target.textContent);
   };
 
-  const onSave = useCallback(async () => {
-    if (rfInstance) {
-      const flow = rfInstance.toObject();
-      const newFlow = {
-        user_id: userId,
-        flow_id: flow_id,
-        flow_name: name,
-        flow_desc: desc,
-        dateCreate: dateCreate,
-        flow_mode: mode,
-        ...flow,
-      };
+  const onSave = useCallback(
+    async (save) => {
+      console.log(save);
+      if (rfInstance) {
+        const flow = rfInstance.toObject();
+        const newFlow = {
+          user_id: userId,
+          id: flow_id,
+          flow_name: name,
+          flow_desc: desc,
+          dateCreate: dateCreate,
+          flow_mode: mode,
+          ...flow,
+        };
+        const existingFlows = getLocalStorage("flowArr");
+        const existingIndex = existingFlows.findIndex(
+          (item) => item.id === flow_id
+        );
+        if (save === true) {
+          await updateFlow(newFlow);
+        }
 
-      const existingFlows = getLocalStorage("flowArr");
-      const existingIndex = existingFlows.findIndex(
-        (item) => item.flow_id === flow_id
-      );
+        if (existingIndex !== -1) {
+          existingFlows[existingIndex] = newFlow;
+        } else {
+          await postFlow(newFlow);
+          existingFlows.push(newFlow);
+        }
 
-      if (existingIndex !== -1) {
-        existingFlows[existingIndex] = newFlow;
-      } else {
-        existingFlows.push(newFlow);
+        localStorage.setItem("flowArr", JSON.stringify(existingFlows));
+        document.title = name;
       }
-      localStorage.setItem("flowArr", JSON.stringify(existingFlows));
-      document.title = name;
-    }
-  }, [rfInstance, name, desc, flow_id, mode, userId]);
+    },
+    [rfInstance, name, desc, flow_id, mode, userId]
+  );
 
   useEffect(() => {
     onSave();
@@ -70,7 +80,7 @@ const CreateMindMap = () => {
   const handleSaveModeFlow = (e, modeShare) => {
     e.preventDefault();
     const updateFlow = flow.map((item) => {
-      return item.flow_id === flowNeedFind.flow_id
+      return item.id === flowNeedFind.flow_id
         ? { ...item, flow_mode: modeShare }
         : item;
     });
@@ -108,7 +118,7 @@ const CreateMindMap = () => {
                 className="border-2 duration-200 ease inline-flex items-center mb-1 mr-1 transition py-1 px-2 text-sm rounded text-white border-green-600 bg-green-600 hover:bg-green-700 hover:border-green-700"
                 onClick={async () => {
                   try {
-                    await onSave();
+                    await onSave((save = true));
                     toast.success("Lưu thành công");
                   } catch (error) {
                     console.error("Lỗi khi lưu: ", error);

@@ -90,6 +90,6 @@ module.exports = {
   },
   logout: async (req, res) => {
     req.session.isLogin = false;
-    return res.redirect("/auth/dang-nhap");
+    return res.redirect("/");
   },
 };
