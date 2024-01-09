@@ -1,6 +1,5 @@
 "use client";
 import "./footer.scss";
-import { Button } from "@nextui-org/react";
 function Footer() {
   return (
     <footer className="footer">
