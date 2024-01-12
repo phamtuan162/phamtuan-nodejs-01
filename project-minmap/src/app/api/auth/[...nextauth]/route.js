@@ -46,6 +46,8 @@ export const authOptions = {
       clientSecret: process.env.CLIENT_SECRET_FACEBOOK ?? "",
     }),
   ],
+  secret: process.env.NEXTAUTH_SECRET,
+
   callbacks: {
     session: async ({ session, token }) => {
       if (session?.user) {
