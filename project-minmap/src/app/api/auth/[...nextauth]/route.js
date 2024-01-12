@@ -46,7 +46,6 @@ export const authOptions = {
       clientSecret: process.env.CLIENT_SECRET_FACEBOOK ?? "",
     }),
   ],
-  secret: process.env.NEXTAUTH_SECRET,
 
   callbacks: {
     session: async ({ session, token }) => {
@@ -65,6 +64,7 @@ export const authOptions = {
   session: {
     strategy: "jwt",
   },
+  secret: process.env.NEXTAUTH_SECRET,
 };
 
 export const handler = NextAuth(authOptions);
