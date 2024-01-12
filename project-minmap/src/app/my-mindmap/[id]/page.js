@@ -6,26 +6,40 @@ import CreateFlow from "./Flow";
 import { formatCurrentTime } from "@/utils/formatCurrentTime";
 import { toast } from "react-toastify";
 import Share from "./Share";
-import { postFlow, updateFlow } from "@/services/flowApi";
+import { postFlow, updateFlow, getFlow, getFlowUser } from "@/services/flowApi";
 import { getLocalStorage } from "@/utils/getLocalStorage";
+import Loading from "@/components/Loading/Loading";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 const CreateMindMap = () => {
+  const router = useRouter();
   const { id: flow_id } = useParams();
-  const userId = getLocalStorage("user_id");
-  const flow = getLocalStorage("flowArr");
-  const flowNeedFind = flow.find((item) => item.id === flow_id);
+  const { data: session } = useSession();
+  const userId = session?.user?.id || getLocalStorage("user_id");
+  const [flowNeedFind, setFlowNeedFind] = useState(null);
   const [mode, setMode] = useState(flowNeedFind?.flow_mode || "private");
   let dateCreate = flowNeedFind?.dateCreate || formatCurrentTime();
   const [rfInstance, setRfInstance] = useState(null);
   const [open, setOpen] = useState(false);
-  let save = false;
   const [name, setName] = useState(
     flowNeedFind?.flow_name || "Mindmap không có tên"
   );
   const [desc, setDesc] = useState(flowNeedFind?.flow_desc || "Chưa có mô tả");
-  const checkUser = flowNeedFind ? flowNeedFind.user_id === userId : true;
+  const [checkUser, setCheckUser] = useState(false);
+  let save = false;
+  const fetchFlowData = async () => {
+    const fetchedFlow = await getFlow(flow_id);
+    const userCheck = fetchedFlow[0]?.user_id === userId;
+    setCheckUser(userCheck);
+    setFlowNeedFind(fetchedFlow.length > 0 ? fetchedFlow[0] : []);
+  };
+  useEffect(() => {
+    fetchFlowData();
+  }, [flow_id]);
+
   useEffect(() => {
     if (!checkUser && flowNeedFind?.flow_mode === "private") {
-      window.location.href = "/";
+      router.push("/");
     }
   }, [checkUser, flowNeedFind]);
 
@@ -35,7 +49,6 @@ const CreateMindMap = () => {
 
   const onSave = useCallback(
     async (save) => {
-      console.log(save);
       if (rfInstance) {
         const flow = rfInstance.toObject();
         const newFlow = {
@@ -47,22 +60,15 @@ const CreateMindMap = () => {
           flow_mode: mode,
           ...flow,
         };
-        const existingFlows = getLocalStorage("flowArr");
-        const existingIndex = existingFlows.findIndex(
-          (item) => item.id === flow_id
-        );
-        if (save === true) {
+        const existingFlows = await getFlowUser(userId);
+        const isFlowExist = existingFlows.some((item) => item.id === flow_id);
+
+        if (save && isFlowExist) {
           await updateFlow(newFlow);
-        }
-
-        if (existingIndex !== -1) {
-          existingFlows[existingIndex] = newFlow;
-        } else {
+        } else if (!isFlowExist) {
           await postFlow(newFlow);
-          existingFlows.push(newFlow);
         }
 
-        localStorage.setItem("flowArr", JSON.stringify(existingFlows));
         document.title = name;
       }
     },
@@ -74,22 +80,23 @@ const CreateMindMap = () => {
   }, [onSave]);
 
   const openShare = () => {
-    setOpen(!open);
+    setOpen(true);
   };
 
-  const handleSaveModeFlow = (e, modeShare) => {
+  const handleSaveModeFlow = async (e, modeShare) => {
     e.preventDefault();
-    const updateFlow = flow.map((item) => {
-      return item.id === flowNeedFind.flow_id
-        ? { ...item, flow_mode: modeShare }
-        : item;
+    flowNeedFind.flow_mode = modeShare;
+    updateFlow(flowNeedFind).then((data) => {
+      if (data) {
+        setMode(modeShare);
+        toast.success("Lưu thành công");
+      }
     });
-
-    localStorage.setItem("flowArr", JSON.stringify(updateFlow));
-    setMode(modeShare);
-    toast.success("Lưu thành công");
   };
 
+  if (!flowNeedFind) {
+    return <Loading />;
+  }
   return (
     <div className="py-5 mx-auto">
       <div className="text-start container mx-auto flex flex-wrap">
@@ -112,7 +119,7 @@ const CreateMindMap = () => {
           ></p>
         </div>
         <div className="w-1/5 flex justify-end items-center">
-          {checkUser && (
+          {checkUser || Array.isArray(flowNeedFind) ? (
             <>
               <button
                 className="border-2 duration-200 ease inline-flex items-center mb-1 mr-1 transition py-1 px-2 text-sm rounded text-white border-green-600 bg-green-600 hover:bg-green-700 hover:border-green-700"
@@ -143,6 +150,8 @@ const CreateMindMap = () => {
                 </span>
               </button>
             </>
+          ) : (
+            ""
           )}
         </div>
       </div>
@@ -151,9 +160,11 @@ const CreateMindMap = () => {
           <CreateFlow
             setRfInstance={setRfInstance}
             flowNeedFind={flowNeedFind}
+            onSave={onSave}
           />
         </ReactFlowProvider>
       </div>
+
       {open ? (
         <Share
           setOpen={setOpen}

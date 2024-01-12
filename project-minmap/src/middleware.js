@@ -1,13 +1,16 @@
-"use client";
-import { NextResponse } from "next/server";
-export function middleware(request) {
-  const sessionToken = request.cookies.get("next-auth.session-token")?.value;
-  console.log(sessionToken);
-  if (!sessionToken) {
-    return NextResponse.redirect(new URL("/api/auth/signin", request.url));
+import { withAuth } from "next-auth/middleware";
+
+function middleware(req, res) {
+  const isAuthenticated = req.nextauth?.token;
+
+  if (!isAuthenticated) {
+    return res.redirect("/api/auth/signin");
   }
 }
 
+export default withAuth(middleware);
+
 export const config = {
-  matcher: "/my-mindmap",
+  basePath: ["/my-mindmap"],
+  matcher: "/my-mindmap/:path*",
 };

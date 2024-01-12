@@ -1,6 +1,6 @@
 import { client } from "@/utils/clientUtils";
 export const getFlow = async (flow_id) => {
-  const { response, data } = await client.get(`/mindmap?flow_id=${flow_id}`);
+  const { response, data } = await client.get(`/mindmap?id=${flow_id}`);
   if (response.ok) {
     return data;
   }
