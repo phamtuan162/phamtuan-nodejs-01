@@ -67,6 +67,7 @@ const CreateMindMap = () => {
           await updateFlow(newFlow);
         } else if (!isFlowExist) {
           await postFlow(newFlow);
+          setFlowNeedFind(newFlow);
         }
 
         document.title = name;
@@ -85,6 +86,7 @@ const CreateMindMap = () => {
 
   const handleSaveModeFlow = async (e, modeShare) => {
     e.preventDefault();
+
     flowNeedFind.flow_mode = modeShare;
     updateFlow(flowNeedFind).then((data) => {
       if (data) {
