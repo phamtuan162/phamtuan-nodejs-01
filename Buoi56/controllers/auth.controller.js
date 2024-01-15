@@ -1,6 +1,5 @@
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
-const salt = bcrypt.genSaltSync(saltRounds);
 const { object, string } = require("yup");
 const model = require("../models/index");
 const User = model.User;
@@ -75,6 +74,7 @@ module.exports = {
     });
     try {
       const body = await schema.validate(req.body, { abortEarly: false });
+      const salt = bcrypt.genSaltSync(saltRounds);
       const hashPassword = await bcrypt.hash(body.password, salt);
       await User.create({
         name: body.name,

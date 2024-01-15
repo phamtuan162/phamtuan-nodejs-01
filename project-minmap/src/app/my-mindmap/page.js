@@ -1,9 +1,11 @@
 import { v4 as uuidv4 } from "uuid";
+import { getLocalStorage } from "@/utils/getLocalStorage";
 export const metadata = {
   title: "My MindMap",
 };
 import ListMyFlow from "./ListMyFlow";
 const MyMindMap = () => {
+  const flow_id = uuidv4();
   return (
     <div className="container px-4 mx-auto">
       <div className="text-start">
@@ -13,7 +15,7 @@ const MyMindMap = () => {
         <div className="py-4">
           <a
             className="rounded-lg px-4 py-2 bg-blue-500 text-blue-100 hover:bg-blue-600 duration-300"
-            href={`./my-mindmap/${uuidv4()}`}
+            href={`./my-mindmap/${flow_id}`}
           >
             Thêm mới
           </a>

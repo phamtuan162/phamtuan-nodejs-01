@@ -37,14 +37,12 @@ export default function Flow({ setRfInstance, flowNeedFind }) {
   const { screenToFlowPosition, setViewport } = useReactFlow();
   let id = flowNeedFind?.nodes?.length - 1 || 0;
   const getId = () => `${id + 1}`;
-
-  // useEffect(() => {
-  //   // if (flowNeedFind) {
-  //   //   const { x = 0, y = 0, zoom = 1 } = flowNeedFind.viewport;
-  //   //   setViewport({ x, y, zoom });
-  //   // }
-
-  // }, [flowNeedFind]);
+  useEffect(() => {
+    if (!Array.isArray(flowNeedFind)) {
+      const { x = 0, y = 0, zoom = 1 } = flowNeedFind.viewport;
+      setViewport({ x, y, zoom });
+    }
+  }, [flowNeedFind]);
 
   const onConnect = useCallback((params) => {
     connectingNodeId.current = null;

@@ -16,7 +16,10 @@ const CreateMindMap = () => {
   const { id: flow_id } = useParams();
   const { data: session } = useSession();
   const userId = session?.user?.id || getLocalStorage("user_id");
-  const [flowNeedFind, setFlowNeedFind] = useState(null);
+  const myFlow = getLocalStorage("flow");
+  const [flowNeedFind, setFlowNeedFind] = useState(
+    myFlow.id === flow_id ? myFlow : null
+  );
   const [mode, setMode] = useState(flowNeedFind?.flow_mode || "private");
   let dateCreate = flowNeedFind?.dateCreate || formatCurrentTime();
   const [rfInstance, setRfInstance] = useState(null);
@@ -25,13 +28,22 @@ const CreateMindMap = () => {
     flowNeedFind?.flow_name || "Mindmap không có tên"
   );
   const [desc, setDesc] = useState(flowNeedFind?.flow_desc || "Chưa có mô tả");
-  const [checkUser, setCheckUser] = useState(false);
+  const [checkUser, setCheckUser] = useState(
+    flowNeedFind?.user_id === userId ? true : false
+  );
+  console.log(name, desc);
   let save = false;
   const fetchFlowData = async () => {
     const fetchedFlow = await getFlow(flow_id);
-    const userCheck = fetchedFlow[0]?.user_id === userId;
+
+    localStorage.setItem(
+      "flow",
+      JSON.stringify(fetchedFlow.length > 0 ? fetchedFlow[0] : [])
+    );
+
+    const userCheck = fetchedFlow[0]?.user_id === userId ? true : false;
     setCheckUser(userCheck);
-    setFlowNeedFind(fetchedFlow.length > 0 ? fetchedFlow[0] : []);
+    setFlowNeedFind(getLocalStorage("flow"));
   };
   useEffect(() => {
     fetchFlowData();
@@ -65,10 +77,14 @@ const CreateMindMap = () => {
 
         if (save && isFlowExist) {
           await updateFlow(newFlow);
+          setFlowNeedFind(newFlow);
         } else if (!isFlowExist) {
           await postFlow(newFlow);
+          setCheckUser(true);
           setFlowNeedFind(newFlow);
         }
+
+        localStorage.setItem("flow", JSON.stringify(newFlow));
 
         document.title = name;
       }
@@ -84,7 +100,7 @@ const CreateMindMap = () => {
     setOpen(true);
   };
 
-  const handleSaveModeFlow = async (e, modeShare) => {
+  const handleSaveModeFlow = (e, modeShare) => {
     e.preventDefault();
 
     flowNeedFind.flow_mode = modeShare;
@@ -108,7 +124,9 @@ const CreateMindMap = () => {
             className="text-2xl md:text-4xl font-medium my-2 outline-0"
             spellCheck="false"
             contentEditable="true"
-            dangerouslySetInnerHTML={{ __html: name }}
+            dangerouslySetInnerHTML={{
+              __html: !checkUser ? flowNeedFind.flow_name : name,
+            }}
             onBlur={(e) => handleChange(e, setName)}
           ></h1>
           <p
@@ -116,12 +134,14 @@ const CreateMindMap = () => {
             className="outline-0"
             spellCheck="false"
             contentEditable="true"
-            dangerouslySetInnerHTML={{ __html: desc }}
+            dangerouslySetInnerHTML={{
+              __html: !checkUser ? flowNeedFind.flow_desc : desc,
+            }}
             onBlur={(e) => handleChange(e, setDesc)}
           ></p>
         </div>
         <div className="w-1/5 flex justify-end items-center">
-          {checkUser || Array.isArray(flowNeedFind) ? (
+          {checkUser && (
             <>
               <button
                 className="border-2 duration-200 ease inline-flex items-center mb-1 mr-1 transition py-1 px-2 text-sm rounded text-white border-green-600 bg-green-600 hover:bg-green-700 hover:border-green-700"
@@ -152,8 +172,6 @@ const CreateMindMap = () => {
                 </span>
               </button>
             </>
-          ) : (
-            ""
           )}
         </div>
       </div>

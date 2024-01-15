@@ -2,7 +2,9 @@
 import { useState } from "react";
 const Share = ({ setOpen, flowNeedFind, handleSaveModeFlow }) => {
   const location = window.location.href;
-  const [modeShare, setModeShare] = useState(flowNeedFind.flow_mode);
+  const [modeShare, setModeShare] = useState(
+    flowNeedFind.flow_mode || "private"
+  );
   const closeShare = () => {
     setOpen(false);
   };

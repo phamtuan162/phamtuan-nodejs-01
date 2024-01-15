@@ -5,12 +5,11 @@ import { getLocalStorage } from "@/utils/getLocalStorage";
 import { getFlowUser, deleteFlow } from "@/services/flowApi";
 function ListMyFlow() {
   const userId = getLocalStorage("user_id");
-  const [flows, setFlows] = useState(getLocalStorage("flowArr") || []);
+  const [flows, setFlows] = useState([]);
 
   useEffect(() => {
     const fetchFlows = async () => {
       const flowData = await getFlowUser(userId);
-      localStorage.setItem("flowArr", JSON.stringify(flowData));
       setFlows(flowData);
     };
 
@@ -23,7 +22,6 @@ function ListMyFlow() {
     toast.warning("Nếu bạn chắc chắn muốn xóa, Click Here", {
       onClick: async () => {
         await deleteFlow(id);
-        localStorage.setItem("flowArr", JSON.stringify(flowArrNew));
         toast.success("Bạn xóa thành công");
         setFlows(flowArrNew);
       },
@@ -32,10 +30,10 @@ function ListMyFlow() {
 
   return (
     <>
-      {flows?.map(({ id, flow_name, flow_desc, dateCreate }) => {
+      {flows?.map((flow) => {
         return (
           <div
-            key={id}
+            key={flow.id}
             className="hover:bg-gray-200 cursor-pointer bg-white shadow flex items-center mb-5 rounded-lg"
           >
             <div className="w-1/6 text-center">
@@ -45,26 +43,33 @@ function ListMyFlow() {
               <div className="flex items-center">
                 <div className="ml-4">
                   <span className="capitalize block text-gray-800">
-                    <a href={`/my-mindmap/${id}`}>{flow_name}</a>
+                    <a
+                      href={`/my-mindmap/${flow.id}`}
+                      onClick={() => {
+                        localStorage.setItem("flow", JSON.stringify(flow));
+                      }}
+                    >
+                      {flow.flow_name}
+                    </a>
                   </span>
                   <span className="text-sm block text-gray-600">
-                    {flow_desc}
+                    {flow.flow_desc}
                   </span>
                 </div>
               </div>
             </div>
             <div className="w-1/4">
-              <span className="text-gray-600 text-sm">{dateCreate}</span>
+              <span className="text-gray-600 text-sm">{flow.dateCreate}</span>
             </div>
             <div className="w-1/4">
-              <a href={`/my-mindmap/${id}`} Ư>
+              <a href={`/my-mindmap/${flow.id}`} Ư>
                 <span className="text-gray-600 text-sm px-2">
                   <i className="fa-solid fa-pen-to-square"></i>
                 </span>
               </a>
               <span
                 className="text-gray-600 text-sm px-2"
-                onClick={() => deleteMyFlow(id)}
+                onClick={() => deleteMyFlow(flow.id)}
               >
                 <i className="fa-solid fa-trash"></i>
               </span>

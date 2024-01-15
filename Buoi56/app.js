@@ -12,11 +12,13 @@ const validateMessage = require("./middlewares/validate.message");
 var indexRouter = require("./routes/index");
 var authRouter = require("./routes/auth");
 var usersRouter = require("./routes/users");
+var profileRouter = require("./routes/profile");
 
 var authMiddleware = require("./middlewares/auth.middleware");
+const useragent = require("express-useragent");
 
 var app = express();
-
+app.use(useragent.express());
 app.use(
   session({
     secret: "f8",
@@ -42,6 +44,7 @@ app.use("/auth", authRouter);
 app.use(authMiddleware);
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
+app.use("/profile", profileRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

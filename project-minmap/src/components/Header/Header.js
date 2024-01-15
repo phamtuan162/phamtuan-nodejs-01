@@ -27,8 +27,7 @@ const Header = () => {
     toast.warning("Bạn có muốn đăng xuất không,Click Here", {
       onClick: async () => {
         await signOut();
-        localStorage.removeItem("flowArr");
-        localStorage.removeItem("user_id");
+        localStorage.clear();
         window.location.href = "/";
         toast.success("Bạn đăng xuất thành công");
       },
