@@ -128,6 +128,7 @@ const Share = ({ setOpen, flowNeedFind, handleSaveModeFlow }) => {
                         className="peer h-10 w-full rounded-md bg-gray-50 px-4 drop-shadow-sm transition-all duration-200 ease-in-out focus:bg-white focus:ring-2 focus:ring-blue-400 outline-none"
                         type="url"
                         name="image"
+                        value="http://f8-mindmap.sanphamkythuat.online:880/_next/static/media/so-do-tu-duy.95dad645.jpg"
                         readOnly
                       />
                     </div>

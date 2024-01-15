@@ -1,5 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        hostname: "f8-mindmap.sanphamkythuat.online",
+      },
+    ],
+  },
   env: {
     SERVICE_ID: process.env.SERVICE_ID,
     TEMPLATE_ID: process.env.TEMPLATE_ID,
