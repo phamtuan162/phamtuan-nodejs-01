@@ -58,7 +58,6 @@ module.exports = {
     res.render("auth/register", { req, msg });
   },
   handleRegister: async (req, res) => {
-    const { email, password, name, status } = req.body;
     const schema = object({
       email: string()
         .required("Vui lòng nhập email")

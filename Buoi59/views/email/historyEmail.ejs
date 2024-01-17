@@ -1,0 +1,31 @@
+<h1>Lịch sử gửi email</h1>
+<table style="background-color: #f2f6fc">
+  <tbody>
+    <% sentEmails.forEach(({ id,recipient_email, title, content, created_at
+    ,status}) => { %>
+    <tr
+      style="
+        height: 50px;
+        border-top: 1px solid #000;
+        border-bottom: 1px solid #000;
+      "
+    >
+      <td style="width: 40%; padding: 10px; position: relative">
+        Đến: <%= recipient_email %>
+        <span style="font-size: 10px; position: absolute; bottom: 0; left: 10px"
+          ><%= !status ? "Chưa đọc" : "Đã đọc" %></span
+        >
+      </td>
+      <td style="padding: 10px">Tiêu đề: <%= title %></td>
+      <td style="width: 10%; padding: 10px">
+        <%= moment(created_at).isSame(moment(), 'day') ?
+        moment(created_at).format('HH:mm') : moment(created_at).format('DD/MM')
+        %>
+      </td>
+      <td style="width: 10%; padding: 10px">
+        <a href="/email/detail-email/<%= id %>">View</a>
+      </td>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>

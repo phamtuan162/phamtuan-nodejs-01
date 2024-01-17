@@ -1,0 +1,20 @@
+<p>Tiêu đều: <%= detailEmail.title%></p>
+<div style="width: 500px">
+  <div class="d-flex justify-content-between">
+    <div>
+      <h3>
+        Phạm Tuấn
+        <span style="font-size: 14px">< <%= detailEmail.sender_email %> ></span>
+      </h3>
+      <p>đến: <%= detailEmail.recipient_email %></p>
+    </div>
+    <span>
+      <%= moment(detailEmail.created_at).isSame(moment(), 'day')?
+      moment(detailEmail.created_at).format('HH:mm') :
+      moment(detailEmail.created_at).format('DD/MM') %>
+    </span>
+  </div>
+  <p>Nội dung:</p>
+  <p><%= detailEmail.content %></p>
+</div>
+<a href="/email/history-email" class="btn btn-danger">Trở về</a>

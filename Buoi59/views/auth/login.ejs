@@ -1,0 +1,41 @@
+<h1 class="text-center">Đăng nhập</h1>
+
+<form action="" method="post" style="width: 300px; margin: 0 auto">
+  <% if (msg.length) { %>
+  <div class="alert alert-danger"><%= msg %></div>
+  <% } %>
+  <div class="mb-4">
+    <label for="email">Email</label>
+    <div>
+      <input
+        type="text"
+        name="email"
+        placeholder="Email..."
+        value="<%=  req.old?.email  %>"
+        class="w-100"
+      />
+      <%- req.errors?.email ? `<span class="text-danger"
+        >${req.errors?.email}</span
+      >`: '' %>
+    </div>
+  </div>
+  <div class="mb-4">
+    <label for="password">Password</label>
+    <div>
+      <input
+        type="password"
+        name="password"
+        placeholder="Password..."
+        value="<%=  req.old?.password  %>"
+        class="w-100"
+      />
+      <%- req.errors?.password ? `<span class="text-danger"
+        >${req.errors?.password}</span
+      >`: '' %>
+    </div>
+  </div>
+  <div>
+    <p>Nếu bạn chưa có tài khoản hãy <a href="/auth/dang-ky">Đăng ký</a></p>
+  </div>
+  <button class="btn btn-primary w-100">Đăng nhập</button>
+</form>

@@ -1,0 +1,54 @@
+<h1 class="text-center">Gửi email</h1>
+<form action="" method="post" style="width: 400px; margin: 0 auto">
+  <% if (msg.length) { %>
+  <div class="alert alert-success"><%= msg %></div>
+  <% } %>
+  <div class="mb-4">
+    <label for="recipient_email">Email gửi đến:</label>
+    <div>
+      <input
+        type="text"
+        name="recipient_email"
+        id="recipient_email"
+        placeholder="Email..."
+        class="w-100 form-control"
+      />
+      <%- req.errors?.recipient_email ? `<span class="text-danger"
+        >${req.errors?.recipient_email}</span
+      >`: '' %>
+    </div>
+  </div>
+  <div class="mb-4">
+    <label for="title">Tiêu đề:</label>
+    <div>
+      <input
+        type="text"
+        name="title"
+        id="title"
+        placeholder="Tiêu đề..."
+        class="w-100 form-control"
+      />
+      <%- req.errors?.title ? `<span class="text-danger"
+        >${req.errors?.title}</span
+      >`: '' %>
+    </div>
+  </div>
+  <div class="mb-4">
+    <label for="content">Nội dung:</label>
+    <div>
+      <textarea
+        name="content"
+        id="content"
+        class="form-control w-100"
+        style="height: 100px"
+        placeholder="Nội dung..."
+      ></textarea>
+      <%- req.errors?.content ? `<span class="text-danger"
+        >${req.errors?.content}</span
+      >`: '' %>
+    </div>
+  </div>
+
+  <button class="btn btn-primary w-100">Send</button>
+  <a href="/email/history-email">Lịch sử gửi email</a>
+</form>
