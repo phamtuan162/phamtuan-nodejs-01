@@ -20,15 +20,15 @@ const Header = () => {
   const pathName = usePathname();
   const isLocalePath = /^\/(en|vi)\/?$/.test(pathName);
   const t = useTranslations("header");
-  const handleClick = async () => {
-    if (session) {
-      router.push(isLocalePath ? `./${locale}/profile` : "./profile");
-    } else {
-      router.push(isLocalePath ? `./${locale}/auth` : "./auth");
+  // const handleClick = async () => {
+  //   if (session) {
+  //     router.push(isLocalePath ? `./${locale}/profile` : "./profile");
+  //   } else {
+  //     router.push(isLocalePath ? `./${locale}/auth` : "./auth");
 
-      // signIn();
-    }
-  };
+  //     // signIn();
+  //   }
+  // };
   return (
     <Navbar>
       <NavbarBrand style={{ flexGrow: "0" }}>
