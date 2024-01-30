@@ -56,9 +56,7 @@ const LoginRegister = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
   const handleLogin = async () => {
-    const response = await fetch(
-      "http://localhost:3000/api/v1/auth/google/callback"
-    );
+    const response = await fetch("http://localhost:3000/api/v1/auth/google");
     const data = await response.json();
     console.log(data);
   };
