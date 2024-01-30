@@ -122,15 +122,9 @@ const LoginRegister = () => {
           >
             {t("loginRegister")}
           </Button>
-          <Button
-            type="button"
-            color="success"
-            variant="ghost"
-            className="w-full"
-            onClick={handleLogin}
-          >
+          <a href="http://localhost:3000/api/v1/auth/github">
             Đăng nhập github
-          </Button>
+          </a>
           <Button
             type="button"
             color="success"
