@@ -55,6 +55,13 @@ const LoginRegister = () => {
   const HandleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
+  const handleLogin = async () => {
+    const response = await fetch(
+      "http://localhost:3000/api/v1/auth/google/callback"
+    );
+    const data = await response.json();
+    console.log(data);
+  };
 
   const { name, email, password } = form;
   return (
@@ -117,18 +124,15 @@ const LoginRegister = () => {
           >
             {t("loginRegister")}
           </Button>
-          <a
-            href="http://localhost:3000/api/v1/auth/github"
-            className="btn btn-primary"
+          <Button
+            type="button"
+            color="success"
+            variant="ghost"
+            className="w-full"
+            onClick={handleLogin}
           >
-            Đăng nhập Github
-          </a>
-          <a
-            href="http://localhost:3000/api/v1/auth/google"
-            className="btn btn-primary"
-          >
-            Đăng nhập Google
-          </a>
+            Đăng nhập github
+          </Button>
           <Button
             type="button"
             color="success"
