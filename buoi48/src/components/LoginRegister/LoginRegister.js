@@ -117,6 +117,18 @@ const LoginRegister = () => {
           >
             {t("loginRegister")}
           </Button>
+          <a
+            href="http://localhost:3000/api/v1/auth/github"
+            className="btn btn-primary"
+          >
+            Đăng nhập Github
+          </a>
+          <a
+            href="http://localhost:3000/api/v1/auth/google"
+            className="btn btn-primary"
+          >
+            Đăng nhập Google
+          </a>
           <Button
             type="button"
             color="success"
