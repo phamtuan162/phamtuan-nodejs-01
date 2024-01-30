@@ -28,29 +28,29 @@ const LoginRegister = () => {
   const HandleLoginRegister = async (e) => {
     e.preventDefault();
     signIn("credentials", form);
-    // await postLogin({
-    //   email: form.email,
-    //   password: form.password,
-    // }).then(async ({ data, message }) => {
-    //   if (data) {
-    //     toast.success(message);
-    //     router.push("./profile");
-    //   } else {
-    //     toast.error(message);
-    //     if (message === "Tài khoản không tồn tại") {
-    //       toast.info("Chuyển sang đăng ký");
-    //       postRegister(form).then((check) => {
-    //         if (check) {
-    //           setForm({
-    //             name: "",
-    //             email: "",
-    //             password: "",
-    //           });
-    //         }
-    //       });
-    //     }
-    //   }
-    // });
+    await postLogin({
+      email: form.email,
+      password: form.password,
+    }).then(async ({ data, message }) => {
+      if (data) {
+        toast.success(message);
+        router.push("./profile");
+      } else {
+        toast.error(message);
+        if (message === "Tài khoản không tồn tại") {
+          toast.info("Chuyển sang đăng ký");
+          postRegister(form).then((check) => {
+            if (check) {
+              setForm({
+                name: "",
+                email: "",
+                password: "",
+              });
+            }
+          });
+        }
+      }
+    });
   };
   const HandleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
